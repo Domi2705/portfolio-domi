@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Super Scan · Caso de estudio · Dominique Plez</title>
+<meta name="description" content="Portfolio de Dominique Plez, diseñadora UX/UI generalista con especial interés en el diseño de interacción.">
+<meta property="og:title" content="Super Scan · Caso de estudio · Dominique Plez">
+<meta property="og:description" content="Portfolio de Dominique Plez, diseñadora UX/UI generalista con especial interés en el diseño de interacción.">
+<meta name="theme-color" content="#5B3FC4">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.root{transition:background-color .5s ease,color .5s ease}
+.root a{color:var(--accent)}
+.root a:hover{color:var(--text)}
+.root :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.screen{display:block;width:220px;max-width:100%;height:auto;border-radius:26px;border:7px solid var(--frame);background:#FFFFFF;box-sizing:border-box;box-shadow:0 22px 40px -22px rgba(30,27,75,.45)}
+.lift{transition:transform .25s ease}
+.lift:hover{transform:translateY(-4px)}
+.scanbtn{transition:transform .15s ease}
+.scanbtn:hover{transform:scale(1.06)}
+.scanbtn:active{transform:scale(.94)}
+.cord-line{transition:height .18s ease}
+.bead{transition:box-shadow .5s ease,transform .18s ease}
+.cord-btn:hover .bead{transform:scale(1.08)}
+.marq{position:relative; overflow:hidden; outline-offset:-4px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marq-track{list-style:none; margin:0; padding:8px 0 20px; display:flex; gap:22px; width:max-content; animation:marq var(--marq-dur,60s) linear infinite}
+.marq:hover .marq-track,.marq:focus-within .marq-track{animation-play-state:paused}
+.marq-track li{flex:none; display:flex; flex-direction:column; align-items:center; gap:12px; transition:transform .25s ease}
+.marq-track li:hover{transform:translateY(-6px)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 11px))}}
+@media (hover:none), (max-width:760px){
+.marq{overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-inline:24px; scrollbar-width:none; -webkit-mask-image:none; mask-image:none}
+.marq::-webkit-scrollbar{display:none}
+.marq-track{animation:none; padding:8px 24px 20px; gap:16px}
+.marq-track li{scroll-snap-align:start}
+.marq-track li:hover{transform:none}
+.marq-track .dup{display:none}
+}
+.rm .marq{overflow-x:auto; -webkit-mask-image:none; mask-image:none}
+.rm .marq-track{padding-inline:24px}
+.rm .marq-track .dup{display:none}
+@media (prefers-reduced-motion: reduce){.marq{overflow-x:auto; -webkit-mask-image:none; mask-image:none}.marq-track{padding-inline:24px}.marq-track .dup{display:none}}
+.ul a{text-decoration:underline!important;text-underline-offset:3px}
+.rm,.rm *{transition:none!important;animation:none!important}
+.rm .lift:hover,.rm .scanbtn:hover{transform:none}
+@media (prefers-reduced-motion: reduce){.root,.root *{transition:none!important;animation:none!important}.lift:hover,.scanbtn:hover{transform:none}}
+@media (max-width:640px){.cord{right:12px!important}}
+.cta{transition:background-position .5s ease,transform .2s ease;background-position:0% 50%}
+.cta:hover{background-position:100% 50%;transform:translateY(-2px)}
+.btn{cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease,border-color .2s ease,color .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(30,27,75,.55)}
+.btn:active{transform:translateY(0) scale(.97);box-shadow:none}
+.btn[aria-pressed="false"]:hover{background:var(--soft)!important;border-color:var(--accent)!important}
+.btn[aria-pressed="true"]:hover{filter:brightness(1.12)}
+button.btn:not([aria-pressed]):hover,a.btn:hover{border-color:var(--accent)!important}
+a.btn-dark:hover{background:rgba(255,255,255,.12)!important;border-color:#FFFFFF!important}
+.tlink{transition:color .2s ease}
+.tlink:hover{color:var(--accent)!important;text-decoration:underline;text-underline-offset:4px}
+.logo .mark{transition:transform .4s ease}
+.logo:hover .mark{transform:rotate(180deg)}
+.card{cursor:pointer}
+.rm .btn:hover,.rm .btn:active,.rm .logo:hover .mark{transform:none}
+@media (prefers-reduced-motion: reduce){.btn:hover,.btn:active,.logo:hover .mark{transform:none}}
+
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--tray);border:var(--bw) solid var(--border);border-radius:14px}
+.seg .btn:hover{transform:none!important}
+.seg .btn[aria-pressed="false"]:hover{background:var(--card)!important;color:var(--accent)!important}
+.seg .btn[aria-pressed="true"]{box-shadow:0 2px 6px -2px rgba(30,27,75,.45)}
+.tag{display:inline-flex;align-items:center;background:var(--tagBg);color:var(--muted);border-radius:6px;padding:3px 9px;font-size:.75em;font-weight:600;line-height:1.5}
+.btn:hover{transform:translateY(-1px)!important}
+.btn:active,.cta:active{transform:translateY(2px)!important;box-shadow:none!important}
+.mlink{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 14px;border-radius:12px;text-decoration:none;color:var(--text)!important;font-weight:700}
+.mlink:hover{background:var(--soft)}
+.only-m{display:none!important}
+@media (max-width:760px){
+.jrow{flex-direction:column!important;align-items:flex-start!important;gap:4px!important}
+.jrow li{flex-direction:column!important;align-items:flex-start!important;gap:4px!important}
+.jrow li>span[aria-hidden]{display:inline-block;transform:rotate(90deg);margin-left:16px}
+.dec-img{width:150px!important}
+.g2m{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.only-d{display:none!important}
+.only-m{display:flex!important}
+.hdr{padding-right:56px!important}
+.cord{transform:scale(.8);transform-origin:top center;right:8px!important}
+.hero-side{display:none!important}
+.hero-center{width:220px!important;max-width:72%!important}
+}
+@media (max-width:520px){.name-c{display:none}}
+@media (max-width:400px){.name-m{display:none}}
+@media (hover:none){
+.btn:hover{transform:none!important}
+.btn[aria-pressed="false"]:hover{background:var(--card)!important;border-color:var(--chip)!important}
+.seg .btn[aria-pressed="false"]:hover{background:transparent!important;color:var(--text)!important}
+button.btn:not([aria-pressed]):hover,a.btn:hover{border-color:var(--chip)!important}
+.lift:hover,.card:hover{transform:none}
+}
+.wa{transition:transform .2s ease}
+.wa:hover{transform:scale(1.08)}
+@media (prefers-reduced-motion: reduce){.wa:hover{transform:none}}
+.nav-link{text-decoration:none;color:var(--muted)!important;font-weight:500;padding:10px 4px;min-height:44px;display:inline-flex;align-items:center}
+.nav-link:hover{color:var(--text)!important}
+@keyframes rise{from{opacity:0;translate:0 28px}to{opacity:1;translate:0 0}}
+@keyframes drop{from{opacity:0;translate:0 -14px}to{opacity:1;translate:0 0}}
+@keyframes pop{from{opacity:0;translate:0 24px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+.root .hdr{position:relative;z-index:30;animation:drop .6s cubic-bezier(.2,.7,.2,1) both}
+.root .hdr ~ section:first-of-type > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.root .hdr ~ section:first-of-type > :nth-child(1){animation-delay:.2s}
+.root .hdr ~ section:first-of-type > :nth-child(2){animation:pop .9s cubic-bezier(.2,.7,.2,1) .4s both}
+.root .hdr ~ section:first-of-type > :nth-child(3){animation-delay:.55s}
+.root .hdr ~ section:first-of-type > :nth-child(n+4){animation-delay:.65s}
+.sprog{display:none}
+@supports (animation-timeline: view()){
+@keyframes revealUp{from{opacity:0;translate:0 56px;scale:.98}to{opacity:1;translate:0 0;scale:1}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.sprog{display:block;position:fixed;top:0;left:0;right:0;height:4px;z-index:40;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#E86A92,#8B6CF0,#5B8DEF);animation:grow linear both;animation-timeline:scroll(root)}
+}
+.rm .sprog{display:none}
+@media (prefers-reduced-motion: reduce){.sprog{display:none}}
+[data-rv="wait"]{opacity:0;translate:0 44px}
+[data-rv="in"]{animation:rvUp .8s cubic-bezier(.2,.7,.2,1) var(--rvd,0s) both}
+@keyframes rvUp{from{opacity:0;translate:0 44px}to{opacity:1;translate:0 0}}
+.rm [data-rv]{opacity:1!important;translate:none!important;animation:none!important}
+@media (prefers-reduced-motion: reduce){[data-rv]{opacity:1!important;translate:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div id="root"></div>
+<template id="dc-tpl">
+
+<div class="{{rootClass}}" lang="{{lang}}" style="{{rootStyle}}">
+<div class="sprog" aria-hidden="true"></div>
+
+<div class="cord" style="position:absolute; top:0; right:40px; display:flex; flex-direction:column; align-items:center; z-index:5">
+<span aria-hidden="true" style="width:22px; height:6px; border-radius:0 0 6px 6px; background:var(--text); opacity:.7"></span>
+<span class="cord-line" aria-hidden="true" style="{{cordLine}}"></span>
+<button class="cord-btn" type="button" onClick="{{pull}}" aria-pressed="{{darkPressed}}" aria-label="{{t.cord}}" title="{{t.cord}}" style="width:44px; height:44px; margin-top:-4px; border:none; background:transparent; padding:0; cursor:pointer; display:flex; align-items:flex-start; justify-content:center">
+<span class="bead" style="{{beadStyle}}"></span>
+</button>
+</div>
+
+<div style="max-width:1200px; margin:0 auto; display:flex; flex-direction:column; gap:24px">
+
+<header class="hdr" style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 72px 8px 8px">
+<a class="logo" href="index.html" style="text-decoration:none; color:var(--text); font-weight:800; font-size:1.25em; letter-spacing:-0.02em; display:inline-flex; align-items:center; gap:10px; min-height:44px">
+<svg class="mark" width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dpflow" gradientUnits="userSpaceOnUse" x1="0" y1="5" x2="0" y2="95"><stop offset="0" stop-color="#E86A92"></stop><stop offset=".5" stop-color="#8B6CF0"></stop><stop offset="1" stop-color="#5B8DEF"></stop></linearGradient></defs><circle cx="50" cy="50" r="20" fill="none" stroke="url(#dpflow)" stroke-width="10"></circle><path d="M70 22 V50 M30 50 V78" fill="none" stroke="url(#dpflow)" stroke-width="10" stroke-linecap="round"></path><circle cx="70" cy="13" r="8.5" fill="url(#dpflow)"></circle><circle cx="30" cy="87" r="8.5" fill="url(#dpflow)"></circle></svg>
+<span class="name-m">Dominique Plez</span></a>
+<div style="display:flex; align-items:center; gap:12px">
+<div class="only-d" style="display:flex; align-items:center; gap:20px">
+<nav aria-label="{{t.navLabel}}" style="display:flex; gap:20px; font-size:.9375em">
+<a class="nav-link" href="index.html#work">{{t.navWork}}</a>
+<a class="nav-link" href="index.html#how">{{t.navHow}}</a>
+<a class="nav-link" href="index.html#about">{{t.navAbout}}</a>
+<a class="nav-link" href="index.html#contact">{{t.navContact}}</a>
+</nav>
+<div class="seg" role="group" aria-label="{{t.langLabel}}" style="flex-wrap:nowrap">
+<sc-for list="{{langOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" lang="{{o.code}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<button class="btn" type="button" onClick="{{togglePanel}}" aria-expanded="{{panelExpanded}}" aria-controls="a11y-panel-s" aria-label="{{t.a11yOpen}}" title="{{t.a11yOpen}}" style="flex:none; width:44px; height:44px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); color:var(--text); box-shadow:0 3px 0 var(--chip); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"></circle><path d="M5 8.5l7 1.5 7-1.5"></path><path d="M12 10v5"></path><path d="M9 21l3-6 3 6"></path></svg></button>
+<button class="btn only-m" type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-controls="mobile-menu" style="align-items:center; gap:8px; min-height:44px; padding:0 14px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); color:var(--text); font:inherit; font-weight:700; font-size:.9375em; box-shadow:0 3px 0 var(--chip)">
+<sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></sc-if>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+{{t.menu}}
+</button>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div id="mobile-menu" class="only-m" style="position:absolute; top:calc(100% + 8px); left:0; right:0; z-index:15; flex-direction:column; gap:4px; background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:10px; box-shadow:0 24px 48px -20px rgba(30,27,75,.45)">
+<nav aria-label="{{t.navLabel}}" style="display:flex; flex-direction:column; gap:2px">
+<a class="mlink" href="index.html#work" onClick="{{closeMenu}}">{{t.navWork}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#how" onClick="{{closeMenu}}">{{t.navHow}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#about" onClick="{{closeMenu}}">{{t.navAbout}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#contact" onClick="{{closeMenu}}">{{t.navContact}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+</nav>
+<div style="display:flex; justify-content:space-between; align-items:center; gap:12px; border-top:var(--bw) solid var(--border); margin-top:6px; padding:12px 14px 4px">
+<span style="font-weight:700; font-size:.9375em">{{t.langLabel}}</span>
+<div class="seg" role="group" aria-label="{{t.langLabel}}" style="flex-wrap:nowrap">
+<sc-for list="{{langOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" lang="{{o.code}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+</header>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-wrap:wrap; gap:40px; align-items:center">
+<div style="flex:999 1 460px; min-width:0; display:flex; flex-direction:column; gap:18px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.heroTag}}</p>
+<h1 style="margin:0; font-size:clamp(3em, 4vw + 1.2em, 5em); line-height:1; letter-spacing:-0.04em; font-weight:800">Super Scan</h1>
+<p style="margin:0; font-size:clamp(1.4em, 1vw + 1em, 1.75em); line-height:1.3; font-weight:700; letter-spacing:-0.015em">{{t.heroSub}}</p>
+<p style="margin:0; font-size:1.125em; line-height:var(--lh); color:var(--muted); max-width:600px">{{t.heroLead}}</p>
+</div>
+<div style="flex:1 1 320px; display:flex; flex-direction:column; align-items:center; gap:14px; background:linear-gradient(160deg,#DDF6EC,#FFF1D6); border-radius:28px; padding:28px 20px">
+<div style="width:280px; max-width:100%; height:440px; border-radius:30px; border:8px solid #1E1B4B; background:#FAFAFA; overflow:hidden; display:flex; flex-direction:column; font-family:'Roboto', system-ui, sans-serif; color:#212121; box-shadow:0 24px 44px -22px rgba(30,27,75,.5); box-sizing:border-box">
+<div style="background:#008F65; color:#FFFFFF; padding:16px 18px; font-weight:700; font-size:17px">{{t.simTitle}}</div>
+<div aria-live="polite" style="flex:1; overflow-y:auto; padding:6px 0">
+<sc-if value="{{cartEmpty}}" hint-placeholder-val="{{ false }}">
+<p style="margin:0; padding:40px 24px; text-align:center; font-size:14px; color:#555555; line-height:1.5">{{t.simEmpty}}</p>
+</sc-if>
+<sc-for list="{{cart}}" as="it" hint-placeholder-count="3">
+<div style="{{it.st}}">
+<span aria-hidden="true" style="{{it.dot}}">{{it.ini}}</span>
+<span style="flex:1; font-size:14px">{{it.name}}</span>
+<span style="font-size:13px; color:#555555">×{{it.qty}}</span>
+<span style="font-size:14px; font-weight:700; min-width:48px; text-align:right">${{it.sub}}</span>
+</div>
+</sc-for>
+</div>
+<div style="position:relative; border-top:1px solid #E0E0E0; background:#FFFFFF; padding:16px 18px; display:flex; justify-content:space-between; align-items:center; font-size:14px">
+<span style="font-weight:500">{{t.simTotal}}: <strong>${{total}}</strong></span>
+<span style="font-weight:700; color:#008F65; letter-spacing:.04em">{{t.simFinish}}</span>
+<button class="scanbtn" type="button" onClick="{{scan}}" aria-label="{{t.scanAria}}" title="{{t.scanAria}}" style="position:absolute; left:50%; top:-28px; margin-left:-28px; width:56px; height:56px; border-radius:50%; border:3px solid #FFFFFF; background:#FFA822; color:#1E1B4B; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px -6px rgba(0,0,0,.35)">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8V5h3M17 5h3v3M20 16v3h-3M7 19H4v-3"></path><path d="M8 9v6M11 9v6M13.5 9v6M16 9v6"></path></svg>
+</button>
+</div>
+</div>
+<p style="margin:0; font-size:.9375em; font-weight:700; color:#1E1B4B; text-align:center">{{t.simHint}}</p>
+<button class="btn" type="button" onClick="{{resetCart}}" style="min-height:44px; padding:0 18px; border-radius:12px; border:1.5px solid #1E1B4B; background:#FFFFFF; box-shadow:0 3px 0 #1E1B4B; color:#1E1B4B; font:inherit; font-weight:700; font-size:.875em; cursor:pointer">{{t.simReset}}</button>
+</div>
+<div style="flex:1 1 100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px">
+<sc-for list="{{t.meta}}" as="m" hint-placeholder-count="4">
+<div style="background:var(--soft); border:var(--softBorder); border-radius:20px; padding:18px 20px; display:flex; flex-direction:column; gap:4px">
+<span style="font-size:.75em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{m.k}}</span>
+<span style="font-size:1em; font-weight:700">{{m.v}}</span>
+<span style="font-size:.875em; color:var(--muted); line-height:1.5">{{m.d}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.pEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.pTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.pText}}</p>
+</div>
+<div style="display:flex; flex-direction:column; gap:14px">
+<div style="border:var(--bw) solid var(--border); border-radius:22px; padding:20px 22px; display:flex; flex-direction:column; gap:12px">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--warn)">{{t.jToday}}</span>
+<ol class="jrow" role="list" style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; align-items:center; gap:8px">
+<sc-for list="{{jBefore}}" as="j" hint-placeholder-count="5">
+<li style="display:flex; align-items:center; gap:8px">
+<span style="{{j.st}}">{{j.label}}</span>
+<sc-if value="{{j.arrow}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="color:var(--muted); font-weight:700">→</span></sc-if>
+</li>
+</sc-for>
+</ol>
+</div>
+<div style="border:2px solid var(--accent); border-radius:22px; padding:20px 22px; display:flex; flex-direction:column; gap:12px; background:var(--soft)">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.jWith}}</span>
+<ol class="jrow" role="list" style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; align-items:center; gap:8px">
+<sc-for list="{{jAfter}}" as="j" hint-placeholder-count="4">
+<li style="display:flex; align-items:center; gap:8px">
+<span style="{{j.st}}">{{j.label}}</span>
+<sc-if value="{{j.arrow}}" hint-placeholder-val="{{ true }}"><span aria-hidden="true" style="color:var(--accent); font-weight:700">→</span></sc-if>
+</li>
+</sc-for>
+</ol>
+</div>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px">
+<sc-for list="{{t.goals}}" as="g" hint-placeholder-count="2">
+<div style="background:var(--soft); border:var(--softBorder); border-radius:20px; padding:20px 22px; display:flex; flex-direction:column; gap:6px">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{g.k}}</span>
+<span style="font-size:1.0625em; font-weight:700; line-height:1.4">{{g.v}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.rEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.rTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.rText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px">
+<sc-for list="{{t.bench}}" as="b" hint-placeholder-count="3">
+<div class="lift" style="border:var(--bw) solid var(--border); border-radius:24px; padding:24px; display:flex; flex-direction:column; gap:14px">
+<h3 style="margin:0; font-size:1.25em; font-weight:800">{{b.name}}</h3>
+<div style="display:flex; gap:10px; align-items:flex-start">
+<span aria-hidden="true" style="flex:none; width:26px; height:26px; border-radius:50%; background:var(--accent); color:var(--onAccent); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.8125em">+</span>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh)"><strong>{{t.took}}:</strong> {{b.take}}</p>
+</div>
+<div style="display:flex; gap:10px; align-items:flex-start">
+<span aria-hidden="true" style="flex:none; width:26px; height:26px; border-radius:50%; border:2px solid var(--warn); color:var(--warn); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.8125em; box-sizing:border-box">−</span>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)"><strong style="color:var(--text)">{{t.avoided}}:</strong> {{b.avoid}}</p>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="background:var(--soft); border:var(--softBorder); border-radius:24px; padding:clamp(22px,3vw,32px); display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; flex-direction:column; gap:6px">
+<h3 style="margin:0; font-size:1.25em; font-weight:800">{{t.protoTitle}}</h3>
+<p style="margin:0; font-size:.9375em; color:var(--muted); line-height:var(--lh)">{{t.protoText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px">
+<sc-for list="{{t.personas}}" as="p" hint-placeholder-count="2">
+<figure style="margin:0; background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:20px 22px; display:flex; flex-direction:column; gap:10px">
+<figcaption style="font-weight:800; font-size:1em">{{p.name}}</figcaption>
+<blockquote style="margin:0; font-size:1.0625em; line-height:1.5; font-weight:600">“{{p.quote}}”</blockquote>
+<p style="margin:0; font-size:.875em; color:var(--muted)">{{p.need}}</p>
+</figure>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.iaEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.iaTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.iaText}}</p>
+</div>
+<div role="img" aria-label="{{t.iaAria}}" style="background:var(--m1); border-radius:28px; padding:clamp(20px,3vw,36px); display:flex; flex-direction:column; align-items:center; gap:0">
+<span style="background:var(--accent); color:var(--onAccent); font-weight:800; border-radius:14px; padding:10px 22px">{{t.iaRoot}}</span>
+<span aria-hidden="true" style="width:2px; height:22px; background:var(--chip)"></span>
+<div style="width:100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:14px; border-top:2px solid var(--chip); padding-top:22px">
+<sc-for list="{{t.iaBranches}}" as="br" hint-placeholder-count="3">
+<div style="background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:18px; display:flex; flex-direction:column; gap:10px">
+<span style="font-weight:800; font-size:1.0625em">{{br.name}}</span>
+<sc-for list="{{br.groups}}" as="gr" hint-placeholder-count="2">
+<div style="{{gr.st}}">
+<span style="font-weight:700; font-size:.9375em">{{gr.name}}</span>
+<span style="font-size:.8125em; color:var(--muted); line-height:1.45">{{gr.items}}</span>
+<sc-if value="{{gr.flag}}" hint-placeholder-val="{{ false }}">
+<span style="font-size:.75em; font-weight:800; color:var(--warn)">{{t.iaFlag}}</span>
+</sc-if>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.tEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.tTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.tText}}</p>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:20px; align-items:stretch">
+<div style="flex:1 1 340px; min-width:0; display:flex; flex-direction:column; gap:8px">
+<p style="margin:0 0 4px; font-size:.9375em; font-weight:600">{{t.tHint}}</p>
+<ul role="list" style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px">
+<sc-for list="{{tasks}}" as="k" hint-placeholder-count="7">
+<li style="display:flex; flex-direction:column">
+<button class="btn" type="button" aria-pressed="{{k.pressed}}" aria-expanded="{{k.expanded}}" onClick="{{k.pick}}" style="{{k.st}}">
+<span style="flex:1; text-align:left; font-weight:700">{{k.name}}</span>
+<span aria-hidden="true" style="display:flex; gap:4px">
+<sc-for list="{{k.dots}}" as="d" hint-placeholder-count="5"><span style="{{d}}"></span></sc-for>
+</span>
+<span style="min-width:36px; text-align:right; font-weight:800; font-size:.875em">{{k.score}}</span>
+<span aria-hidden="true" style="{{k.chevSt}}">›</span>
+</button>
+<sc-if value="{{k.on}}" hint-placeholder-val="{{ false }}">
+<div class="only-m" style="flex-direction:column; gap:12px; margin-top:8px; background:var(--soft); border:var(--softBorder); border-radius:20px; padding:16px">
+<div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:10px">
+<div style="background:var(--card); border:var(--bw) solid var(--border); border-radius:14px; padding:12px"><span style="display:block; font-size:1.75em; font-weight:800; color:{{k.color}}">{{k.score}}</span><span style="font-size:.8125em; color:var(--muted)">{{t.tCompleted}}</span></div>
+<div style="background:var(--card); border:var(--bw) solid var(--border); border-radius:14px; padding:12px"><span style="display:block; font-size:1.75em; font-weight:800">{{k.steps}}</span><span style="font-size:.8125em; color:var(--muted)">{{t.tSteps}}</span></div>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:6px">
+<sc-for list="{{k.users}}" as="u" hint-placeholder-count="5"><span style="{{u.st}}">{{u.label}}</span></sc-for>
+</div>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); font-weight:600">{{k.note}}</p>
+</div>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+</div>
+<div class="only-d" aria-live="polite" style="flex:1 1 340px; min-width:0; background:var(--soft); border:var(--softBorder); border-radius:24px; padding:clamp(22px,3vw,32px); display:flex; flex-direction:column; gap:16px">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.tTask}}</span>
+<h3 style="margin:0; font-size:1.5em; font-weight:800; letter-spacing:-0.02em">{{task.name}}</h3>
+<div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px">
+<div style="background:var(--card); border:var(--bw) solid var(--border); border-radius:18px; padding:16px">
+<span style="display:block; font-size:2.25em; font-weight:800; letter-spacing:-0.03em; color:{{task.color}}">{{task.score}}</span>
+<span style="font-size:.8125em; color:var(--muted)">{{t.tCompleted}}</span>
+</div>
+<div style="background:var(--card); border:var(--bw) solid var(--border); border-radius:18px; padding:16px">
+<span style="display:block; font-size:2.25em; font-weight:800; letter-spacing:-0.03em">{{task.steps}}</span>
+<span style="font-size:.8125em; color:var(--muted)">{{t.tSteps}}</span>
+</div>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:8px">
+<sc-for list="{{task.users}}" as="u" hint-placeholder-count="5">
+<span style="{{u.st}}">{{u.label}}</span>
+</sc-for>
+</div>
+<p style="margin:0; font-size:1em; line-height:var(--lh); font-weight:600">{{task.note}}</p>
+</div>
+</div>
+
+<div style="border-top:var(--bw) solid var(--border); padding-top:32px; display:flex; flex-direction:column; gap:20px">
+<div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:16px">
+<div style="display:flex; flex-direction:column; gap:8px; max-width:640px">
+<h3 style="margin:0; font-size:1.75em; font-weight:800; letter-spacing:-0.025em">{{t.cTitle}}</h3>
+<p style="margin:0; font-size:1em; line-height:var(--lh); color:var(--muted)">{{t.cText}}</p>
+</div>
+<div class="seg" role="group" aria-label="{{t.cTitle}}">
+<sc-for list="{{baOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px">
+<sc-for list="{{changes}}" as="c" hint-placeholder-count="2">
+<figure style="margin:0; background:var(--m2); border-radius:24px; padding:24px; display:flex; flex-direction:column; align-items:center; gap:16px">
+<img src="{{c.img}}" alt="{{c.alt}}" style="display:block; width:210px; max-width:100%; height:auto; border-radius:14px; border:var(--bw) solid var(--border); box-shadow:0 16px 30px -18px rgba(30,27,75,.4)">
+<figcaption style="display:flex; flex-direction:column; gap:6px; text-align:center; max-width:340px">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:{{c.tagColor}}">{{c.tag}}</span>
+<span style="font-size:.9375em; line-height:1.5; font-weight:600">{{c.cap}}</span>
+</figcaption>
+</figure>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.kEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.kTitle}}</h2>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:18px">
+<sc-for list="{{decisions}}" as="d" hint-placeholder-count="4">
+<article style="display:flex; flex-direction:column; gap:14px">
+<div style="background:var(--m3); border-radius:24px; padding:22px; display:flex; justify-content:center">
+<img class="screen dec-img" src="{{d.img}}" alt="{{d.alt}}" style="width:190px">
+</div>
+<span style="font-size:.8125em; font-weight:800; color:var(--accent)">{{d.n}}</span>
+<h3 style="margin:0; font-size:1.1875em; font-weight:800; line-height:1.3">{{d.title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{d.text}}</p>
+</article>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:24px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.uiEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.uiTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.uiText}}</p>
+</div>
+<div class="g2m" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px">
+<sc-for list="{{t.swatches}}" as="w" hint-placeholder-count="5">
+<div style="border:var(--bw) solid var(--border); border-radius:20px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="height:72px; background:{{w.hex}}"></div>
+<div style="padding:12px 14px; display:flex; flex-direction:column; gap:3px">
+<span style="font-weight:700; font-size:.9375em">{{w.name}}</span>
+<span style="font-size:.8125em; color:var(--muted); font-family:ui-monospace, monospace">{{w.hex}}</span>
+<span style="font-size:.8125em; color:var(--muted); line-height:1.45">{{w.use}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+<div style="background:#FFFFFF; border:var(--bw) solid var(--border); border-radius:24px; padding:16px; display:flex; justify-content:center">
+<img src="assets/uikit.png" alt="{{t.altKit}}" style="display:block; width:100%; max-width:900px; height:auto">
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px) 0; display:flex; flex-direction:column; gap:24px; overflow:hidden">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px; padding:0 clamp(28px,5vw,64px)">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.fEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.fTitle}}</h2>
+<p class="only-m" style="margin:0; font-size:.9375em; color:var(--muted)">{{t.fHintM}}</p>
+</div>
+<div class="marq" tabindex="0" role="region" aria-label="{{t.fTitle}}" style="--marq-dur:55s">
+<ol class="marq-track" role="list">
+<sc-for list="{{flowLoop}}" as="f" hint-placeholder-count="7">
+<li class="{{f.cls}}" aria-hidden="{{f.hidden}}">
+<img class="screen" src="{{f.img}}" alt="{{f.alt}}" style="width:200px">
+<span style="font-size:.875em; font-weight:700"><span style="color:var(--accent)">{{f.n}}</span> · {{f.label}}</span>
+</li>
+</sc-for>
+</ol>
+</div>
+</section>
+
+<section style="display:flex; flex-wrap:wrap; gap:20px">
+<sc-for list="{{learnOne}}" as="l" hint-placeholder-count="3">
+<div style="flex:1 1 300px; background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,4vw,40px); display:flex; flex-direction:column; gap:12px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{l.eyebrow}}</p>
+<h2 style="margin:0; font-size:1.5em; font-weight:800; letter-spacing:-0.02em">{{l.title}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{l.text}}</p>
+</div>
+</sc-for>
+</section>
+
+<nav aria-label="{{t.caseNav}}" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:8px">
+<a class="btn" href="index.html" style="text-decoration:none; color:var(--text); font-weight:600; font-size:1em; padding:0 24px; min-height:52px; border-radius:14px; border:1.5px solid var(--chip); background:var(--card); box-shadow:0 3px 0 var(--chip); display:inline-flex; align-items:center">{{t.back}}</a>
+<a class="cta" href="portal-transparencia.html" style="text-decoration:none; background-size:200% 100%; background-image:linear-gradient(90deg,#F1A7B9,#C9B2F2,#9DB8F5); color:#1E1B4B; font-weight:700; font-size:1em; padding:0 26px; min-height:52px; border-radius:14px; box-shadow:0 3px 0 rgba(30,27,75,.3); display:inline-flex; align-items:center">{{t.next}}</a>
+</nav>
+
+</div>
+
+<a class="wa" href="{{waHref}}" target="_blank" rel="noopener" aria-label="{{t.waLabel}}" title="{{t.waLabel}}" style="position:fixed; right:20px; bottom:20px; width:58px; height:58px; border-radius:50%; background:#128C7E; color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 28px -10px rgba(0,0,0,.45); z-index:20; text-decoration:none"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9.1 8.2c.3-.6.8-.6 1.1 0l.6 1.3c.1.3 0 .6-.2.8l-.5.5c.6 1.2 1.6 2.2 2.8 2.8l.5-.5c.2-.2.5-.3.8-.2l1.3.6c.6.3.6.8 0 1.1-.9.6-2 .8-3 .3a8.5 8.5 0 0 1-4-4c-.5-1-.3-2.1.6-2.7z" fill="currentColor"></path></svg></a>
+
+<sc-if value="{{panelOpen}}" hint-placeholder-val="{{ false }}">
+<div id="a11y-panel-s" role="dialog" aria-label="{{t.a11yTitle}}" style="position:fixed; right:20px; top:84px; width:340px; max-width:calc(100vw - 40px); max-height:calc(100vh - 110px); overflow-y:auto; background:var(--card); color:var(--text); border:var(--bw) solid var(--border); border-radius:24px; padding:24px; box-sizing:border-box; display:flex; flex-direction:column; gap:18px; box-shadow:0 24px 60px -20px rgba(30,27,75,.45); z-index:20">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+<h2 style="margin:0; font-size:1.25em; font-weight:800">{{t.a11yTitle}}</h2>
+<button class="btn" type="button" onClick="{{togglePanel}}" aria-label="{{t.close}}" style="width:44px; height:44px; border-radius:50%; border:1.5px solid var(--chip); background:transparent; color:var(--text); cursor:pointer; display:flex; align-items:center; justify-content:center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+</div>
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="7">
+<div role="group" aria-label="{{g.label}}" style="display:flex; flex-direction:column; gap:8px">
+<p style="margin:0; font-weight:700; font-size:.875em">{{g.label}}</p>
+<div class="seg" style="align-self:flex-start">
+<sc-for list="{{g.opts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<button class="btn" type="button" onClick="{{reset}}" style="min-height:44px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); box-shadow:0 3px 0 var(--chip); color:var(--text); font:inherit; font-weight:700; font-size:.875em; cursor:pointer">{{t.reset}}</button>
+</div>
+</sc-if>
+
+</div>
+</template>
+<script src="js/morphdom.min.js"></script>
+<script src="js/runtime.js"></script>
+<script>
+
+var IMG = {
+  splash: "assets/splash.png", start: "assets/start_fixed.png",
+  cart: "assets/cart.png", dialog: "assets/dialog.png",
+  payment: "assets/payment_fixed.png", confirm: "assets/confirm-2.png",
+  success: "assets/success.png",
+  wfCartBefore: "assets/wf-cart-before.png", wfCartAfter: "assets/wf-cart-after.png",
+  wfMenuBefore: "assets/wf-menu-before.png", wfMenuAfter: "assets/wf-menu-after.png"
+};
+
+var SUCCESS = [[1,1,1,1,1],[0,0,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1],[1,1,1,1,1]];
+var STEPS = ["2", "4.2", "2", "4", "4", "2.2", "3"];
+var AGES = [65, 27, 26, 26, 32];
+var PRICES = [120, 100, 40, 95, 80, 150];
+var DOTCOLORS = ["#FFA822", "#008F65", "#6B7BD6", "#E86A92", "#C49A2C", "#2E9BB3"];
+
+var COPY = {
+  en: {
+    navLabel: "Main", menu: "Menu", navWork: "Work", navHow: "How I work", navAbout: "About", navContact: "Contact",
+    langLabel: "Language", back: "← Back to home", caseNav: "Case navigation", next: "Next case: Transparency Portal →",
+    cordOff: "Turn the lights off (dark mode)", cordOn: "Turn the lights on (light mode)",
+    heroTag: "Case study · Mobile app · Retail",
+    heroSub: "Scan, pay, leave: the supermarket checkout in your pocket.",
+    heroLead: "A mobile app to scan products while you shop and pay from your phone, skipping the checkout line. Designed in 2020, when every queue was also a health risk.",
+    simTitle: "My cart", simTotal: "Total", simFinish: "FINISH", simEmpty: "Your cart is empty. Scan your first product.",
+    simHint: "Try it: tap the scan button.", simReset: "Empty cart", scanAria: "Scan a product",
+    products: ["Gummies", "Green tea", "Cookies", "Milk", "Bread", "Apples"],
+    meta: [
+      { k: "Role", v: "UX/UI Designer", d: "Solo project: research, IA, testing and UI" },
+      { k: "Context", v: "Personal project", d: "Product concept, 2020" },
+      { k: "Testing", v: "5 users · 7 tasks", d: "Usability test on a mid-fidelity prototype" },
+      { k: "Tools", v: "Adobe XD · Optimal Workshop", d: "Prototyping and card sorting" }
+    ],
+    pEyebrow: "01 · The problem", pTitle: "Two lines between you and your groceries",
+    pText: "Capacity limits created lines to get into the supermarket, and checkout added another one: wait, unload every product, pay. Self-checkouts existed, but there were few of them and they capped purchases at 15 items.",
+    jToday: "Today", jWith: "With Super Scan",
+    jBefore: ["Line to get in", "Shop", "Line at checkout", "Scan everything again", "Pay"],
+    jAfter: ["Choose the store", "Scan while you shop", "Pay in the app", "Show proof at the exit"],
+    goals: [{ k: "For the store", v: "More customers inside, with fewer lines." }, { k: "For shoppers", v: "Skip the lines and the checkout, with less contact." }],
+    rEyebrow: "02 · Research", rTitle: "What the market already did well (and badly)",
+    rText: "I benchmarked three apps that shoppers in Argentina could already know, looking at what to borrow and what to avoid.",
+    took: "Took", avoided: "Avoided",
+    bench: [
+      { name: "Tu Changuito", take: "Fast access to the main function; simple and clear.", avoid: "You can't buy in the app or see promotions." },
+      { name: "Alcampo", take: "Scan products and pay at the end; saved shopping lists.", avoid: "Not available in Argentina; a heavy app with unclear functions and no help." },
+      { name: "Mercado Pago", take: "Clear, self-explanatory functions and several payment methods.", avoid: "Only scans QR codes, and only works in some stores." }
+    ],
+    protoTitle: "Proto-personas", protoText: "Two archetypes, defined before testing, to keep both ends of the audience in mind.",
+    personas: [
+      { name: "Juan Manuel, 28", quote: "If supermarket shopping were more practical, I'd stop ordering delivery.", need: "Speed: get in, get out, no lines." },
+      { name: "María, 55", quote: "I want to do my shopping safely.", need: "Safety: as little contact as possible." }
+    ],
+    iaEyebrow: "03 · Information architecture", iaTitle: "Card sorting to decide where things live",
+    iaText: "I grouped the app's content with a card sorting in Optimal Workshop and turned the result into a three-branch structure. Keep an eye on where the cards ended up: the test would challenge it.",
+    iaAria: "Site map: Home branches into Profile, Billing and Shop. Payment cards live under Billing.",
+    iaRoot: "Home", iaFlag: "People looked for them directly; they didn't associate them with Billing",
+    iaBranches: [
+      { name: "Profile", groups: [{ name: "Account", items: "Name · Notifications" }] },
+      { name: "Billing", groups: [{ name: "Cards", items: "Debit · Credit", flag: true }, { name: "How to pay", items: "Help" }] },
+      { name: "Shop", groups: [{ name: "Scan", items: "Barcode · Manual code · How to scan" }, { name: "Cart", items: "Add · Remove · My purchases" }] }
+    ],
+    tEyebrow: "04 · Usability test", tTitle: "5 people, 7 tasks, one problem that mattered",
+    tText: "I tested a mid-fidelity prototype with 5 people between 26 and 65 years old. Each one went through the full flow, from signing up to paying.",
+    tHint: "Tap a task to see its results.", tTask: "Task", tCompleted: "completed the task", tSteps: "steps on average",
+    tasks: ["Sign up", "Add a payment card", "Choose a store", "Scan a product", "Scan another product", "Finish the purchase", "Pay"],
+    yrs: "y/o", ok: "completed", fail: "didn't complete",
+    noteAll: "Everyone completed it without help.",
+    noteCard: "The only task with failures, and the one with the most steps. 2 of 5 people looked for the card in their profile: it lived under Billing, inside a hamburger menu.",
+    cTitle: "What changed after the test", cText: "Two changes, both straight from what I observed.",
+    before: "Before", after: "After",
+    ch: [
+      { before: "Payment cards hid inside a hamburger menu, under Billing.", after: "A bottom navigation bar puts 'My cards' one tap away from any screen.", altB: "Wireframe with a hamburger menu open", altA: "Wireframe with a bottom navigation bar" },
+      { before: "The scan button only said 'scan', in small text.", after: "The scan button gets a scan icon, so its purpose is clear at a glance.", altB: "Cart wireframe with a text scan button", altA: "Cart wireframe with a scan icon button" }
+    ],
+    kEyebrow: "05 · Key decisions", kTitle: "Simple screens, clear moments",
+    decisions: [
+      { title: "Store first", text: "Choosing the supermarket and branch before shopping keeps prices and stock accurate.", alt: "Choose your supermarket and branch" },
+      { title: "Scan within thumb reach", text: "The scan button floats at the bottom of the cart, one tap away while you hold the product.", alt: "Cart with a floating scan button" },
+      { title: "Confirm before closing", text: "Finishing asks for confirmation, because no products can be added afterwards.", alt: "Confirmation dialog before finishing the purchase" },
+      { title: "Proof for the exit", text: "The success screen reminds you to show it when you leave, closing the loop with the store.", alt: "Payment success screen" }
+    ],
+    uiEyebrow: "06 · Visual design", uiTitle: "Simple, fresh, relaxed",
+    uiText: "The moodboard set three words and the UI kit followed them: Material components, Roboto, green for trust and freshness, orange for the actions that matter.",
+    swatches: [
+      { name: "Brand green", hex: "#00C193", use: "Headers and brand" },
+      { name: "Deep green", hex: "#008F65", use: "Status bar, pressed states" },
+      { name: "Orange", hex: "#FFA822", use: "Scan button, key actions" },
+      { name: "Yellow", hex: "#FFC33B", use: "Cards and highlights" },
+      { name: "Light grey", hex: "#E0E0E0", use: "Disabled states" }
+    ],
+    altKit: "Super Scan UI kit: toolbars, tabs, bottom navigation, buttons, inputs, lists, cards and dialogs",
+    uiNote: "[Confirm the exact hex values from the XD file.]",
+    fEyebrow: "07 · Final prototype", fTitle: "The full flow", fHint: "The flow moves on its own. Hover over a screen to pause it.", fHintM: "Swipe sideways to follow the purchase.",
+    flowLabels: ["Welcome", "Choose the store", "Cart", "Confirm", "Payment method", "Summary", "Done"],
+    learn: [
+      { eyebrow: "08 · Learnings", title: "What I learned", text: "Five people were enough to find the problem that mattered most. A structure can make sense on paper and still not match where people look." },
+      { eyebrow: "09 · Looking back", title: "What I'd do today", text: "Re-test the card task after the navigation change, and fix the contrast of white text on the green and orange buttons, which doesn't meet WCAG AA." },
+      { eyebrow: "10 · Next steps", title: "What I'd add", text: "A QR code at the exit to validate the purchase, and saved shopping lists, one of the strengths I found in the benchmark." }
+    ],
+    waLabel: "Message me on WhatsApp", a11yOpen: "Accessibility options", a11yTitle: "Accessibility", close: "Close",
+    gSize: "Text size", gContrast: "Contrast", gTheme: "Theme", gFont: "Font", gLh: "Line spacing", gMotion: "Animations", gUl: "Underline links",
+    normal: "Normal", high: "High", light: "Light", dark: "Dark", std: "Standard", readable: "High legibility",
+    relaxed: "Relaxed", on: "On", reduced: "Reduced", yes: "Yes", no: "No", reset: "Reset settings"
+  },
+  es: {
+    navLabel: "Principal", menu: "Menú", navWork: "Proyectos", navHow: "Cómo trabajo", navAbout: "Sobre mí", navContact: "Contacto",
+    langLabel: "Idioma", back: "← Volver al inicio", caseNav: "Navegación del caso", next: "Siguiente caso: Portal de Transparencia →",
+    cordOff: "Apagar la luz (modo oscuro)", cordOn: "Prender la luz (modo claro)",
+    heroTag: "Caso de estudio · App móvil · Retail",
+    heroSub: "Escaneá, pagá y salí: la caja del súper en tu bolsillo.",
+    heroLead: "Una app para escanear los productos mientras comprás y pagar desde el celular, sin pasar por la caja. Diseñada en 2020, cuando cada fila era también un riesgo sanitario.",
+    simTitle: "Mi carrito", simTotal: "Total", simFinish: "FINALIZAR", simEmpty: "Tu carrito está vacío. Escaneá tu primer producto.",
+    simHint: "Probalo: tocá el botón de escanear.", simReset: "Vaciar carrito", scanAria: "Escanear un producto",
+    products: ["Gomitas", "Té verde", "Galletitas", "Leche", "Pan", "Manzanas"],
+    meta: [
+      { k: "Rol", v: "UX/UI Designer", d: "Proyecto individual: investigación, arquitectura de información, testeo y UI" },
+      { k: "Contexto", v: "Proyecto propio", d: "Concepto de producto, 2020" },
+      { k: "Testeo", v: "5 usuarios · 7 tareas", d: "Test de usabilidad sobre un prototipo de fidelidad media" },
+      { k: "Herramientas", v: "Adobe XD · Optimal Workshop", d: "Prototipado y card sorting" }
+    ],
+    pEyebrow: "01 · El problema", pTitle: "Dos filas entre vos y tus compras",
+    pText: "Los límites de aforo generaban filas para entrar al súper, y la caja sumaba otra: esperar, pasar cada producto, pagar. Había cajas de autoservicio, pero eran pocas y tenían un límite de 15 productos.",
+    jToday: "Hoy", jWith: "Con Super Scan",
+    jBefore: ["Fila para entrar", "Comprar", "Fila en la caja", "Pasar todo de nuevo", "Pagar"],
+    jAfter: ["Elegir el súper", "Escanear mientras comprás", "Pagar en la app", "Mostrar el comprobante al salir"],
+    goals: [{ k: "Para el súper", v: "Más clientes adentro, con menos filas." }, { k: "Para quien compra", v: "Evitar filas y caja, con menos contacto." }],
+    rEyebrow: "02 · Investigación", rTitle: "Qué ya hacía bien (y mal) el mercado",
+    rText: "Analicé tres apps que la gente en Argentina ya podía conocer, buscando qué tomar y qué evitar.",
+    took: "Tomé", avoided: "Evité",
+    bench: [
+      { name: "Tu Changuito", take: "Acceso rápido a la función principal; simple y clara.", avoid: "No permite comprar en la app ni ver promociones." },
+      { name: "Alcampo", take: "Escanear productos y pagar al final; listas de compras guardadas.", avoid: "No está disponible en Argentina; app pesada, con funciones poco claras y sin ayuda." },
+      { name: "Mercado Pago", take: "Funciones claras y autoexplicativas, y varias formas de pago.", avoid: "Solo escanea QR y solo funciona en algunos comercios." }
+    ],
+    protoTitle: "Proto-personas", protoText: "Dos arquetipos, definidos antes del testeo, para tener presentes los dos extremos del público.",
+    personas: [
+      { name: "Juan Manuel, 28", quote: "Si las compras del súper fueran más prácticas, dejaría el delivery.", need: "Rapidez: entrar, salir, sin filas." },
+      { name: "María, 55", quote: "Quiero hacer las compras de una forma segura.", need: "Seguridad: el menor contacto posible." }
+    ],
+    iaEyebrow: "03 · Arquitectura de información", iaTitle: "Card sorting para decidir dónde va cada cosa",
+    iaText: "Agrupé los contenidos con un card sorting en Optimal Workshop y convertí el resultado en una estructura de tres ramas. Ojo con dónde quedaron las tarjetas: el test lo iba a poner en duda.",
+    iaAria: "Mapa del sitio: Inicio se divide en Perfil, Facturación y Comprar. Las tarjetas de pago están en Facturación.",
+    iaRoot: "Inicio", iaFlag: "La gente las buscaba directo, no las asociaba con Facturación",
+    iaBranches: [
+      { name: "Perfil", groups: [{ name: "Cuenta", items: "Nombre · Notificaciones" }] },
+      { name: "Facturación", groups: [{ name: "Tarjetas", items: "Débito · Crédito", flag: true }, { name: "Cómo pagar", items: "Ayuda" }] },
+      { name: "Comprar", groups: [{ name: "Escanear", items: "Código de barras · Código a mano · Cómo escanear" }, { name: "Carrito", items: "Agregar · Quitar · Mis compras" }] }
+    ],
+    tEyebrow: "04 · Test de usabilidad", tTitle: "5 personas, 7 tareas, un problema que importaba",
+    tText: "Testeé un prototipo de fidelidad media con 5 personas de entre 26 y 65 años. Cada una recorrió el flujo completo, desde registrarse hasta pagar.",
+    tHint: "Tocá una tarea para ver sus resultados.", tTask: "Tarea", tCompleted: "completaron la tarea", tSteps: "pasos en promedio",
+    tasks: ["Registrarse", "Cargar una tarjeta", "Elegir el súper", "Escanear un producto", "Escanear otro producto", "Finalizar la compra", "Pagar"],
+    yrs: "años", ok: "completó", fail: "no completó",
+    noteAll: "Todas las personas la completaron sin ayuda.",
+    noteCard: "La única tarea con fallas, y la de más pasos. 2 de 5 personas buscaron la tarjeta en su perfil: estaba en Facturación, dentro de un menú hamburguesa.",
+    cTitle: "Qué cambié después del test", cText: "Dos cambios, ambos basados en lo que observé durante el test.",
+    before: "Antes", after: "Después",
+    ch: [
+      { before: "Las tarjetas estaban escondidas en un menú hamburguesa, dentro de Facturación.", after: "Una barra de navegación inferior deja «Mis tarjetas» a un toque desde cualquier pantalla.", altB: "Wireframe con el menú hamburguesa abierto", altA: "Wireframe con barra de navegación inferior" },
+      { before: "El botón de escanear solo decía «scan», en texto chico.", after: "El botón de escanear pasa a tener un ícono, para que se entienda de un vistazo.", altB: "Wireframe del carrito con botón de texto", altA: "Wireframe del carrito con botón con ícono de escaneo" }
+    ],
+    kEyebrow: "05 · Decisiones clave", kTitle: "Pantallas simples, momentos claros",
+    decisions: [
+      { title: "Primero el súper", text: "Elegir súper y sucursal antes de empezar asegura precios y stock correctos.", alt: "Elegí tu supermercado y sucursal" },
+      { title: "Escanear al alcance del pulgar", text: "El botón flota abajo en el carrito, a un toque mientras sostenés el producto.", alt: "Carrito con botón flotante de escaneo" },
+      { title: "Confirmar antes de cerrar", text: "Finalizar pide confirmación, porque después no se pueden sumar productos.", alt: "Diálogo de confirmación antes de finalizar la compra" },
+      { title: "Comprobante para la salida", text: "La pantalla final te recuerda mostrarla al salir, y así cierra el circuito con el súper.", alt: "Pantalla de pago realizado" }
+    ],
+    uiEyebrow: "06 · Diseño visual", uiTitle: "Simple, fresco, relajado",
+    uiText: "El moodboard definió tres palabras y el UI kit las siguió: componentes de Material Design, Roboto, verde para transmitir confianza y frescura, naranja para las acciones importantes.",
+    swatches: [
+      { name: "Verde marca", hex: "#00C193", use: "Encabezados y marca" },
+      { name: "Verde profundo", hex: "#008F65", use: "Barra de estado, estados presionados" },
+      { name: "Naranja", hex: "#FFA822", use: "Botón de escanear, acciones clave" },
+      { name: "Amarillo", hex: "#FFC33B", use: "Tarjetas y destacados" },
+      { name: "Gris claro", hex: "#E0E0E0", use: "Estados deshabilitados" }
+    ],
+    altKit: "UI kit de Super Scan: barras superiores, pestañas, navegación inferior, botones, campos, listas, tarjetas y diálogos",
+    uiNote: "[Confirmá los hex exactos desde el archivo de XD.]",
+    fEyebrow: "07 · Prototipo final", fTitle: "El flujo completo", fHint: "El flujo avanza solo. Pasá el cursor sobre una pantalla para frenarlo.", fHintM: "Deslizá con el dedo para seguir la compra.",
+    flowLabels: ["Bienvenida", "Elegir el súper", "Carrito", "Confirmar", "Medio de pago", "Resumen", "Listo"],
+    learn: [
+      { eyebrow: "08 · Aprendizajes", title: "Qué aprendí", text: "Cinco personas alcanzaron para encontrar el problema que más importaba. Una estructura puede tener lógica en papel y aun así no coincidir con dónde busca la gente." },
+      { eyebrow: "09 · Mirándolo hoy", title: "Qué cambiaría", text: "Volvería a testear la carga de tarjeta después del cambio de navegación, y corregiría el contraste del texto blanco sobre los botones verdes y naranjas, que no cumple WCAG AA." },
+      { eyebrow: "10 · Próximos pasos", title: "Qué sumaría", text: "Un QR en la salida para validar la compra, y listas de compras guardadas, una de las fortalezas que encontré en el benchmark." }
+    ],
+    waLabel: "Escribime por WhatsApp", a11yOpen: "Opciones de accesibilidad", a11yTitle: "Accesibilidad", close: "Cerrar",
+    gSize: "Tamaño de texto", gContrast: "Contraste", gTheme: "Tema", gFont: "Tipografía", gLh: "Interlineado", gMotion: "Animaciones", gUl: "Subrayar enlaces",
+    normal: "Normal", high: "Alto", light: "Claro", dark: "Oscuro", std: "Estándar", readable: "Alta legibilidad",
+    relaxed: "Amplio", on: "Activadas", reduced: "Reducidas", yes: "Sí", no: "No", reset: "Restablecer"
+  }
+};
+
+var THEMES = {
+  light:   { tray:"#E6E7F1", tagBg:"#EEEFF5", bg:"#EEF0F6", card:"#FFFFFF", border:"#E3E5EF", text:"#1E1B4B", muted:"#4B4F63", accent:"#5B3FC4", onAccent:"#FFFFFF", soft:"#F5F3FD", softBorder:"none", chip:"#D5D8E6", bw:"1px", warn:"#B42318", ok:"#00704A", frame:"#1E1B4B",
+             m1:"linear-gradient(150deg,#EDE6FC,#E2EAFB)", m2:"linear-gradient(150deg,#FBE7EE,#EDE6FC)", m3:"linear-gradient(150deg,#DDF6EC,#FFF1D6)" },
+  dark:    { tray:"#0E0D19", tagBg:"#2A2840", bg:"#12111F", card:"#1C1B2E", border:"#2E2C47", text:"#F1F0FA", muted:"#B8B7CC", accent:"#B9A6FF", onAccent:"#12111F", soft:"#24223A", softBorder:"none", chip:"#3A3858", bw:"1px", warn:"#FF9B8A", ok:"#5FE0B0", frame:"#48456E",
+             m1:"linear-gradient(150deg,#2A2448,#1E2742)", m2:"linear-gradient(150deg,#33223A,#2A2448)", m3:"linear-gradient(150deg,#163A30,#3A3020)" },
+  lightHC: { tray:"#FFFFFF", tagBg:"#E6E6E6", bg:"#FFFFFF", card:"#FFFFFF", border:"#000000", text:"#000000", muted:"#111111", accent:"#3B1FA8", onAccent:"#FFFFFF", soft:"#FFFFFF", softBorder:"2px solid #000000", chip:"#000000", bw:"2px", warn:"#A30000", ok:"#005A3A", frame:"#000000",
+             m1:"#FFFFFF", m2:"#FFFFFF", m3:"#FFFFFF" },
+  darkHC:  { tray:"#000000", tagBg:"#262626", bg:"#000000", card:"#000000", border:"#FFFFFF", text:"#FFFFFF", muted:"#F2F2F2", accent:"#D7CCFF", onAccent:"#000000", soft:"#000000", softBorder:"2px solid #FFFFFF", chip:"#FFFFFF", bw:"2px", warn:"#FF9B8A", ok:"#7CF0C2", frame:"#FFFFFF",
+             m1:"#000000", m2:"#000000", m3:"#000000" }
+};
+
+var DEFAULTS = { lang: "en", dark: false, contrast: "normal", size: 1, font: "std", lh: "normal", motion: "on", ul: false, panel: false, pulled: false, menu: false,
+  scans: 3, task: 1, openTask: 1, ba: "before" };
+
+function rvKids(el) {
+  var out = [];
+  Array.prototype.forEach.call(el.children, function (c) {
+    if (c.tagName === "SCRIPT" || c.tagName === "STYLE") return;
+    if (getComputedStyle(c).display === "contents") out = out.concat(rvKids(c)); else out.push(c);
+  });
+  return out;
+}
+function rvInit(mode, tries) {
+  var doc = document;
+  var secs = doc.querySelectorAll("section, footer");
+  if (!secs.length) { if ((tries || 0) < 40) setTimeout(function () { rvInit(mode, (tries || 0) + 1); }, 100); return; }
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || doc.querySelector(".rm") || !("IntersectionObserver" in window)) return;
+  var targets = [];
+  var add = function (el) { if (el && !el.classList.contains("marq-track") && !el.hasAttribute("data-rv")) targets.push(el); };
+  if (mode === "main") {
+    ["work", "about", "contact"].forEach(function (id) { var s = doc.getElementById(id); if (s) rvKids(s).forEach(add); });
+    var how = doc.getElementById("how");
+    if (how) rvKids(how).forEach(function (c) { var k = rvKids(c); if (k.length > 1) k.forEach(add); else add(c); });
+  } else {
+    Array.prototype.slice.call(doc.querySelectorAll("section")).slice(1).forEach(function (s) {
+      rvKids(s).forEach(function (c) {
+        if (c.classList.contains("marq")) { add(c); return; }
+        var k = rvKids(c); if (k.length > 1 && k.length < 16) k.forEach(add); else add(c);
+      });
+    });
+  }
+  var io = new IntersectionObserver(function (entries) {
+    var i = 0;
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.style.setProperty("--rvd", (Math.min(i, 6) * 0.09) + "s");
+      e.target.setAttribute("data-rv", "in");
+      io.unobserve(e.target); i++;
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  targets.forEach(function (el) { el.setAttribute("data-rv", "wait"); io.observe(el); });
+}
+
+var PREF_KEYS = ["lang", "dark", "contrast", "size", "font", "lh", "motion", "ul"];
+function loadPrefs() {
+  try { var p = JSON.parse(window.localStorage.getItem("domi-prefs") || "{}"); var o = {}; PREF_KEYS.forEach(function (k) { if (p && k in p) o[k] = p[k]; }); return o; } catch (e) { return {}; }
+}
+function savePrefs(s) {
+  try { var o = {}; PREF_KEYS.forEach(function (k) { o[k] = s[k]; }); window.localStorage.setItem("domi-prefs", JSON.stringify(o)); } catch (e) {}
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    if (!this.__rv) { this.__rv = 1; var rvMode = "case"; setTimeout(function () { rvInit(rvMode, 0); }, 150); }
+    var self = this;
+    var self0 = this;
+    if (!this.__ps) { this.__ps = 1; try { window.addEventListener("storage", function (e) { if (e.key === "domi-prefs") self0.setState(loadPrefs()); }); } catch (e) {} }
+    var s = Object.assign({}, DEFAULTS, loadPrefs(), this.state || {});
+    if (this.state && PREF_KEYS.some(function (k) { return k in self0.state; })) savePrefs(s);
+    var base = COPY[s.lang];
+    var t = Object.assign({}, base, { cord: s.dark ? base.cordOn : base.cordOff });
+    var c = THEMES[(s.dark ? "dark" : "light") + (s.contrast === "high" ? "HC" : "")];
+
+    var fontStack = s.font === "readable" ? "'Atkinson Hyperlegible', system-ui, sans-serif" : "'Plus Jakarta Sans', system-ui, sans-serif";
+    var vars = "";
+    Object.keys(c).forEach(function (k) { vars += "--" + k + ":" + c[k] + ";"; });
+    var rootStyle = vars + "--lh:" + (s.lh === "relaxed" ? "1.95" : "1.6") + ";" +
+      "position:relative; font-family:" + fontStack + "; font-size:" + (16 * s.size) + "px; color:var(--text); background:var(--bg);" +
+      "min-height:100vh; padding:24px 16px 120px; box-sizing:border-box;" + (s.font === "readable" ? "letter-spacing:.01em;" : "");
+    var rootClass = "root" + (s.motion === "reduced" ? " rm" : "") + (s.ul ? " ul" : "");
+
+    var segBase = "min-height:40px; min-width:44px; padding:0 14px; border-radius:10px; border:none; font:inherit; font-weight:700; font-size:.875em; cursor:pointer;";
+    var SEL = segBase + "background:var(--accent); color:var(--onAccent);";
+    var UNSEL = segBase + "background:transparent; color:var(--text);";
+    var LANGBASE = "min-height:36px; min-width:44px; padding:0 12px; border-radius:10px; font:inherit; font-weight:700; font-size:.8125em; cursor:pointer; border:none;";
+
+    function seg(key, opts) {
+      return opts.map(function (o) {
+        var on = s[key] === o.v;
+        return { label: o.l, aria: o.a || o.l, pressed: String(on), st: on ? SEL : UNSEL,
+          pick: function () { var p = {}; p[key] = o.v; self.setState(p); } };
+      });
+    }
+
+    var langOpts = [{ v: "es", l: "ES", a: "Español" }, { v: "en", l: "EN", a: "English" }].map(function (o) {
+      var on = s.lang === o.v;
+      return { code: o.v, label: o.l, aria: o.a, pressed: String(on),
+        st: LANGBASE + (on ? "background:var(--accent); color:var(--onAccent);" : "background:transparent; color:var(--text);"),
+        pick: function () { self.setState({ lang: o.v }); } };
+    });
+
+    // Cart simulator
+    var qty = [0, 0, 0, 0, 0, 0];
+    for (var k = 0; k < s.scans; k++) qty[k % 6]++;
+    var lastIdx = s.scans > 0 ? (s.scans - 1) % 6 : -1;
+    var cart = [];
+    var total = 0;
+    qty.forEach(function (q, i) {
+      if (!q) return;
+      total += q * PRICES[i];
+      cart.push({
+        name: t.products[i], qty: q, sub: q * PRICES[i], ini: t.products[i].charAt(0),
+        st: "display:flex; align-items:center; gap:10px; padding:10px 16px; transition:background-color .4s ease;" + (i === lastIdx ? "background:#FFF4DC;" : "background:transparent;"),
+        dot: "flex:none; width:32px; height:32px; border-radius:50%; border:2px solid #FFA822; background:#FFFFFF; color:" + DOTCOLORS[i] + "; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px;"
+      });
+    });
+
+    // Journey chips
+    function chips(list, before) {
+      return list.map(function (l, i) {
+        var bad = before && (i === 0 || i === 2 || i === 3);
+        return { label: l, arrow: i < list.length - 1,
+          st: "display:inline-flex; align-items:center; min-height:40px; padding:0 14px; border-radius:12px; font-weight:700; font-size:.875em;" +
+            (before ? (bad ? "border:2px dashed var(--warn); color:var(--warn); background:transparent;" : "border:1.5px solid var(--chip); color:var(--text); background:var(--card);")
+                    : "background:var(--accent); color:var(--onAccent); border:1.5px solid var(--accent);") };
+      });
+    }
+
+    // IA groups
+    var iaBranches = t.iaBranches.map(function (b) {
+      return { name: b.name, groups: b.groups.map(function (g) {
+        return { name: g.name, items: g.items, flag: !!g.flag,
+          st: "display:flex; flex-direction:column; gap:3px; border-radius:14px; padding:10px 12px;" +
+            (g.flag ? "border:2px dashed var(--warn); background:transparent;" : "background:var(--soft); border:var(--softBorder);") };
+      }) };
+    });
+
+    // Test results
+    var dotBase = "width:12px; height:12px; border-radius:50%; box-sizing:border-box;";
+    function usersFor(ti) {
+      return SUCCESS[ti].map(function (v, u) {
+        return { label: "U" + (u + 1) + " · " + AGES[u] + " " + t.yrs + " · " + (v ? t.ok : t.fail),
+          st: "display:inline-flex; align-items:center; min-height:30px; padding:0 10px; border-radius:6px; font-size:.8125em; font-weight:700;" +
+            (v ? "background:var(--card); border:1.5px solid var(--ok); color:var(--text);" : "background:transparent; border:2px dashed var(--warn); color:var(--warn);") };
+      });
+    }
+    var tasks = t.tasks.map(function (name, i) {
+      var ok = SUCCESS[i].reduce(function (a, b) { return a + b; }, 0);
+      var on = s.task === i;
+      return {
+        name: name, score: ok + "/5", pressed: String(on), on: s.openTask === i, expanded: String(s.openTask === i),
+        steps: STEPS[i], color: ok < 5 ? "var(--warn)" : "var(--ok)", note: i === 1 ? t.noteCard : t.noteAll, users: usersFor(i),
+        chevSt: "font-size:1.4em; line-height:1; font-weight:700; opacity:.7; transition:transform .2s ease; transform:rotate(" + (s.openTask === i ? 90 : 0) + "deg);",
+        dots: SUCCESS[i].map(function (v) { return dotBase + (v ? "background:var(--ok);" : "border:2px solid var(--warn); background:transparent;"); }),
+        st: "width:100%; min-height:52px; display:flex; align-items:center; gap:12px; padding:10px 16px; border-radius:16px; font:inherit; font-size:.9375em; cursor:pointer;" +
+          (on ? "background:var(--soft); color:var(--text); border:2px solid var(--accent); box-shadow:0 3px 0 var(--accent);" : "background:var(--card); color:var(--text); border:1.5px solid var(--chip); box-shadow:0 3px 0 var(--chip);"),
+        pick: function () { self.setState({ task: i, openTask: s.openTask === i ? -1 : i }); }
+      };
+    });
+    var ti = s.task;
+    var tOk = SUCCESS[ti].reduce(function (a, b) { return a + b; }, 0);
+    var task = {
+      name: t.tasks[ti], score: tOk + "/5", steps: STEPS[ti], color: tOk < 5 ? "var(--warn)" : "var(--ok)",
+      note: ti === 1 ? t.noteCard : t.noteAll,
+      users: SUCCESS[ti].map(function (v, u) {
+        return { label: "U" + (u + 1) + " · " + AGES[u] + " " + t.yrs + " · " + (v ? t.ok : t.fail),
+          st: "display:inline-flex; align-items:center; min-height:30px; padding:0 10px; border-radius:6px; font-size:.8125em; font-weight:700;" +
+            (v ? "background:var(--card); border:1.5px solid var(--ok); color:var(--text);" : "background:transparent; border:2px dashed var(--warn); color:var(--warn);") };
+      })
+    };
+
+    var isAfter = s.ba === "after";
+    var changes = t.ch.map(function (ch, i) {
+      var imgs = i === 0 ? [IMG.wfMenuBefore, IMG.wfMenuAfter] : [IMG.wfCartBefore, IMG.wfCartAfter];
+      return { img: isAfter ? imgs[1] : imgs[0], alt: isAfter ? ch.altA : ch.altB,
+        tag: isAfter ? t.after : t.before, tagColor: isAfter ? "var(--accent)" : "var(--warn)",
+        cap: isAfter ? ch.after : ch.before };
+    });
+
+    var dImgs = [IMG.start, IMG.cart, IMG.dialog, IMG.success];
+    var decisions = t.decisions.map(function (d, i) { return { n: "0" + (i + 1), title: d.title, text: d.text, alt: d.alt, img: dImgs[i] }; });
+
+    var fImgs = [IMG.splash, IMG.start, IMG.cart, IMG.dialog, IMG.payment, IMG.confirm, IMG.success];
+    var flow = t.flowLabels.map(function (l, i) { return { n: "0" + (i + 1), label: l, img: fImgs[i] }; });
+
+    var groups = [
+      { label: t.gSize, opts: seg("size", [{ v: 0.9, l: "A−", a: t.gSize + " 90%" }, { v: 1, l: "A", a: t.gSize + " 100%" }, { v: 1.15, l: "A+", a: t.gSize + " 115%" }, { v: 1.3, l: "A++", a: t.gSize + " 130%" }]) },
+      { label: t.gContrast, opts: seg("contrast", [{ v: "normal", l: t.normal }, { v: "high", l: t.high }]) },
+      { label: t.gTheme, opts: seg("dark", [{ v: false, l: t.light }, { v: true, l: t.dark }]) },
+      { label: t.gFont, opts: seg("font", [{ v: "std", l: t.std }, { v: "readable", l: t.readable }]) },
+      { label: t.gLh, opts: seg("lh", [{ v: "normal", l: t.normal }, { v: "relaxed", l: t.relaxed }]) },
+      { label: t.gMotion, opts: seg("motion", [{ v: "on", l: t.on }, { v: "reduced", l: t.reduced }]) },
+      { label: t.gUl, opts: seg("ul", [{ v: false, l: t.no }, { v: true, l: t.yes }]) }
+    ];
+
+    var cordLine = "display:block; width:2px; background:var(--text); opacity:.55; height:" + (s.pulled ? 92 : 68) + "px;";
+    var beadStyle = "display:block; width:26px; height:26px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#FFFFFF,#F1A7B9 45%,#9DB8F5);" +
+      "border:2px solid var(--text);" + (s.dark ? "box-shadow:0 0 18px 6px rgba(241,167,185,.55);" : "box-shadow:0 4px 10px -4px rgba(30,27,75,.4);");
+
+    return {
+      t: Object.assign({}, t, { iaBranches: iaBranches }),
+      lang: s.lang, rootStyle: rootStyle, rootClass: rootClass, langOpts: langOpts,
+      cart: cart, cartEmpty: cart.length === 0, total: total,
+      scan: function () { self.setState({ scans: s.scans + 1 }); },
+      resetCart: function () { self.setState({ scans: 0 }); },
+      jBefore: chips(t.jBefore, true), jAfter: chips(t.jAfter, false),
+      tasks: tasks, task: task,
+      baOpts: seg("ba", [{ v: "before", l: t.before }, { v: "after", l: t.after }]),
+      learnOne: t.learn.slice(0, 1), changes: changes, decisions: decisions, flow: flow, flowLoop: flow.map(function (f) { return Object.assign({}, f, { alt: f.label, cls: "", hidden: "false" }); }).concat(flow.map(function (f) { return Object.assign({}, f, { alt: "", cls: "dup", hidden: "true" }); })),
+      groups: groups, cordLine: cordLine, beadStyle: beadStyle, darkPressed: String(s.dark),
+      panelOpen: s.panel, panelExpanded: String(s.panel),
+      pull: function () {
+        self.setState({ dark: !s.dark, pulled: true });
+        clearTimeout(self._cordTimer);
+        self._cordTimer = setTimeout(function () { self.setState({ pulled: false }); }, 200);
+      },
+      menuOpen: s.menu, menuClosed: !s.menu, menuExpanded: String(s.menu),
+      toggleMenu: function () { self.setState({ menu: !s.menu }); },
+      closeMenu: function () { self.setState({ menu: false }); },
+      waHref: "https://wa.me/5491166853502?text=" + encodeURIComponent(s.lang === "es" ? "Hola Domi, vi tu portfolio y me gustaría hablar con vos." : "Hi Domi, I saw your portfolio and I'd like to talk."),
+      togglePanel: function () { self.setState({ panel: !s.panel }); },
+      reset: function () { self.setState({ dark: false, contrast: "normal", size: 1, font: "std", lh: "normal", motion: "on", ul: false }); }
+    };
+  }
+  componentWillUnmount() { clearTimeout(this._cordTimer); }
+}
+
+DC.mount(Component);
+</script>
+<noscript>Este sitio necesita JavaScript.</noscript>
+</body>
+</html>

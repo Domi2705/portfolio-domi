@@ -1,0 +1,14 @@
+Portfolio Domi — sitio listo para Vercel
+
+Páginas:
+  index.html                   Home
+  binsort.html                 Caso Binsort
+  super-scan.html              Caso Super Scan
+  portal-transparencia.html    Caso Portal de Transparencia
+
+Carpetas:
+  assets/   imágenes y el CV en PDF
+  js/       el código que arma cada página (no hace falta tocarlo)
+
+Para cambiar el CV: reemplazá assets/Dominique-Plez-CV-UX-UI.pdf por el nuevo, con el mismo nombre.
+Para cambiar una imagen: reemplazala en assets/ manteniendo el mismo nombre.

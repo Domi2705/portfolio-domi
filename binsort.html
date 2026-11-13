@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Binsort · Caso de estudio · Dominique Plez</title>
+<meta name="description" content="Portfolio de Dominique Plez, diseñadora UX/UI generalista con especial interés en el diseño de interacción.">
+<meta property="og:title" content="Binsort · Caso de estudio · Dominique Plez">
+<meta property="og:description" content="Portfolio de Dominique Plez, diseñadora UX/UI generalista con especial interés en el diseño de interacción.">
+<meta name="theme-color" content="#5B3FC4">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.root{transition:background-color .5s ease,color .5s ease}
+.root a{color:var(--accent)}
+.root a:hover{color:var(--text)}
+.root :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.phone{display:block;width:240px;max-width:100%;height:auto;filter:drop-shadow(0 24px 28px rgba(30,27,75,.22))}
+.swap{transition:opacity .3s ease}
+.lift{transition:transform .25s ease}
+.lift:hover{transform:translateY(-4px)}
+.heroscan{position:absolute;left:12%;right:12%;height:3px;border-radius:3px;background:#E86A92;box-shadow:0 0 14px 3px rgba(232,106,146,.6);top:22%;opacity:0;animation:hscan 1.6s ease-in-out .5s 1 both}
+@keyframes hscan{0%{top:22%;opacity:0}10%{opacity:1}85%{top:76%;opacity:1}100%{top:76%;opacity:0}}
+.cord-line{transition:height .18s ease}
+.bead{transition:box-shadow .5s ease,transform .18s ease}
+.cord-btn:hover .bead{transform:scale(1.08)}
+.ul a{text-decoration:underline!important;text-underline-offset:3px}
+.rm,.rm *{transition:none!important;animation:none!important}
+.rm .heroscan{opacity:0}
+.rm .lift:hover{transform:none}
+@media (prefers-reduced-motion: reduce){.root,.root *{transition:none!important;animation:none!important}.heroscan{opacity:0}.lift:hover{transform:none}}
+@media (max-width:640px){.cord{right:12px!important}}
+.cta{transition:background-position .5s ease,transform .2s ease;background-position:0% 50%}
+.cta:hover{background-position:100% 50%;transform:translateY(-2px)}
+.btn{cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease,border-color .2s ease,color .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(30,27,75,.55)}
+.btn:active{transform:translateY(0) scale(.97);box-shadow:none}
+.btn[aria-pressed="false"]:hover{background:var(--soft)!important;border-color:var(--accent)!important}
+.btn[aria-pressed="true"]:hover{filter:brightness(1.12)}
+button.btn:not([aria-pressed]):hover,a.btn:hover{border-color:var(--accent)!important}
+a.btn-dark:hover{background:rgba(255,255,255,.12)!important;border-color:#FFFFFF!important}
+.tlink{transition:color .2s ease}
+.tlink:hover{color:var(--accent)!important;text-decoration:underline;text-underline-offset:4px}
+.logo .mark{transition:transform .4s ease}
+.logo:hover .mark{transform:rotate(180deg)}
+.card{cursor:pointer}
+.rm .btn:hover,.rm .btn:active,.rm .logo:hover .mark{transform:none}
+@media (prefers-reduced-motion: reduce){.btn:hover,.btn:active,.logo:hover .mark{transform:none}}
+
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--tray);border:var(--bw) solid var(--border);border-radius:14px}
+.seg .btn:hover{transform:none!important}
+.seg .btn[aria-pressed="false"]:hover{background:var(--card)!important;color:var(--accent)!important}
+.seg .btn[aria-pressed="true"]{box-shadow:0 2px 6px -2px rgba(30,27,75,.45)}
+.tag{display:inline-flex;align-items:center;background:var(--tagBg);color:var(--muted);border-radius:6px;padding:3px 9px;font-size:.75em;font-weight:600;line-height:1.5}
+.btn:hover{transform:translateY(-1px)!important}
+.btn:active,.cta:active{transform:translateY(2px)!important;box-shadow:none!important}
+.mlink{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 14px;border-radius:12px;text-decoration:none;color:var(--text)!important;font-weight:700}
+.mlink:hover{background:var(--soft)}
+.only-m{display:none!important}
+@media (max-width:760px){
+.blkrow{gap:3px!important;flex-wrap:nowrap!important}
+.blkrow>span{width:25px!important;height:25px!important;border-radius:7px!important;font-size:.75em!important}.blkrow svg{width:14px;height:14px}
+.g2m{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important}
+.g2m>div>div[aria-hidden]{height:64px!important}
+.only-d{display:none!important}
+.only-m{display:flex!important}
+.hdr{padding-right:56px!important}
+.cord{transform:scale(.8);transform-origin:top center;right:8px!important}
+.hero-side{display:none!important}
+.hero-center{width:220px!important;max-width:72%!important}
+}
+@media (max-width:520px){.name-c{display:none}}
+@media (max-width:400px){.name-m{display:none}}
+@media (hover:none){
+.btn:hover{transform:none!important}
+.btn[aria-pressed="false"]:hover{background:var(--card)!important;border-color:var(--chip)!important}
+.seg .btn[aria-pressed="false"]:hover{background:transparent!important;color:var(--text)!important}
+button.btn:not([aria-pressed]):hover,a.btn:hover{border-color:var(--chip)!important}
+.lift:hover,.card:hover{transform:none}
+}
+.wa{transition:transform .2s ease}
+.wa:hover{transform:scale(1.08)}
+@media (prefers-reduced-motion: reduce){.wa:hover{transform:none}}
+.nav-link{text-decoration:none;color:var(--muted)!important;font-weight:500;padding:10px 4px;min-height:44px;display:inline-flex;align-items:center}
+.nav-link:hover{color:var(--text)!important}
+@keyframes rise{from{opacity:0;translate:0 28px}to{opacity:1;translate:0 0}}
+@keyframes drop{from{opacity:0;translate:0 -14px}to{opacity:1;translate:0 0}}
+@keyframes pop{from{opacity:0;translate:0 24px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+.root .hdr{position:relative;z-index:30;animation:drop .6s cubic-bezier(.2,.7,.2,1) both}
+.root .hdr ~ section:first-of-type > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.root .hdr ~ section:first-of-type > :nth-child(1){animation-delay:.2s}
+.root .hdr ~ section:first-of-type > :nth-child(2){animation:pop .9s cubic-bezier(.2,.7,.2,1) .4s both}
+.root .hdr ~ section:first-of-type > :nth-child(3){animation-delay:.55s}
+.root .hdr ~ section:first-of-type > :nth-child(n+4){animation-delay:.65s}
+.sprog{display:none}
+@supports (animation-timeline: view()){
+@keyframes revealUp{from{opacity:0;translate:0 56px;scale:.98}to{opacity:1;translate:0 0;scale:1}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.sprog{display:block;position:fixed;top:0;left:0;right:0;height:4px;z-index:40;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#E86A92,#8B6CF0,#5B8DEF);animation:grow linear both;animation-timeline:scroll(root)}
+}
+.rm .sprog{display:none}
+@media (prefers-reduced-motion: reduce){.sprog{display:none}}
+[data-rv="wait"]{opacity:0;translate:0 44px}
+[data-rv="in"]{animation:rvUp .8s cubic-bezier(.2,.7,.2,1) var(--rvd,0s) both}
+@keyframes rvUp{from{opacity:0;translate:0 44px}to{opacity:1;translate:0 0}}
+.rm [data-rv]{opacity:1!important;translate:none!important;animation:none!important}
+@media (prefers-reduced-motion: reduce){[data-rv]{opacity:1!important;translate:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div id="root"></div>
+<template id="dc-tpl">
+
+<div class="{{rootClass}}" lang="{{lang}}" style="{{rootStyle}}">
+<div class="sprog" aria-hidden="true"></div>
+
+<div class="cord" style="position:absolute; top:0; right:40px; display:flex; flex-direction:column; align-items:center; z-index:5">
+<span aria-hidden="true" style="width:22px; height:6px; border-radius:0 0 6px 6px; background:var(--text); opacity:.7"></span>
+<span class="cord-line" aria-hidden="true" style="{{cordLine}}"></span>
+<button class="cord-btn" type="button" onClick="{{pull}}" aria-pressed="{{darkPressed}}" aria-label="{{t.cord}}" title="{{t.cord}}" style="width:44px; height:44px; margin-top:-4px; border:none; background:transparent; padding:0; cursor:pointer; display:flex; align-items:flex-start; justify-content:center">
+<span class="bead" style="{{beadStyle}}"></span>
+</button>
+</div>
+
+<div style="max-width:1200px; margin:0 auto; display:flex; flex-direction:column; gap:24px">
+
+<header class="hdr" style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 72px 8px 8px">
+<a class="logo" href="index.html" style="text-decoration:none; color:var(--text); font-weight:800; font-size:1.25em; letter-spacing:-0.02em; display:inline-flex; align-items:center; gap:10px; min-height:44px">
+<svg class="mark" width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dpflow" gradientUnits="userSpaceOnUse" x1="0" y1="5" x2="0" y2="95"><stop offset="0" stop-color="#E86A92"></stop><stop offset=".5" stop-color="#8B6CF0"></stop><stop offset="1" stop-color="#5B8DEF"></stop></linearGradient></defs><circle cx="50" cy="50" r="20" fill="none" stroke="url(#dpflow)" stroke-width="10"></circle><path d="M70 22 V50 M30 50 V78" fill="none" stroke="url(#dpflow)" stroke-width="10" stroke-linecap="round"></path><circle cx="70" cy="13" r="8.5" fill="url(#dpflow)"></circle><circle cx="30" cy="87" r="8.5" fill="url(#dpflow)"></circle></svg>
+<span class="name-m">Dominique Plez</span></a>
+<div style="display:flex; align-items:center; gap:12px">
+<div class="only-d" style="display:flex; align-items:center; gap:20px">
+<nav aria-label="{{t.navLabel}}" style="display:flex; gap:20px; font-size:.9375em">
+<a class="nav-link" href="index.html#work">{{t.navWork}}</a>
+<a class="nav-link" href="index.html#how">{{t.navHow}}</a>
+<a class="nav-link" href="index.html#about">{{t.navAbout}}</a>
+<a class="nav-link" href="index.html#contact">{{t.navContact}}</a>
+</nav>
+<div class="seg" role="group" aria-label="{{t.langLabel}}" style="flex-wrap:nowrap">
+<sc-for list="{{langOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" lang="{{o.code}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<button class="btn" type="button" onClick="{{togglePanel}}" aria-expanded="{{panelExpanded}}" aria-controls="a11y-panel-b" aria-label="{{t.a11yOpen}}" title="{{t.a11yOpen}}" style="flex:none; width:44px; height:44px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); color:var(--text); box-shadow:0 3px 0 var(--chip); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"></circle><path d="M5 8.5l7 1.5 7-1.5"></path><path d="M12 10v5"></path><path d="M9 21l3-6 3 6"></path></svg></button>
+<button class="btn only-m" type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-controls="mobile-menu" style="align-items:center; gap:8px; min-height:44px; padding:0 14px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); color:var(--text); font:inherit; font-weight:700; font-size:.9375em; box-shadow:0 3px 0 var(--chip)">
+<sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></sc-if>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+{{t.menu}}
+</button>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div id="mobile-menu" class="only-m" style="position:absolute; top:calc(100% + 8px); left:0; right:0; z-index:15; flex-direction:column; gap:4px; background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:10px; box-shadow:0 24px 48px -20px rgba(30,27,75,.45)">
+<nav aria-label="{{t.navLabel}}" style="display:flex; flex-direction:column; gap:2px">
+<a class="mlink" href="index.html#work" onClick="{{closeMenu}}">{{t.navWork}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#how" onClick="{{closeMenu}}">{{t.navHow}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#about" onClick="{{closeMenu}}">{{t.navAbout}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#contact" onClick="{{closeMenu}}">{{t.navContact}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+</nav>
+<div style="display:flex; justify-content:space-between; align-items:center; gap:12px; border-top:var(--bw) solid var(--border); margin-top:6px; padding:12px 14px 4px">
+<span style="font-weight:700; font-size:.9375em">{{t.langLabel}}</span>
+<div class="seg" role="group" aria-label="{{t.langLabel}}" style="flex-wrap:nowrap">
+<sc-for list="{{langOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" lang="{{o.code}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+</header>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-wrap:wrap; gap:40px; align-items:center; overflow:hidden">
+<div style="flex:999 1 480px; min-width:0; display:flex; flex-direction:column; gap:18px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.heroTag}}</p>
+<h1 style="margin:0; font-size:clamp(3em, 4vw + 1.2em, 5em); line-height:1; letter-spacing:-0.04em; font-weight:800">Binsort</h1>
+<p style="margin:0; font-size:clamp(1.4em, 1vw + 1em, 1.75em); line-height:1.3; font-weight:700; letter-spacing:-0.015em">{{t.heroSub}}</p>
+<p style="margin:0; font-size:1.125em; line-height:var(--lh); color:var(--muted); max-width:600px">{{t.heroLead}}</p>
+</div>
+<div style="flex:1 1 420px; display:flex; justify-content:center; align-items:center; padding:12px 0">
+<img class="hero-side" src="assets/start.png" alt="{{t.altStart}}" style="width:190px; max-width:30%; height:auto; margin-right:-36px; transform:rotate(-5deg) translateY(16px); filter:drop-shadow(0 20px 24px rgba(30,27,75,.2))">
+<div class="hero-center" style="position:relative; width:230px; max-width:38%; z-index:1">
+<img src="assets/scan-camera.png" alt="{{t.altCamera}}" style="display:block; width:100%; height:auto; filter:drop-shadow(0 28px 32px rgba(30,27,75,.3))">
+<span class="heroscan" aria-hidden="true"></span>
+</div>
+<img class="hero-side" src="assets/done-share.png" alt="{{t.altDone}}" style="width:190px; max-width:30%; height:auto; margin-left:-36px; transform:rotate(5deg) translateY(16px); filter:drop-shadow(0 20px 24px rgba(30,27,75,.2))">
+</div>
+<div style="flex:1 1 100%; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px">
+<sc-for list="{{t.meta}}" as="m" hint-placeholder-count="4">
+<div style="background:var(--soft); border:var(--softBorder); border-radius:20px; padding:18px 20px; display:flex; flex-direction:column; gap:4px">
+<span style="font-size:.75em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{m.k}}</span>
+<span style="font-size:1em; font-weight:700">{{m.v}}</span>
+<span style="font-size:.875em; color:var(--muted); line-height:1.5">{{m.d}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.pEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.pTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.pText}}</p>
+</div>
+<p style="margin:0; font-size:.9375em; font-weight:600; color:var(--text)">{{t.pHint}}</p>
+<ol role="list" style="list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:12px">
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="4">
+<li style="display:flex; flex-direction:column">
+<button class="btn" type="button" aria-pressed="{{s.pressed}}" aria-expanded="{{s.expanded}}" onClick="{{s.pick}}" style="{{s.st}}">
+<span style="{{s.numSt}}">{{s.n}}</span>
+<span style="display:flex; flex-direction:column; gap:2px; text-align:left">
+<span style="font-weight:700; font-size:1em">{{s.step}}</span>
+<span style="font-size:.8125em; opacity:.85">{{s.problem}}</span>
+</span>
+<span aria-hidden="true" style="{{s.chevSt}}">›</span>
+</button>
+<sc-if value="{{s.on}}" hint-placeholder-val="{{ false }}">
+<div class="only-m" style="flex-direction:column; gap:12px; margin-top:8px; background:var(--soft); border:var(--softBorder); border-radius:20px; padding:18px">
+<p style="margin:0; font-size:1em; line-height:var(--lh)">{{s.text}}</p>
+<sc-if value="{{s.hasQuote}}" hint-placeholder-val="{{ true }}">
+<figure style="margin:0; background:var(--card); border:var(--bw) solid var(--border); border-radius:16px; padding:16px 18px; display:flex; flex-direction:column; gap:8px">
+<blockquote style="margin:0; font-size:1em; line-height:1.55; font-weight:600">“{{s.quote}}”</blockquote>
+<figcaption style="font-size:.875em; color:var(--muted)">— {{s.who}}</figcaption>
+</figure>
+</sc-if>
+</div>
+</sc-if>
+</li>
+</sc-for>
+</ol>
+<div class="only-d" aria-live="polite" style="background:var(--soft); border:var(--softBorder); border-radius:24px; padding:clamp(22px,3vw,36px); display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start">
+<div style="flex:999 1 340px; min-width:0; display:flex; flex-direction:column; gap:10px">
+<span style="font-size:.8125em; font-weight:800; color:var(--accent)">{{pain.n}} · {{pain.step}}</span>
+<h3 style="margin:0; font-size:1.5em; font-weight:800; letter-spacing:-0.02em">{{pain.problem}}</h3>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{pain.text}}</p>
+</div>
+<sc-if value="{{pain.hasQuote}}" hint-placeholder-val="{{ true }}">
+<figure style="flex:1 1 300px; margin:0; background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:22px 24px; display:flex; flex-direction:column; gap:10px">
+<blockquote style="margin:0; font-size:1.0625em; line-height:1.55; font-weight:600">“{{pain.quote}}”</blockquote>
+<figcaption style="font-size:.875em; color:var(--muted)">— {{pain.who}}</figcaption>
+</figure>
+</sc-if>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.dEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.dTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.dText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px">
+<sc-for list="{{t.goals}}" as="g" hint-placeholder-count="2">
+<div style="border:var(--bw) solid var(--border); border-radius:24px; padding:26px; display:flex; flex-direction:column; gap:10px">
+<span style="font-size:.8125em; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--accent)">{{g.k}}</span>
+<p style="margin:0; font-size:1.125em; font-weight:700; line-height:1.4">{{g.need}}</p>
+<p style="margin:0; font-size:.9375em; color:var(--muted); line-height:var(--lh)">{{g.success}}</p>
+</div>
+</sc-for>
+</div>
+<h3 style="margin:8px 0 0; font-size:1.25em; font-weight:800">{{t.prTitle}}</h3>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px">
+<sc-for list="{{t.principles}}" as="p" hint-placeholder-count="3">
+<div class="lift" style="background:var(--soft); border:var(--softBorder); border-radius:24px; padding:26px; display:flex; flex-direction:column; gap:10px">
+<span aria-hidden="true" style="width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,#F1A7B9,#9DB8F5); display:flex; align-items:center; justify-content:center; color:#1E1B4B; font-weight:800; font-size:.875em">{{p.n}}</span>
+<h4 style="margin:0; font-size:1.125em; font-weight:700">{{p.title}}</h4>
+<p style="margin:0; font-size:.9375em; color:var(--muted); line-height:var(--lh)">{{p.text}}</p>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:48px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.kEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.kTitle}}</h2>
+</div>
+<sc-for list="{{decisions}}" as="d" hint-placeholder-count="4">
+<article style="{{d.rowSt}}">
+<div style="flex:999 1 420px; min-width:0; display:flex; flex-direction:column; gap:16px">
+<span style="font-size:3em; font-weight:800; line-height:1; letter-spacing:-0.04em; color:var(--accent); opacity:.35">{{d.n}}</span>
+<h3 style="margin:0; font-size:1.75em; font-weight:800; letter-spacing:-0.025em; line-height:1.15">{{d.title}}</h3>
+<dl style="margin:0; display:flex; flex-direction:column; gap:14px">
+<div><dt style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)">{{t.lProblem}}</dt><dd style="margin:4px 0 0; font-size:1em; line-height:var(--lh)">{{d.problem}}</dd></div>
+<div><dt style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.lDecision}}</dt><dd style="margin:4px 0 0; font-size:1.0625em; line-height:var(--lh); font-weight:600">{{d.decision}}</dd></div>
+<div><dt style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)">{{t.lWhy}}</dt><dd style="margin:4px 0 0; font-size:1em; line-height:var(--lh); color:var(--muted)">{{d.why}}</dd></div>
+</dl>
+<sc-if value="{{d.hasControl}}" hint-placeholder-val="{{ false }}">
+<div role="group" aria-label="{{t.tryLabel}}" style="display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:4px">
+<span style="font-size:.875em; font-weight:700">{{t.tryLabel}}</span>
+<div class="seg">
+<sc-for list="{{methodOpts}}" as="o" hint-placeholder-count="3">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+<div style="flex:1 1 320px; min-width:0; display:flex; justify-content:center; align-items:center; background:var(--m1); border-radius:28px; padding:32px 20px; box-sizing:border-box">
+<sc-if value="{{d.isPhone}}" hint-placeholder-val="{{ true }}">
+<img class="phone swap" src="{{d.img}}" alt="{{d.alt}}">
+</sc-if>
+<sc-if value="{{d.isInterrupt}}" hint-placeholder-val="{{ false }}">
+<div role="img" aria-label="{{t.intAria}}" style="width:100%; max-width:440px; display:flex; flex-direction:column; gap:16px">
+<div style="background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:18px 20px; display:flex; flex-direction:column; gap:12px">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)">{{t.before}}</span>
+<div class="blkrow" style="display:flex; flex-wrap:wrap; align-items:center; gap:6px">
+<span style="{{blk.done}}">1</span><span style="{{blk.done}}">2</span><span style="{{blk.done}}">3</span>
+<span style="{{blk.bolt}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"></path></svg></span>
+<span style="{{blk.redo}}">1</span><span style="{{blk.redo}}">2</span><span style="{{blk.redo}}">3</span>
+</div>
+<span style="font-size:.875em; font-weight:700; color:var(--warn)">{{t.intBeforeCap}}</span>
+</div>
+<div style="background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:18px 20px; display:flex; flex-direction:column; gap:12px">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.after}}</span>
+<div class="blkrow" style="display:flex; flex-wrap:wrap; align-items:center; gap:6px">
+<span style="{{blk.done}}">1</span><span style="{{blk.done}}">2</span><span style="{{blk.done}}">3</span>
+<span style="{{blk.bolt}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"></path></svg></span>
+<span style="{{blk.next}}">4</span><span style="{{blk.next}}">5</span>
+</div>
+<span style="font-size:.875em; font-weight:700; color:var(--accent)">{{t.intAfterCap}}</span>
+</div>
+</div>
+</sc-if>
+<sc-if value="{{d.isReport}}" hint-placeholder-val="{{ false }}">
+<div style="width:100%; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:14px">
+<figure style="margin:0; flex:1 1 180px; max-width:240px; display:flex; flex-direction:column; gap:8px">
+<div role="img" aria-label="{{t.repBeforeAria}}" style="background:var(--card); border:var(--bw) solid var(--border); border-radius:14px; overflow:hidden; font-size:.75em; transform:rotate(-2deg)">
+<div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); background:var(--soft); font-weight:800">
+<span style="padding:8px; border-right:1px solid var(--border)">{{t.colProduct}}</span><span style="padding:8px; border-right:1px solid var(--border)">{{t.colBin}}</span><span style="padding:8px">{{t.colQty}}</span>
+</div>
+<div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); border-top:1px solid var(--border)"><span style="padding:8px; border-right:1px solid var(--border)">UPC …6018</span><span style="padding:8px; border-right:1px solid var(--border)">127</span><span style="padding:8px">200</span></div>
+<div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); border-top:1px solid var(--border)"><span style="padding:8px; border-right:1px solid var(--border)">UPC …1480</span><span style="padding:8px; border-right:1px solid var(--border); color:var(--warn); font-weight:800">?</span><span style="padding:8px; text-decoration:line-through; color:var(--muted)">10O</span></div>
+<div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); border-top:1px solid var(--border)"><span style="padding:8px; border-right:1px solid var(--border); color:var(--warn); font-weight:800">?</span><span style="padding:8px; border-right:1px solid var(--border)">128</span><span style="padding:8px">200</span></div>
+<div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); border-top:1px solid var(--border)"><span style="padding:8px; border-right:1px solid var(--border)">&#160;</span><span style="padding:8px; border-right:1px solid var(--border)">&#160;</span><span style="padding:8px">&#160;</span></div>
+</div>
+<figcaption style="font-size:.8125em; font-weight:700; color:var(--warn)">{{t.repBeforeCap}}</figcaption>
+</figure>
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--accent); flex:none"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+<figure style="margin:0; flex:1 1 180px; max-width:240px; display:flex; flex-direction:column; gap:8px">
+<div role="img" aria-label="{{t.repAfterAria}}" style="background:var(--card); border:var(--bw) solid var(--border); border-radius:14px; padding:14px; display:flex; flex-direction:column; gap:10px; font-size:.8125em; box-shadow:0 16px 30px -18px rgba(30,27,75,.4)">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:8px"><span style="font-weight:800">{{t.repOrder}} 2502</span><span style="width:22px; height:22px; border-radius:50%; background:#22C55E; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.8em">✓</span></div>
+<div style="background:var(--soft); border-radius:10px; padding:8px 10px; display:flex; justify-content:space-between"><span>{{t.colBin}} 127</span><span style="font-weight:700">300 u.</span></div>
+<div style="background:var(--soft); border-radius:10px; padding:8px 10px; display:flex; justify-content:space-between"><span>{{t.colBin}} 128</span><span style="font-weight:700">300 u.</span></div>
+<div style="display:flex; justify-content:space-between; border-top:1px solid var(--border); padding-top:8px; font-weight:800"><span>{{t.repTotal}}</span><span>600 u.</span></div>
+<span style="text-align:center; background:#6B1FF2; color:#FFFFFF; border-radius:999px; padding:7px; font-weight:700">{{t.repShare}}</span>
+</div>
+<figcaption style="font-size:.8125em; font-weight:700; color:var(--accent)">{{t.repAfterCap}}</figcaption>
+</figure>
+</div>
+</sc-if>
+</div>
+</article>
+</sc-for>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:20px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:680px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.wEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.wTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.wText}}</p>
+</div>
+<div class="seg" role="group" aria-label="{{t.wTitle}}">
+<sc-for list="{{fidOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<div class="g2m" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; background:var(--m2); border-radius:28px; padding:32px 20px">
+<sc-for list="{{fidScreens}}" as="f" hint-placeholder-count="4">
+<figure style="margin:0; display:flex; flex-direction:column; align-items:center; gap:12px">
+<img class="swap" src="{{f.img}}" alt="{{f.alt}}" style="display:block; width:200px; max-width:100%; height:auto; filter:drop-shadow(0 18px 22px rgba(30,27,75,.2))">
+<figcaption style="font-size:.875em; font-weight:700">{{f.label}}</figcaption>
+</figure>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.vEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.vTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.vText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px">
+<sc-for list="{{t.heur}}" as="h" hint-placeholder-count="4">
+<div class="lift" style="background:var(--soft); border:var(--softBorder); border-radius:24px; padding:24px; display:flex; flex-direction:column; gap:12px">
+<span style="align-self:flex-start; font-size:.8125em; font-weight:800; color:var(--onAccent); background:var(--accent); border-radius:6px; padding:3px 9px">{{h.n}}</span>
+<h3 style="margin:0; font-size:1.0625em; font-weight:800; line-height:1.3">{{h.name}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{h.text}}</p>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-wrap:wrap; gap:40px; align-items:center">
+<div style="flex:999 1 420px; min-width:0; display:flex; flex-direction:column; gap:18px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.sEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.sTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.sText}}</p>
+<div class="seg" role="group" aria-label="{{t.sTitle}}" style="align-self:flex-start">
+<sc-for list="{{scopeOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<div aria-live="polite" style="flex:1 1 420px; min-width:0; display:flex; flex-wrap:wrap; align-items:stretch; gap:12px; background:var(--m1); border-radius:28px; padding:28px; box-sizing:border-box">
+<div style="flex:1 1 200px; background:var(--card); border:var(--bw) solid var(--border); border-radius:22px; padding:20px; display:flex; flex-direction:column; gap:12px">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.phase1}}</span>
+<span style="font-size:.6875em; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:var(--accent); color:var(--onAccent); border-radius:6px; padding:3px 8px">{{t.shipped}}</span>
+</div>
+<ul role="list" style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px">
+<sc-for list="{{p1}}" as="f" hint-placeholder-count="3">
+<li style="display:flex; gap:10px; align-items:flex-start; font-size:.9375em; font-weight:600; line-height:1.4"><span aria-hidden="true" style="flex:none; width:22px; height:22px; border-radius:50%; background:var(--accent); color:var(--onAccent); display:flex; align-items:center; justify-content:center; font-size:.75em; font-weight:800">✓</span>{{f}}</li>
+</sc-for>
+</ul>
+</div>
+<div style="{{p2Style}}">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap">
+<span style="font-size:.75em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.phase2}}</span>
+<span style="{{p2BadgeSt}}">{{p2Badge}}</span>
+</div>
+<ul role="list" style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px">
+<sc-for list="{{p2}}" as="f" hint-placeholder-count="2">
+<li style="display:flex; gap:10px; align-items:flex-start; font-size:.9375em; font-weight:600; line-height:1.4"><span aria-hidden="true" style="{{p2IconSt}}">{{p2Icon}}</span>{{f}}</li>
+</sc-for>
+</ul>
+<p style="margin:0; font-size:.8125em; line-height:1.5; color:var(--muted)">{{p2Note}}</p>
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:24px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.uiEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.uiTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.uiText}}</p>
+</div>
+<div class="g2m" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:14px">
+<sc-for list="{{t.swatches}}" as="w" hint-placeholder-count="5">
+<div style="border:var(--bw) solid var(--border); border-radius:20px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="height:88px; background:{{w.hex}}; border-bottom:var(--bw) solid var(--border)"></div>
+<div style="padding:14px 16px; display:flex; flex-direction:column; gap:4px">
+<span style="font-weight:700; font-size:.9375em">{{w.name}}</span>
+<span style="font-size:.8125em; color:var(--muted); font-family:ui-monospace, monospace">{{w.hex}}</span>
+<span style="font-size:.8125em; color:var(--muted); line-height:1.45">{{w.use}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--footBg); color:var(--footText); border:var(--footBorder); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#F1A7B9">{{t.oEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.oTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--footMuted)">{{t.oText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px">
+<sc-for list="{{t.wins}}" as="w" hint-placeholder-count="3">
+<div style="border:1.5px solid var(--footBtn); border-radius:22px; padding:22px; display:flex; align-items:center; gap:14px">
+<span aria-hidden="true" style="width:36px; height:36px; flex:none; border-radius:50%; background:linear-gradient(135deg,#F1A7B9,#9DB8F5); display:flex; align-items:center; justify-content:center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1B4B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</span>
+<span style="font-weight:700; font-size:1.0625em">{{w}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display:flex; flex-wrap:wrap; gap:20px">
+<sc-for list="{{learnOne}}" as="l" hint-placeholder-count="2">
+<div style="flex:1 1 360px; background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,4vw,44px); display:flex; flex-direction:column; gap:12px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{l.eyebrow}}</p>
+<h2 style="margin:0; font-size:1.5em; font-weight:800; letter-spacing:-0.02em">{{l.title}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{l.text}}</p>
+</div>
+</sc-for>
+</section>
+
+<nav aria-label="{{t.caseNav}}" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:8px">
+<a class="btn" href="index.html" style="text-decoration:none; color:var(--text); font-weight:600; font-size:1em; padding:0 24px; min-height:52px; border-radius:14px; border:1.5px solid var(--chip); background:var(--card); box-shadow:0 3px 0 var(--chip); display:inline-flex; align-items:center">{{t.back}}</a>
+<a class="cta" href="super-scan.html" style="text-decoration:none; background-size:200% 100%; background-image:linear-gradient(90deg,#F1A7B9,#C9B2F2,#9DB8F5); color:#1E1B4B; font-weight:700; font-size:1em; padding:0 26px; min-height:52px; border-radius:14px; box-shadow:0 3px 0 rgba(30,27,75,.3); display:inline-flex; align-items:center">{{t.next}}</a>
+</nav>
+
+</div>
+
+<a class="wa" href="{{waHref}}" target="_blank" rel="noopener" aria-label="{{t.waLabel}}" title="{{t.waLabel}}" style="position:fixed; right:20px; bottom:20px; width:58px; height:58px; border-radius:50%; background:#128C7E; color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 28px -10px rgba(0,0,0,.45); z-index:20; text-decoration:none"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9.1 8.2c.3-.6.8-.6 1.1 0l.6 1.3c.1.3 0 .6-.2.8l-.5.5c.6 1.2 1.6 2.2 2.8 2.8l.5-.5c.2-.2.5-.3.8-.2l1.3.6c.6.3.6.8 0 1.1-.9.6-2 .8-3 .3a8.5 8.5 0 0 1-4-4c-.5-1-.3-2.1.6-2.7z" fill="currentColor"></path></svg></a>
+
+<sc-if value="{{panelOpen}}" hint-placeholder-val="{{ false }}">
+<div id="a11y-panel-b" role="dialog" aria-label="{{t.a11yTitle}}" style="position:fixed; right:20px; top:84px; width:340px; max-width:calc(100vw - 40px); max-height:calc(100vh - 110px); overflow-y:auto; background:var(--card); color:var(--text); border:var(--bw) solid var(--border); border-radius:24px; padding:24px; box-sizing:border-box; display:flex; flex-direction:column; gap:18px; box-shadow:0 24px 60px -20px rgba(30,27,75,.45); z-index:20">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+<h2 style="margin:0; font-size:1.25em; font-weight:800">{{t.a11yTitle}}</h2>
+<button class="btn" type="button" onClick="{{togglePanel}}" aria-label="{{t.close}}" style="width:44px; height:44px; border-radius:50%; border:1.5px solid var(--chip); background:transparent; color:var(--text); cursor:pointer; display:flex; align-items:center; justify-content:center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+</div>
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="7">
+<div role="group" aria-label="{{g.label}}" style="display:flex; flex-direction:column; gap:8px">
+<p style="margin:0; font-weight:700; font-size:.875em">{{g.label}}</p>
+<div class="seg" style="align-self:flex-start">
+<sc-for list="{{g.opts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<button class="btn" type="button" onClick="{{reset}}" style="min-height:44px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); box-shadow:0 3px 0 var(--chip); color:var(--text); font:inherit; font-weight:700; font-size:.875em; cursor:pointer">{{t.reset}}</button>
+</div>
+</sc-if>
+
+</div>
+</template>
+<script src="js/morphdom.min.js"></script>
+<script src="js/runtime.js"></script>
+<script>
+
+var IMG = {
+  login: "assets/login.png", start: "assets/start.png",
+  empty: "assets/order-empty.png", scanner: "assets/scan-scanner.png",
+  camera: "assets/scan-camera.png", complete: "assets/complete-info.png",
+  manual: "assets/manual.png", error: "assets/scan-error.png",
+  added: "assets/added.png", bins: "assets/order-bins.png",
+  confirm: "assets/confirm.png", done: "assets/done-share.png",
+  wfLogin: "assets/wf-login.png", wfComplete: "assets/wf-complete.png",
+  wfConfirm: "assets/wf-confirm.png", wfDone: "assets/wf-done.png"
+};
+
+var COPY = {
+  en: {
+    navLabel: "Main", menu: "Menu", navWork: "Work", navHow: "How I work", navAbout: "About", navContact: "Contact",
+    langLabel: "Language", back: "← Back to home", caseNav: "Case navigation", next: "Next case: Super Scan →",
+    cordOff: "Turn the lights off (dark mode)", cordOn: "Turn the lights on (light mode)",
+    heroTag: "Case study · Mobile app · B2B logistics",
+    heroSub: "Turning a paper-and-scanner warehouse routine into one mobile flow.",
+    heroLead: "A native Android app that lets operators scan products, assign them to bins and share a complete record, from any device. Implemented by Numetri in their warehouse operations.",
+    altStart: "Binsort start screen with an order in progress", altCamera: "Binsort scanning a barcode with the phone camera", altDone: "Binsort order completed, ready to share",
+    altError: "Scanning error with options to retry or enter the code manually", altLogin: "Proposed login screen", altBins: "Order view grouped by bin",
+    meta: [
+      { k: "Role", v: "UX/UI Designer", d: "Research, interaction and visual design, prototyping" },
+      { k: "Timeline", v: "4 weeks", d: "From audit to high-fidelity flow" },
+      { k: "Company", v: "Numetri (contract)", d: "Data analytics startup, US" },
+      { k: "Platform", v: "Native Android", d: "Phones and industrial scanners" }
+    ],
+    pEyebrow: "01 · The problem", pTitle: "How operators actually worked",
+    pText: "I reviewed the existing app, interviewed 5 warehouse operators and mapped their daily workflow, from receiving an order to filing it in a spreadsheet. I also benchmarked similar inventory tools.",
+    pHint: "Tap each step of the old workflow to see what broke.",
+    steps: [
+      { step: "Receive", problem: "Hardware dependency", text: "The app only ran on industrial scanners. When there weren't enough devices, work stopped or moved to paper.", quote: "When we run out of scanners, we switch to paper, and that's when information gets lost.", who: "Warehouse operator" },
+      { step: "Scan", problem: "No saved progress", text: "The app didn't save progress: if it failed or an order was left halfway, the information was lost. 4 of the 5 operators had to redo orders from scratch.", quote: "The app doesn't save progress. If I leave mid-task, I have to start the order all over again.", who: "Stock supervisor" },
+      { step: "Paper fallback", problem: "Lost data", text: "Each handoff, from scanner to paper to spreadsheet, left records incomplete or missing.", quote: "", who: "" },
+      { step: "Spreadsheet", problem: "Manual reporting", text: "The app produced no record, so everything was retyped by hand into spreadsheets.", quote: "Since the app doesn't generate any report, we have to copy everything into a spreadsheet manually.", who: "Inventory assistant" }
+    ],
+    dEyebrow: "02 · Direction", dTitle: "No order should depend on having the right device",
+    dText: "The goal was not to make scanning prettier. It was to make sure no order and no record depended on having the right device at the right moment.",
+    goals: [
+      { k: "Business goal", need: "One central tool for the whole scanning process.", success: "Success: full traceability and fewer errors." },
+      { k: "Operator goal", need: "Scan and organize from any device, without redoing work.", success: "Success: fewer manual steps and faster work." }
+    ],
+    prTitle: "Design principles",
+    principles: [
+      { n: "1", title: "Never block the task", text: "There is always another way to keep going." },
+      { n: "2", title: "Progress is always visible", text: "Operators know where they are in an order at a glance." },
+      { n: "3", title: "The record writes itself", text: "No copying, no retyping." }
+    ],
+    kEyebrow: "03 · Key decisions", kTitle: "Four decisions that shaped the app",
+    lProblem: "Problem", lDecision: "Decision", lWhy: "Why",
+    tryLabel: "Try it:", mScanner: "Scanner", mCamera: "Camera", mManual: "Manual",
+    altScanner: "Scanning with an industrial scanner", altManual: "Manual code entry",
+    decisions: [
+      { title: "Scan with whatever is at hand", problem: "Work stopped, or moved to paper, when there weren't enough industrial scanners.", decision: "The same flow works with an industrial scanner, the phone camera, or manual entry. Operators switch between them without leaving the order.", why: "Removing the hardware bottleneck removed the moment where data got lost. Manual entry covers damaged barcodes, so the task never stops." },
+      { title: "Orders that survive interruptions", problem: "Leaving an order halfway meant starting over.", decision: "Every scan is saved as it happens, and the order in progress stays visible from the start screen until it's finished. The history of completed orders was left for phase 2.", why: "Warehouse work gets interrupted constantly. The app should adapt to that, not punish it." },
+      { title: "Organize by bin, edit without starting over", problem: "Mistakes were only noticed later, in the spreadsheet.", decision: "The order view groups products by bin and lets operators correct quantities or locations on the spot.", why: "Catching errors where they happen is cheaper than fixing them in a report." },
+      { title: "The record writes itself", problem: "Everything was retyped into spreadsheets by hand.", decision: "Finishing an order generates a shareable report with every product, bin and quantity.", why: "It removes the last manual handoff and gives the business the traceability it asked for." }
+    ],
+    wEyebrow: "04 · From wireframe to final", wTitle: "Structure first, style after",
+    wText: "I validated the flow in low fidelity before any visual decision, so changes stayed cheap.",
+    fWire: "Wireframe", fFinal: "Final",
+    fidLabels: ["Login", "Product details", "Confirm order", "Order done"],
+    vEyebrow: "05 · Validation", vTitle: "Checked against heuristics and the people who know the floor",
+    vText: "I reviewed the flow against Nielsen's usability heuristics and walked through each iteration with Numetri's team, who know the warehouse routine first-hand.",
+    vExTitle: "Example: recovering from errors",
+    vExText: "When a barcode can't be read, the operator can retry or switch to manual entry right there, without losing the order (heuristic 9: help users recognize, diagnose and recover from errors).",
+    vPlaceholder: "[Add a finding from the client review and what changed because of it.]",
+    heur: [
+      { n: "H1", name: "Visibility of system status", text: "Order number, bins and product count stay visible throughout the order." },
+      { n: "H3", name: "User control and freedom", text: "Products and quantities can be edited or removed without restarting the order." },
+      { n: "H5", name: "Error prevention", text: "Closing an order asks for confirmation first, because it can't be edited afterwards." },
+      { n: "H9", name: "Recover from errors", text: "If a barcode can't be read, the operator can retry or type it manually without losing the order." }
+    ],
+    before: "Before", after: "With Binsort",
+    intAria: "Before: after an interruption the order starts over from product 1. With Binsort: the order resumes at product 4.",
+    intBeforeCap: "Interrupted → start the order over", intAfterCap: "Interrupted → pick up where you left off",
+    colProduct: "Product", colBin: "Bin", colQty: "Qty", repOrder: "Order", repTotal: "Total", repShare: "Share",
+    repBeforeAria: "Hand-copied spreadsheet with missing and corrected cells",
+    repAfterAria: "Automatically generated order report grouped by bin, with a share button",
+    repBeforeCap: "Before: copied by hand, with gaps", repAfterCap: "After: generated when the order closes",
+    phase1: "Phase 1", p2NoteMvp: "Left for a future phase by the client.", p2NoteFull: "Designed and proposed: resume orders from any device and search past records.",
+    sEyebrow: "06 · Scope", sTitle: "What I proposed, and what shipped first",
+    sText: "My proposal included login with account sync and an order history, so any operator could resume an order from any device and supervisors could search past records. Numetri chose to launch the core flow first and leave account features for a second phase.",
+    sMvp: "Shipped MVP", sFull: "Full proposal", phase2: "Phase 2", notShipped: "Not shipped", proposed: "Proposed", shipped: "Shipped",
+    inc: "Included", notInc: "Not included in this release",
+    features: [
+      { label: "Multi-device scanning + manual entry", mvp: true },
+      { label: "Organize and edit by bin", mvp: true },
+      { label: "Shareable order report", mvp: true },
+      { label: "Login and account sync", mvp: false },
+      { label: "Order history", mvp: false }
+    ],
+    uiEyebrow: "07 · Visual design", uiTitle: "Designed for one hand and no hesitation",
+    uiText: "Operators use the app standing and on the move. The scan button always sits in the thumb zone, each screen has a single primary action, products are grouped by bin, and finishing an order ends with a clear confirmation.",
+    swatches: [
+      { name: "Deep blue", hex: "#002BAB", use: "Headers and brand moments" },
+      { name: "Primary violet", hex: "#6D00FB", use: "Main actions and selection" },
+      { name: "Lavender", hex: "#C3A0FF", use: "Header gradient and soft states" },
+      { name: "Background", hex: "#FFFFFF", use: "Screens and cards" },
+      { name: "Success", hex: "#01CC60", use: "Confirmations" }
+    ],
+    uiNote: "[Confirm the exact hex values from the Figma file.]",
+    oEyebrow: "08 · Outcome", oTitle: "Implemented and in use",
+    oText: "Numetri implemented Binsort in their warehouse operations. According to the client, receiving, registering and organizing products became faster, and the team no longer copies records into spreadsheets by hand.",
+    wins: ["Works on any device", "No more manual spreadsheets", "Implemented by the client"],
+    testimonial: "[Client testimonial: “…” — Name, role, Numetri]",
+    learn: [
+      { eyebrow: "09 · Learnings", title: "What I learned", text: "Designing for operational work means designing for interruptions. The best decisions in this project were not visual; they were about making sure the task could always continue." },
+      { eyebrow: "10 · Next steps", title: "What I'd do next", text: "Test the flow on the warehouse floor with operators, measure time per order before and after, make quantities more visible since they're what operators check, and bring account sync and order history into a second phase." }
+    ],
+    waLabel: "Message me on WhatsApp", a11yOpen: "Accessibility options", a11yTitle: "Accessibility", close: "Close",
+    gSize: "Text size", gContrast: "Contrast", gTheme: "Theme", gFont: "Font", gLh: "Line spacing", gMotion: "Animations", gUl: "Underline links",
+    normal: "Normal", high: "High", light: "Light", dark: "Dark", std: "Standard", readable: "High legibility",
+    relaxed: "Relaxed", on: "On", reduced: "Reduced", yes: "Yes", no: "No", reset: "Reset settings"
+  },
+  es: {
+    navLabel: "Principal", menu: "Menú", navWork: "Proyectos", navHow: "Cómo trabajo", navAbout: "Sobre mí", navContact: "Contacto",
+    langLabel: "Idioma", back: "← Volver al inicio", caseNav: "Navegación del caso", next: "Siguiente caso: Super Scan →",
+    cordOff: "Apagar la luz (modo oscuro)", cordOn: "Prender la luz (modo claro)",
+    heroTag: "Caso de estudio · App móvil · Logística B2B",
+    heroSub: "Una rutina de depósito hecha de papel y escáneres, convertida en un único flujo móvil.",
+    heroLead: "Una app nativa de Android para escanear productos, asignarlos a ubicaciones y compartir un registro completo, desde cualquier dispositivo. Implementada por Numetri en sus operaciones de depósito.",
+    altStart: "Pantalla de inicio de Binsort con un pedido en curso", altCamera: "Binsort escaneando un código de barras con la cámara", altDone: "Pedido de Binsort terminado, listo para compartir",
+    altError: "Error de escaneo con opciones para reintentar o cargar el código a mano", altLogin: "Pantalla de inicio de sesión propuesta", altBins: "Vista del pedido agrupada por ubicación",
+    meta: [
+      { k: "Rol", v: "UX/UI Designer", d: "Investigación, diseño de interacción y visual, prototipado" },
+      { k: "Duración", v: "4 semanas", d: "De la auditoría al flujo en alta fidelidad" },
+      { k: "Empresa", v: "Numetri (contrato)", d: "Startup de análisis de datos, EE.UU." },
+      { k: "Plataforma", v: "Android nativo", d: "Celulares y escáneres industriales" }
+    ],
+    pEyebrow: "01 · El problema", pTitle: "Cómo trabajaban de verdad los operarios",
+    pText: "Revisé la app existente, entrevisté a 5 operarios de depósito y mapeé su flujo diario, desde que reciben un pedido hasta que lo pasan a una planilla. También analicé herramientas de inventario similares.",
+    pHint: "Tocá cada paso del flujo anterior para ver qué fallaba.",
+    steps: [
+      { step: "Recibir", problem: "Dependencia del hardware", text: "La app solo funcionaba en escáneres industriales. Si no alcanzaban, el trabajo se frenaba o pasaba al papel.", quote: "Cuando nos quedamos sin escáneres pasamos al papel, y ahí se pierde información.", who: "Operario de depósito" },
+      { step: "Escanear", problem: "Sin progreso guardado", text: "La app no guardaba el progreso: si fallaba o el pedido quedaba a medias, se perdía la información. 4 de los 5 operarios tuvieron que rehacer pedidos desde cero.", quote: "La app no guarda el progreso. Si lo dejo a mitad de camino, tengo que empezar el pedido de nuevo.", who: "Supervisora de stock" },
+      { step: "Respaldo en papel", problem: "Datos perdidos", text: "Cada traspaso, del escáner al papel y del papel a la planilla, dejaba registros incompletos o perdidos.", quote: "", who: "" },
+      { step: "Planilla", problem: "Reportes manuales", text: "La app no generaba ningún registro, así que todo se volvía a tipear a mano en planillas.", quote: "Como la app no genera reportes, tenemos que copiar todo a mano en una planilla.", who: "Asistente de inventario" }
+    ],
+    dEyebrow: "02 · Dirección", dTitle: "Ningún pedido debería depender de tener el dispositivo justo",
+    dText: "El objetivo no era que escanear fuera más lindo, sino que ningún pedido ni registro dependiera de tener el dispositivo justo en el momento justo.",
+    goals: [
+      { k: "Objetivo de negocio", need: "Una sola herramienta central para todo el proceso de escaneo.", success: "Éxito: trazabilidad completa y menos errores." },
+      { k: "Objetivo del operario", need: "Escanear y organizar desde cualquier dispositivo, sin rehacer trabajo.", success: "Éxito: menos pasos manuales y trabajo más rápido." }
+    ],
+    prTitle: "Principios de diseño",
+    principles: [
+      { n: "1", title: "Nunca frenar la tarea", text: "Siempre hay otra forma de seguir." },
+      { n: "2", title: "El progreso siempre visible", text: "El operario sabe en qué punto del pedido está de un vistazo." },
+      { n: "3", title: "El registro se arma solo", text: "Sin copiar ni volver a tipear." }
+    ],
+    kEyebrow: "03 · Decisiones clave", kTitle: "Cuatro decisiones que definieron la app",
+    lProblem: "Problema", lDecision: "Decisión", lWhy: "Por qué",
+    tryLabel: "Probalo:", mScanner: "Escáner", mCamera: "Cámara", mManual: "Manual",
+    altScanner: "Escaneo con escáner industrial", altManual: "Carga manual del código",
+    decisions: [
+      { title: "Escanear con lo que haya a mano", problem: "El trabajo se frenaba, o pasaba al papel, cuando no alcanzaban los escáneres industriales.", decision: "El mismo flujo funciona con escáner industrial, cámara del celular o carga manual. Se puede cambiar de método sin salir del pedido.", why: "Sacar el cuello de botella del hardware eliminó el momento en que se perdían datos. La carga manual cubre los códigos dañados, así la tarea nunca se frena." },
+      { title: "Pedidos que sobreviven a las interrupciones", problem: "Dejar un pedido a medias implicaba empezar de cero.", decision: "Cada escaneo se guarda en el momento, y el pedido en curso queda visible desde la pantalla de inicio hasta que se finaliza. El historial de pedidos terminados quedó para la etapa 2.", why: "En un depósito las interrupciones son constantes. La app tiene que adaptarse a eso, no castigarlo." },
+      { title: "Organizar por ubicación y corregir sin empezar de nuevo", problem: "Los errores se detectaban recién después, en la planilla.", decision: "La vista del pedido agrupa los productos por ubicación y permite corregir cantidades o ubicaciones en el momento.", why: "Detectar un error donde ocurre sale mucho más barato que corregirlo en un reporte." },
+      { title: "El registro se arma solo", problem: "Todo se volvía a tipear a mano en planillas.", decision: "Al terminar un pedido se genera un reporte para compartir, con cada producto, ubicación y cantidad.", why: "Elimina el último traspaso manual y le da al negocio la trazabilidad que pedía." }
+    ],
+    wEyebrow: "04 · Del wireframe al diseño final", wTitle: "Primero la estructura, después el estilo",
+    wText: "Validé el flujo en baja fidelidad antes de cualquier decisión visual, para que los cambios fueran baratos.",
+    fWire: "Wireframe", fFinal: "Final",
+    fidLabels: ["Inicio de sesión", "Datos del producto", "Confirmar pedido", "Pedido terminado"],
+    vEyebrow: "05 · Validación", vTitle: "Revisado con heurísticas y con quienes conocen el depósito",
+    vText: "Revisé el flujo con las heurísticas de usabilidad de Nielsen y recorrí cada iteración con el equipo de Numetri, que conoce la rutina del depósito de primera mano.",
+    vExTitle: "Ejemplo: recuperarse de un error",
+    vExText: "Cuando un código no se puede leer, el operario puede reintentar o pasar a carga manual ahí mismo, sin perder el pedido (heurística 9: ayudar a reconocer, diagnosticar y recuperarse de errores).",
+    vPlaceholder: "[Sumá un hallazgo de la revisión con el cliente y qué cambió a partir de él.]",
+    heur: [
+      { n: "H1", name: "Visibilidad del estado del sistema", text: "El número de pedido, las ubicaciones y la cantidad de productos se ven durante todo el pedido." },
+      { n: "H3", name: "Control y libertad del usuario", text: "Se pueden editar o quitar productos y cantidades sin reiniciar el pedido." },
+      { n: "H5", name: "Prevención de errores", text: "Antes de cerrar un pedido, la app pide confirmación, porque después ya no se puede editar." },
+      { n: "H9", name: "Reconocer, diagnosticar y recuperarse de errores", text: "Si un código no se puede leer, el operario puede reintentar o tipearlo a mano sin perder el pedido." }
+    ],
+    before: "Antes", after: "Con Binsort",
+    intAria: "Antes: después de una interrupción el pedido vuelve a empezar desde el producto 1. Con Binsort: el pedido sigue en el producto 4.",
+    intBeforeCap: "Interrupción → empezar el pedido de nuevo", intAfterCap: "Interrupción → seguir donde quedaste",
+    colProduct: "Producto", colBin: "Ubic.", colQty: "Cant.", repOrder: "Pedido", repTotal: "Total", repShare: "Compartir",
+    repBeforeAria: "Planilla copiada a mano con celdas vacías y corregidas",
+    repAfterAria: "Reporte del pedido generado automáticamente, agrupado por ubicación, con botón para compartir",
+    repBeforeCap: "Antes: copiado a mano, con huecos", repAfterCap: "Después: se genera al cerrar el pedido",
+    phase1: "Etapa 1", p2NoteMvp: "El cliente las dejó para más adelante.", p2NoteFull: "Diseñado y propuesto: retomar pedidos desde cualquier dispositivo y buscar registros anteriores.",
+    sEyebrow: "06 · Alcance", sTitle: "Lo que propuse y lo que salió primero",
+    sText: "Mi propuesta incluía login con sincronización de cuenta e historial de pedidos, para que cualquier operario retomara un pedido desde cualquier dispositivo y los supervisores pudieran buscar registros anteriores. Numetri eligió lanzar primero el flujo principal y dejar las funciones de cuenta para una segunda etapa.",
+    sMvp: "MVP lanzado", sFull: "Propuesta completa", phase2: "Etapa 2", notShipped: "No lanzado", proposed: "Propuesta", shipped: "Lanzado",
+    inc: "Incluido", notInc: "No incluido en esta etapa",
+    features: [
+      { label: "Escaneo desde cualquier dispositivo y carga manual", mvp: true },
+      { label: "Organizar y editar por ubicación", mvp: true },
+      { label: "Reporte del pedido para compartir", mvp: true },
+      { label: "Inicio de sesión y sincronización de cuenta", mvp: false },
+      { label: "Historial de pedidos", mvp: false }
+    ],
+    uiEyebrow: "07 · Diseño visual", uiTitle: "Pensada para usarse con una mano y sin dudar",
+    uiText: "El operario usa la app parado y en movimiento. El botón de escanear está siempre en la zona del pulgar, cada pantalla tiene una sola acción principal, los productos se agrupan por ubicación y terminar un pedido cierra con una confirmación clara.",
+    swatches: [
+      { name: "Azul profundo", hex: "#002BAB", use: "Encabezados y elementos de marca" },
+      { name: "Violeta principal", hex: "#6D00FB", use: "Acciones principales y selección" },
+      { name: "Lavanda", hex: "#C3A0FF", use: "Gradiente del header y estados suaves" },
+      { name: "Fondo", hex: "#FFFFFF", use: "Pantallas y tarjetas" },
+      { name: "Éxito", hex: "#01CC60", use: "Confirmaciones" }
+    ],
+    uiNote: "[Confirmá los hex exactos desde el archivo de Figma.]",
+    oEyebrow: "08 · Resultado", oTitle: "Implementada y en uso",
+    oText: "Numetri implementó Binsort en sus operaciones de depósito. Según el cliente, recibir, registrar y organizar productos se volvió más rápido, y el equipo ya no copia registros a mano en planillas.",
+    wins: ["Funciona en cualquier dispositivo", "Chau planillas manuales", "Implementada por el cliente"],
+    testimonial: "[Testimonio del cliente: “…” — Nombre, cargo, Numetri]",
+    learn: [
+      { eyebrow: "09 · Aprendizajes", title: "Qué aprendí", text: "Diseñar para trabajo operativo es diseñar para las interrupciones. Las mejores decisiones de este proyecto no fueron visuales: fueron asegurar que la tarea siempre pudiera seguir." },
+      { eyebrow: "10 · Próximos pasos", title: "Qué haría después", text: "Testear el flujo en el depósito con operarios, medir el tiempo por pedido antes y después, hacer más visibles las cantidades, que son el dato que el operario controla, y sumar la sincronización de cuenta y el historial en una segunda etapa." }
+    ],
+    waLabel: "Escribime por WhatsApp", a11yOpen: "Opciones de accesibilidad", a11yTitle: "Accesibilidad", close: "Cerrar",
+    gSize: "Tamaño de texto", gContrast: "Contraste", gTheme: "Tema", gFont: "Tipografía", gLh: "Interlineado", gMotion: "Animaciones", gUl: "Subrayar enlaces",
+    normal: "Normal", high: "Alto", light: "Claro", dark: "Oscuro", std: "Estándar", readable: "Alta legibilidad",
+    relaxed: "Amplio", on: "Activadas", reduced: "Reducidas", yes: "Sí", no: "No", reset: "Restablecer"
+  }
+};
+
+var THEMES = {
+  light:   { tray:"#E6E7F1", tagBg:"#EEEFF5", bg:"#EEF0F6", card:"#FFFFFF", border:"#E3E5EF", text:"#1E1B4B", muted:"#4B4F63", accent:"#5B3FC4", onAccent:"#FFFFFF", soft:"#F5F3FD", softBorder:"none", chip:"#D5D8E6", bw:"1px", warn:"#B42318",
+             m1:"linear-gradient(150deg,#EDE6FC,#E2EAFB)", m2:"linear-gradient(150deg,#FBE7EE,#EDE6FC)", m3:"linear-gradient(150deg,#E2EAFB,#E6F4EF)",
+             footBg:"#1E1B4B", footText:"#FFFFFF", footMuted:"#D3D5E8", footBorder:"none", footBtn:"#4A4778" },
+  dark:    { tray:"#0E0D19", tagBg:"#2A2840", bg:"#12111F", card:"#1C1B2E", border:"#2E2C47", text:"#F1F0FA", muted:"#B8B7CC", accent:"#B9A6FF", onAccent:"#12111F", soft:"#24223A", softBorder:"none", chip:"#3A3858", bw:"1px", warn:"#FF9B8A",
+             m1:"linear-gradient(150deg,#2A2448,#1E2742)", m2:"linear-gradient(150deg,#33223A,#2A2448)", m3:"linear-gradient(150deg,#1E2742,#1C3330)",
+             footBg:"#2A2550", footText:"#FFFFFF", footMuted:"#D3D1EA", footBorder:"none", footBtn:"#5C5890" },
+  lightHC: { tray:"#FFFFFF", tagBg:"#E6E6E6", bg:"#FFFFFF", card:"#FFFFFF", border:"#000000", text:"#000000", muted:"#111111", accent:"#3B1FA8", onAccent:"#FFFFFF", soft:"#FFFFFF", softBorder:"2px solid #000000", chip:"#000000", bw:"2px", warn:"#A30000",
+             m1:"#FFFFFF", m2:"#FFFFFF", m3:"#FFFFFF",
+             footBg:"#000000", footText:"#FFFFFF", footMuted:"#FFFFFF", footBorder:"none", footBtn:"#FFFFFF" },
+  darkHC:  { tray:"#000000", tagBg:"#262626", bg:"#000000", card:"#000000", border:"#FFFFFF", text:"#FFFFFF", muted:"#F2F2F2", accent:"#D7CCFF", onAccent:"#000000", soft:"#000000", softBorder:"2px solid #FFFFFF", chip:"#FFFFFF", bw:"2px", warn:"#FF9B8A",
+             m1:"#000000", m2:"#000000", m3:"#000000",
+             footBg:"#000000", footText:"#FFFFFF", footMuted:"#FFFFFF", footBorder:"2px solid #FFFFFF", footBtn:"#FFFFFF" }
+};
+
+var DEFAULTS = { lang: "en", dark: false, contrast: "normal", size: 1, font: "std", lh: "normal", motion: "on", ul: false, panel: false, pulled: false, menu: false,
+  pain: 0, openStep: 0, method: "camera", fid: "final", scope: "full" };
+
+function rvKids(el) {
+  var out = [];
+  Array.prototype.forEach.call(el.children, function (c) {
+    if (c.tagName === "SCRIPT" || c.tagName === "STYLE") return;
+    if (getComputedStyle(c).display === "contents") out = out.concat(rvKids(c)); else out.push(c);
+  });
+  return out;
+}
+function rvInit(mode, tries) {
+  var doc = document;
+  var secs = doc.querySelectorAll("section, footer");
+  if (!secs.length) { if ((tries || 0) < 40) setTimeout(function () { rvInit(mode, (tries || 0) + 1); }, 100); return; }
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || doc.querySelector(".rm") || !("IntersectionObserver" in window)) return;
+  var targets = [];
+  var add = function (el) { if (el && !el.classList.contains("marq-track") && !el.hasAttribute("data-rv")) targets.push(el); };
+  if (mode === "main") {
+    ["work", "about", "contact"].forEach(function (id) { var s = doc.getElementById(id); if (s) rvKids(s).forEach(add); });
+    var how = doc.getElementById("how");
+    if (how) rvKids(how).forEach(function (c) { var k = rvKids(c); if (k.length > 1) k.forEach(add); else add(c); });
+  } else {
+    Array.prototype.slice.call(doc.querySelectorAll("section")).slice(1).forEach(function (s) {
+      rvKids(s).forEach(function (c) {
+        if (c.classList.contains("marq")) { add(c); return; }
+        var k = rvKids(c); if (k.length > 1 && k.length < 16) k.forEach(add); else add(c);
+      });
+    });
+  }
+  var io = new IntersectionObserver(function (entries) {
+    var i = 0;
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.style.setProperty("--rvd", (Math.min(i, 6) * 0.09) + "s");
+      e.target.setAttribute("data-rv", "in");
+      io.unobserve(e.target); i++;
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  targets.forEach(function (el) { el.setAttribute("data-rv", "wait"); io.observe(el); });
+}
+
+var PREF_KEYS = ["lang", "dark", "contrast", "size", "font", "lh", "motion", "ul"];
+function loadPrefs() {
+  try { var p = JSON.parse(window.localStorage.getItem("domi-prefs") || "{}"); var o = {}; PREF_KEYS.forEach(function (k) { if (p && k in p) o[k] = p[k]; }); return o; } catch (e) { return {}; }
+}
+function savePrefs(s) {
+  try { var o = {}; PREF_KEYS.forEach(function (k) { o[k] = s[k]; }); window.localStorage.setItem("domi-prefs", JSON.stringify(o)); } catch (e) {}
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    if (!this.__rv) { this.__rv = 1; var rvMode = "case"; setTimeout(function () { rvInit(rvMode, 0); }, 150); }
+    var self = this;
+    var self0 = this;
+    if (!this.__ps) { this.__ps = 1; try { window.addEventListener("storage", function (e) { if (e.key === "domi-prefs") self0.setState(loadPrefs()); }); } catch (e) {} }
+    var s = Object.assign({}, DEFAULTS, loadPrefs(), this.state || {});
+    if (this.state && PREF_KEYS.some(function (k) { return k in self0.state; })) savePrefs(s);
+    var base = COPY[s.lang];
+    var t = Object.assign({}, base, { cord: s.dark ? base.cordOn : base.cordOff });
+    var c = THEMES[(s.dark ? "dark" : "light") + (s.contrast === "high" ? "HC" : "")];
+
+    var fontStack = s.font === "readable" ? "'Atkinson Hyperlegible', system-ui, sans-serif" : "'Plus Jakarta Sans', system-ui, sans-serif";
+    var vars = "";
+    Object.keys(c).forEach(function (k) { vars += "--" + k + ":" + c[k] + ";"; });
+    var rootStyle = vars + "--lh:" + (s.lh === "relaxed" ? "1.95" : "1.6") + ";" +
+      "position:relative; font-family:" + fontStack + "; font-size:" + (16 * s.size) + "px; color:var(--text); background:var(--bg);" +
+      "min-height:100vh; padding:24px 16px 120px; box-sizing:border-box;" + (s.font === "readable" ? "letter-spacing:.01em;" : "");
+    var rootClass = "root" + (s.motion === "reduced" ? " rm" : "") + (s.ul ? " ul" : "");
+
+    var segBase = "min-height:40px; min-width:44px; padding:0 14px; border-radius:10px; border:none; font:inherit; font-weight:700; font-size:.875em; cursor:pointer;";
+    var SEL = segBase + "background:var(--accent); color:var(--onAccent);";
+    var UNSEL = segBase + "background:transparent; color:var(--text);";
+    var LANGBASE = "min-height:36px; min-width:44px; padding:0 12px; border-radius:10px; font:inherit; font-weight:700; font-size:.8125em; cursor:pointer; border:none;";
+
+    function seg(key, opts) {
+      return opts.map(function (o) {
+        var on = s[key] === o.v;
+        return { label: o.l, aria: o.a || o.l, pressed: String(on), st: on ? SEL : UNSEL,
+          pick: function () { var p = {}; p[key] = o.v; self.setState(p); } };
+      });
+    }
+
+    var langOpts = [{ v: "es", l: "ES", a: "Español" }, { v: "en", l: "EN", a: "English" }].map(function (o) {
+      var on = s.lang === o.v;
+      return { code: o.v, label: o.l, aria: o.a, pressed: String(on),
+        st: LANGBASE + (on ? "background:var(--accent); color:var(--onAccent);" : "background:transparent; color:var(--text);"),
+        pick: function () { self.setState({ lang: o.v }); } };
+    });
+
+    var steps = t.steps.map(function (st, i) {
+      var on = s.pain === i;
+      return {
+        n: "0" + (i + 1), step: st.step, problem: st.problem, pressed: String(on), on: s.openStep === i, expanded: String(s.openStep === i),
+        text: st.text, quote: st.quote, who: st.who, hasQuote: !!st.quote,
+        chevSt: "margin-left:auto; font-size:1.4em; line-height:1; font-weight:700; opacity:.7; transition:transform .2s ease; transform:rotate(" + (s.openStep === i ? 90 : 0) + "deg);",
+        st: "width:100%; min-height:72px; display:flex; align-items:center; gap:12px; padding:14px 16px; border-radius:20px; font:inherit; cursor:pointer; text-align:left;" +
+          (on ? "background:var(--accent); color:var(--onAccent); border:1.5px solid var(--accent); box-shadow:0 3px 0 rgba(30,27,75,.35);" : "background:var(--card); color:var(--text); border:1.5px solid var(--chip); box-shadow:0 3px 0 var(--chip);"),
+        numSt: "flex:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.8125em;" +
+          (on ? "background:var(--onAccent); color:var(--accent);" : "background:var(--soft); color:var(--accent);"),
+        pick: function () { self.setState({ pain: i, openStep: s.openStep === i ? -1 : i }); }
+      };
+    });
+    var cur = t.steps[s.pain];
+    var pain = { n: "0" + (s.pain + 1), step: cur.step, problem: cur.problem, text: cur.text, quote: cur.quote, who: cur.who, hasQuote: !!cur.quote };
+
+    var methodImg = { scanner: IMG.scanner, camera: IMG.camera, manual: IMG.manual }[s.method];
+    var methodAlt = { scanner: t.altScanner, camera: t.altCamera, manual: t.altManual }[s.method];
+    var dImgs = [methodImg, IMG.start, IMG.bins, IMG.done];
+    var dAlts = [methodAlt, t.altStart, t.altBins, t.altDone];
+    var decisions = t.decisions.map(function (d, i) {
+      return Object.assign({}, d, {
+        n: "0" + (i + 1), img: dImgs[i], alt: dAlts[i], hasControl: i === 0,
+        isPhone: i === 0 || i === 2, isInterrupt: i === 1, isReport: i === 3,
+        rowSt: "display:flex; flex-wrap:wrap; gap:40px; align-items:center; flex-direction:" + (i % 2 ? "row-reverse" : "row") + ";" +
+          (i ? "border-top:var(--bw) solid var(--border); padding-top:48px;" : "")
+      });
+    });
+
+    var wf = s.fid === "wire";
+    var fidImgs = wf ? [IMG.wfLogin, IMG.wfComplete, IMG.wfConfirm, IMG.wfDone] : [IMG.login, IMG.complete, IMG.confirm, IMG.done];
+    var fidScreens = t.fidLabels.map(function (l, i) { return { img: fidImgs[i], label: l, alt: (wf ? t.fWire : t.fFinal) + ": " + l }; });
+
+    var full = s.scope === "full";
+    var blkBase = "width:36px; height:36px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; font-weight:800; font-size:.8125em; box-sizing:border-box;";
+    var blk = {
+      done: blkBase + "background:var(--soft); color:var(--text); border:1.5px solid var(--chip);",
+      redo: blkBase + "background:transparent; color:var(--warn); border:2px dashed var(--warn);",
+      next: blkBase + "background:var(--accent); color:var(--onAccent); border:1.5px solid var(--accent);",
+      bolt: "width:28px; height:36px; display:inline-flex; align-items:center; justify-content:center; color:var(--warn);"
+    };
+    var p1 = t.features.filter(function (f) { return f.mvp; }).map(function (f) { return f.label; });
+    var p2 = t.features.filter(function (f) { return !f.mvp; }).map(function (f) { return f.label; });
+    var p2Style = "flex:1 1 200px; border-radius:22px; padding:20px; display:flex; flex-direction:column; gap:12px; box-sizing:border-box;" +
+      (full ? "background:var(--card); border:2px solid #E86A92; box-shadow:0 16px 32px -18px rgba(232,106,146,.6);"
+            : "background:transparent; border:2px dashed var(--chip); opacity:.7;");
+    var p2BadgeSt = "font-size:.6875em; font-weight:800; letter-spacing:.06em; text-transform:uppercase; border-radius:6px; padding:3px 8px;" +
+      (full ? "background:#E86A92; color:#1E1B4B;" : "border:1.5px solid var(--chip); color:var(--muted);");
+    var p2IconSt = "flex:none; width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75em; font-weight:800;" +
+      (full ? "background:#E86A92; color:#1E1B4B;" : "border:1.5px solid var(--chip); color:var(--muted);");
+    var features = t.features.map(function (f) {
+      var active = f.mvp || full;
+      return {
+        label: f.label, phase2: !f.mvp, status: true, statusText: active ? t.inc : t.notInc,
+        icon: active ? "✓" : "–",
+        st: "position:relative; display:flex; align-items:center; gap:12px; padding:12px 16px; border-radius:16px; font-size:1em; font-weight:600;" +
+          (active ? "background:var(--soft); border:var(--softBorder); color:var(--text);" : "background:transparent; border:1.5px dashed var(--chip); color:var(--muted); opacity:.75;"),
+        iconSt: "flex:none; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.875em;" +
+          (active ? "background:var(--accent); color:var(--onAccent);" : "background:transparent; border:1.5px solid var(--chip); color:var(--muted);")
+      };
+    });
+
+    var groups = [
+      { label: t.gSize, opts: seg("size", [{ v: 0.9, l: "A−", a: t.gSize + " 90%" }, { v: 1, l: "A", a: t.gSize + " 100%" }, { v: 1.15, l: "A+", a: t.gSize + " 115%" }, { v: 1.3, l: "A++", a: t.gSize + " 130%" }]) },
+      { label: t.gContrast, opts: seg("contrast", [{ v: "normal", l: t.normal }, { v: "high", l: t.high }]) },
+      { label: t.gTheme, opts: seg("dark", [{ v: false, l: t.light }, { v: true, l: t.dark }]) },
+      { label: t.gFont, opts: seg("font", [{ v: "std", l: t.std }, { v: "readable", l: t.readable }]) },
+      { label: t.gLh, opts: seg("lh", [{ v: "normal", l: t.normal }, { v: "relaxed", l: t.relaxed }]) },
+      { label: t.gMotion, opts: seg("motion", [{ v: "on", l: t.on }, { v: "reduced", l: t.reduced }]) },
+      { label: t.gUl, opts: seg("ul", [{ v: false, l: t.no }, { v: true, l: t.yes }]) }
+    ];
+
+    var cordLine = "display:block; width:2px; background:var(--text); opacity:.55; height:" + (s.pulled ? 92 : 68) + "px;";
+    var beadStyle = "display:block; width:26px; height:26px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#FFFFFF,#F1A7B9 45%,#9DB8F5);" +
+      "border:2px solid var(--text);" + (s.dark ? "box-shadow:0 0 18px 6px rgba(241,167,185,.55);" : "box-shadow:0 4px 10px -4px rgba(30,27,75,.4);");
+
+    return {
+      t: t, lang: s.lang, rootStyle: rootStyle, rootClass: rootClass, langOpts: langOpts,
+      steps: steps, pain: pain, decisions: decisions,
+      methodOpts: seg("method", [{ v: "scanner", l: t.mScanner }, { v: "camera", l: t.mCamera }, { v: "manual", l: t.mManual }]),
+      fidOpts: seg("fid", [{ v: "wire", l: t.fWire }, { v: "final", l: t.fFinal }]),
+      fidScreens: fidScreens,
+      scopeOpts: seg("scope", [{ v: "mvp", l: t.sMvp }, { v: "full", l: t.sFull }]),
+      learnOne: t.learn.slice(0, 1), features: features, showFull: full, showMvp: !full, blk: blk,
+      p1: p1, p2: p2, p2Style: p2Style, p2BadgeSt: p2BadgeSt, p2IconSt: p2IconSt,
+      p2Badge: full ? t.proposed : t.notShipped, p2Icon: full ? "+" : "–", p2Note: full ? t.p2NoteFull : t.p2NoteMvp,
+      groups: groups, cordLine: cordLine, beadStyle: beadStyle, darkPressed: String(s.dark),
+      panelOpen: s.panel, panelExpanded: String(s.panel),
+      pull: function () {
+        self.setState({ dark: !s.dark, pulled: true });
+        clearTimeout(self._cordTimer);
+        self._cordTimer = setTimeout(function () { self.setState({ pulled: false }); }, 200);
+      },
+      menuOpen: s.menu, menuClosed: !s.menu, menuExpanded: String(s.menu),
+      toggleMenu: function () { self.setState({ menu: !s.menu }); },
+      closeMenu: function () { self.setState({ menu: false }); },
+      waHref: "https://wa.me/5491166853502?text=" + encodeURIComponent(s.lang === "es" ? "Hola Domi, vi tu portfolio y me gustaría hablar con vos." : "Hi Domi, I saw your portfolio and I'd like to talk."),
+      togglePanel: function () { self.setState({ panel: !s.panel }); },
+      reset: function () { self.setState({ dark: false, contrast: "normal", size: 1, font: "std", lh: "normal", motion: "on", ul: false }); }
+    };
+  }
+  componentWillUnmount() { clearTimeout(this._cordTimer); }
+}
+
+DC.mount(Component);
+</script>
+<noscript>Este sitio necesita JavaScript.</noscript>
+</body>
+</html>

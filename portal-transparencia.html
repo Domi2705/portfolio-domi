@@ -1,0 +1,1214 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portal de Transparencia · Caso de estudio · Dominique Plez</title>
+<meta name="description" content="Portfolio de Dominique Plez, diseñadora UX/UI generalista con especial interés en el diseño de interacción.">
+<meta property="og:title" content="Portal de Transparencia · Caso de estudio · Dominique Plez">
+<meta property="og:description" content="Portfolio de Dominique Plez, diseñadora UX/UI generalista con especial interés en el diseño de interacción.">
+<meta name="theme-color" content="#5B3FC4">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Atkinson+Hyperlegible:wght@400;700&amp;family=Roboto:wght@400;500;700&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+.root{transition:background-color .5s ease,color .5s ease}
+.root a{color:var(--accent)}
+.root a:hover{color:var(--text)}
+.root :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.screen{display:block;width:220px;max-width:100%;height:auto;border-radius:26px;border:7px solid var(--frame);background:#FFFFFF;box-sizing:border-box;box-shadow:0 22px 40px -22px rgba(30,27,75,.45)}
+.lift{transition:transform .25s ease}
+.lift:hover{transform:translateY(-4px)}
+.scanbtn{transition:transform .15s ease}
+.scanbtn:hover{transform:scale(1.06)}
+.scanbtn:active{transform:scale(.94)}
+.cord-line{transition:height .18s ease}
+.bead{transition:box-shadow .5s ease,transform .18s ease}
+.cord-btn:hover .bead{transform:scale(1.08)}
+.marq{position:relative; overflow:hidden; outline-offset:-4px; -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent); mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.marq-track{list-style:none; margin:0; padding:8px 0 20px; display:flex; gap:22px; width:max-content; animation:marq var(--marq-dur,60s) linear infinite}
+.marq:hover .marq-track,.marq:focus-within .marq-track{animation-play-state:paused}
+.marq-track li{flex:none; display:flex; flex-direction:column; align-items:center; gap:12px; transition:transform .25s ease}
+.marq-track li:hover{transform:translateY(-6px)}
+@keyframes marq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 11px))}}
+@media (hover:none), (max-width:760px){
+.marq{overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding-inline:24px; scrollbar-width:none; -webkit-mask-image:none; mask-image:none}
+.marq::-webkit-scrollbar{display:none}
+.marq-track{animation:none; padding:8px 24px 20px; gap:16px}
+.marq-track li{scroll-snap-align:start}
+.marq-track li:hover{transform:none}
+.marq-track .dup{display:none}
+}
+.rm .marq{overflow-x:auto; -webkit-mask-image:none; mask-image:none}
+.rm .marq-track{padding-inline:24px}
+.rm .marq-track .dup{display:none}
+@media (prefers-reduced-motion: reduce){.marq{overflow-x:auto; -webkit-mask-image:none; mask-image:none}.marq-track{padding-inline:24px}.marq-track .dup{display:none}}
+.ul a{text-decoration:underline!important;text-underline-offset:3px}
+.rm,.rm *{transition:none!important;animation:none!important}
+.rm .lift:hover,.rm .scanbtn:hover{transform:none}
+@media (prefers-reduced-motion: reduce){.root,.root *{transition:none!important;animation:none!important}.lift:hover,.scanbtn:hover{transform:none}}
+@media (max-width:640px){.cord{right:12px!important}}
+.cta{transition:background-position .5s ease,transform .2s ease;background-position:0% 50%}
+.cta:hover{background-position:100% 50%;transform:translateY(-2px)}
+.btn{cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,background-color .2s ease,border-color .2s ease,color .2s ease,filter .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 20px -12px rgba(30,27,75,.55)}
+.btn:active{transform:translateY(0) scale(.97);box-shadow:none}
+.btn[aria-pressed="false"]:hover{background:var(--soft)!important;border-color:var(--accent)!important}
+.btn[aria-pressed="true"]:hover{filter:brightness(1.12)}
+button.btn:not([aria-pressed]):hover,a.btn:hover{border-color:var(--accent)!important}
+a.btn-dark:hover{background:rgba(255,255,255,.12)!important;border-color:#FFFFFF!important}
+.tlink{transition:color .2s ease}
+.tlink:hover{color:var(--accent)!important;text-decoration:underline;text-underline-offset:4px}
+.logo .mark{transition:transform .4s ease}
+.logo:hover .mark{transform:rotate(180deg)}
+.card{cursor:pointer}
+.rm .btn:hover,.rm .btn:active,.rm .logo:hover .mark{transform:none}
+@media (prefers-reduced-motion: reduce){.btn:hover,.btn:active,.logo:hover .mark{transform:none}}
+
+.seg{display:inline-flex;flex-wrap:wrap;gap:4px;padding:4px;background:var(--tray);border:var(--bw) solid var(--border);border-radius:14px}
+.seg .btn:hover{transform:none!important}
+.seg .btn[aria-pressed="false"]:hover{background:var(--card)!important;color:var(--accent)!important}
+.seg .btn[aria-pressed="true"]{box-shadow:0 2px 6px -2px rgba(30,27,75,.45)}
+.tag{display:inline-flex;align-items:center;background:var(--tagBg);color:var(--muted);border-radius:6px;padding:3px 9px;font-size:.75em;font-weight:600;line-height:1.5}
+.btn:hover{transform:translateY(-1px)!important}
+.btn:active,.cta:active{transform:translateY(2px)!important;box-shadow:none!important}
+.mlink{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:0 14px;border-radius:12px;text-decoration:none;color:var(--text)!important;font-weight:700}
+.mlink:hover{background:var(--soft)}
+.only-m{display:none!important}
+@media (max-width:760px){
+.only-d{display:none!important}
+.only-m{display:flex!important}
+.hdr{padding-right:56px!important}
+.cord{transform:scale(.8);transform-origin:top center;right:8px!important}
+.hero-side{display:none!important}
+.hero-center{width:220px!important;max-width:72%!important}
+}
+@media (max-width:520px){.name-c{display:none}}
+@media (max-width:400px){.name-m{display:none}}
+@media (hover:none){
+.btn:hover{transform:none!important}
+.btn[aria-pressed="false"]:hover{background:var(--card)!important;border-color:var(--chip)!important}
+.seg .btn[aria-pressed="false"]:hover{background:transparent!important;color:var(--text)!important}
+button.btn:not([aria-pressed]):hover,a.btn:hover{border-color:var(--chip)!important}
+.lift:hover,.card:hover{transform:none}
+}
+.spot{transition:transform .15s ease}
+.spot:hover{transform:translate(-50%,-50%) scale(1.12)!important}
+.wa{transition:transform .2s ease}
+.wa:hover{transform:scale(1.08)}
+@media (prefers-reduced-motion: reduce){.wa:hover{transform:none}}
+.nav-link{text-decoration:none;color:var(--muted)!important;font-weight:500;padding:10px 4px;min-height:44px;display:inline-flex;align-items:center}
+.nav-link:hover{color:var(--text)!important}
+@keyframes rise{from{opacity:0;translate:0 28px}to{opacity:1;translate:0 0}}
+@keyframes drop{from{opacity:0;translate:0 -14px}to{opacity:1;translate:0 0}}
+@keyframes pop{from{opacity:0;translate:0 24px;scale:.96}to{opacity:1;translate:0 0;scale:1}}
+.root .hdr{position:relative;z-index:30;animation:drop .6s cubic-bezier(.2,.7,.2,1) both}
+.root .hdr ~ section:first-of-type > *{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.root .hdr ~ section:first-of-type > :nth-child(1){animation-delay:.2s}
+.root .hdr ~ section:first-of-type > :nth-child(2){animation:pop .9s cubic-bezier(.2,.7,.2,1) .4s both}
+.root .hdr ~ section:first-of-type > :nth-child(3){animation-delay:.55s}
+.root .hdr ~ section:first-of-type > :nth-child(n+4){animation-delay:.65s}
+.sprog{display:none}
+@supports (animation-timeline: view()){
+@keyframes revealUp{from{opacity:0;translate:0 56px;scale:.98}to{opacity:1;translate:0 0;scale:1}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.sprog{display:block;position:fixed;top:0;left:0;right:0;height:4px;z-index:40;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#E86A92,#8B6CF0,#5B8DEF);animation:grow linear both;animation-timeline:scroll(root)}
+}
+.rm .sprog{display:none}
+@media (prefers-reduced-motion: reduce){.sprog{display:none}}
+[data-rv="wait"]{opacity:0;translate:0 44px}
+[data-rv="in"]{animation:rvUp .8s cubic-bezier(.2,.7,.2,1) var(--rvd,0s) both}
+@keyframes rvUp{from{opacity:0;translate:0 44px}to{opacity:1;translate:0 0}}
+.rm [data-rv]{opacity:1!important;translate:none!important;animation:none!important}
+@media (prefers-reduced-motion: reduce){[data-rv]{opacity:1!important;translate:none!important;animation:none!important}}
+</style>
+
+</head>
+<body>
+<div id="root"></div>
+<template id="dc-tpl">
+
+<div class="{{rootClass}}" lang="{{lang}}" style="{{rootStyle}}">
+<div class="sprog" aria-hidden="true"></div>
+
+<div class="cord" style="position:absolute; top:0; right:40px; display:flex; flex-direction:column; align-items:center; z-index:5">
+<span aria-hidden="true" style="width:22px; height:6px; border-radius:0 0 6px 6px; background:var(--text); opacity:.7"></span>
+<span class="cord-line" aria-hidden="true" style="{{cordLine}}"></span>
+<button class="cord-btn" type="button" onClick="{{pull}}" aria-pressed="{{darkPressed}}" aria-label="{{t.cord}}" title="{{t.cord}}" style="width:44px; height:44px; margin-top:-4px; border:none; background:transparent; padding:0; cursor:pointer; display:flex; align-items:flex-start; justify-content:center">
+<span class="bead" style="{{beadStyle}}"></span>
+</button>
+</div>
+
+<div style="max-width:1200px; margin:0 auto; display:flex; flex-direction:column; gap:24px">
+
+<header class="hdr" style="position:relative; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:8px 72px 8px 8px">
+<a class="logo" href="index.html" style="text-decoration:none; color:var(--text); font-weight:800; font-size:1.25em; letter-spacing:-0.02em; display:inline-flex; align-items:center; gap:10px; min-height:44px">
+<svg class="mark" width="38" height="38" viewBox="0 0 100 100" aria-hidden="true"><defs><linearGradient id="dpflow" gradientUnits="userSpaceOnUse" x1="0" y1="5" x2="0" y2="95"><stop offset="0" stop-color="#E86A92"></stop><stop offset=".5" stop-color="#8B6CF0"></stop><stop offset="1" stop-color="#5B8DEF"></stop></linearGradient></defs><circle cx="50" cy="50" r="20" fill="none" stroke="url(#dpflow)" stroke-width="10"></circle><path d="M70 22 V50 M30 50 V78" fill="none" stroke="url(#dpflow)" stroke-width="10" stroke-linecap="round"></path><circle cx="70" cy="13" r="8.5" fill="url(#dpflow)"></circle><circle cx="30" cy="87" r="8.5" fill="url(#dpflow)"></circle></svg>
+<span class="name-m">Dominique Plez</span></a>
+<div style="display:flex; align-items:center; gap:12px">
+<div class="only-d" style="display:flex; align-items:center; gap:20px">
+<nav aria-label="{{t.navLabel}}" style="display:flex; gap:20px; font-size:.9375em">
+<a class="nav-link" href="index.html#work">{{t.navWork}}</a>
+<a class="nav-link" href="index.html#how">{{t.navHow}}</a>
+<a class="nav-link" href="index.html#about">{{t.navAbout}}</a>
+<a class="nav-link" href="index.html#contact">{{t.navContact}}</a>
+</nav>
+<div class="seg" role="group" aria-label="{{t.langLabel}}" style="flex-wrap:nowrap">
+<sc-for list="{{langOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" lang="{{o.code}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<button class="btn" type="button" onClick="{{togglePanel}}" aria-expanded="{{panelExpanded}}" aria-controls="a11y-panel-p" aria-label="{{t.a11yOpen}}" title="{{t.a11yOpen}}" style="flex:none; width:44px; height:44px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); color:var(--text); box-shadow:0 3px 0 var(--chip); cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"></circle><path d="M5 8.5l7 1.5 7-1.5"></path><path d="M12 10v5"></path><path d="M9 21l3-6 3 6"></path></svg></button>
+<button class="btn only-m" type="button" onClick="{{toggleMenu}}" aria-expanded="{{menuExpanded}}" aria-controls="mobile-menu" style="align-items:center; gap:8px; min-height:44px; padding:0 14px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); color:var(--text); font:inherit; font-weight:700; font-size:.9375em; box-shadow:0 3px 0 var(--chip)">
+<sc-if value="{{menuClosed}}" hint-placeholder-val="{{ true }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></sc-if>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></sc-if>
+{{t.menu}}
+</button>
+</div>
+<sc-if value="{{menuOpen}}" hint-placeholder-val="{{ false }}">
+<div id="mobile-menu" class="only-m" style="position:absolute; top:calc(100% + 8px); left:0; right:0; z-index:15; flex-direction:column; gap:4px; background:var(--card); border:var(--bw) solid var(--border); border-radius:20px; padding:10px; box-shadow:0 24px 48px -20px rgba(30,27,75,.45)">
+<nav aria-label="{{t.navLabel}}" style="display:flex; flex-direction:column; gap:2px">
+<a class="mlink" href="index.html#work" onClick="{{closeMenu}}">{{t.navWork}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#how" onClick="{{closeMenu}}">{{t.navHow}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#about" onClick="{{closeMenu}}">{{t.navAbout}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+<a class="mlink" href="index.html#contact" onClick="{{closeMenu}}">{{t.navContact}} <span aria-hidden="true" style="color:var(--accent)">→</span></a>
+</nav>
+<div style="display:flex; justify-content:space-between; align-items:center; gap:12px; border-top:var(--bw) solid var(--border); margin-top:6px; padding:12px 14px 4px">
+<span style="font-weight:700; font-size:.9375em">{{t.langLabel}}</span>
+<div class="seg" role="group" aria-label="{{t.langLabel}}" style="flex-wrap:nowrap">
+<sc-for list="{{langOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" lang="{{o.code}}" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+</header>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:32px">
+<div style="display:flex; flex-direction:column; gap:18px; max-width:820px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.heroTag}}</p>
+<h1 style="margin:0; font-size:clamp(2.4em, 3.6vw + 1em, 4.4em); line-height:1.02; letter-spacing:-0.04em; font-weight:800">{{t.heroTitle}}</h1>
+<p style="margin:0; font-size:clamp(1.3em, 1vw + 1em, 1.65em); line-height:1.3; font-weight:700; letter-spacing:-0.015em">{{t.heroSub}}</p>
+<p style="margin:0; font-size:1.125em; line-height:var(--lh); color:var(--muted)">{{t.heroLead}}</p>
+</div>
+<div style="display:flex; flex-direction:column; gap:16px">
+<div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px">
+<span style="font-size:.875em; font-weight:700">{{t.viewLabel}}</span>
+<div class="seg" role="group" aria-label="{{t.viewLabel}}">
+<sc-for list="{{viewOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<div style="position:relative; background:var(--m1); border-radius:28px; padding:clamp(16px,3vw,40px) clamp(16px,3vw,40px) 0; overflow:hidden">
+<div style="border-radius:14px 14px 0 0; overflow:hidden; border:var(--bw) solid var(--border); border-bottom:none; background:#FFFFFF; box-shadow:0 30px 60px -30px rgba(30,27,75,.45)">
+<div aria-hidden="true" style="display:flex; align-items:center; gap:6px; padding:10px 14px; background:#F1F1F6; border-bottom:1px solid #E3E5EF">
+<span style="width:10px; height:10px; border-radius:50%; background:#F1A7B9"></span><span style="width:10px; height:10px; border-radius:50%; background:#F5D58A"></span><span style="width:10px; height:10px; border-radius:50%; background:#9DDFB8"></span>
+<span style="margin-left:12px; flex:1; max-width:340px; height:22px; border-radius:6px; background:#FFFFFF; font-size:11px; color:#6A6E85; display:flex; align-items:center; padding:0 10px; font-family:system-ui, sans-serif">{{heroUrl}}</span>
+</div>
+<img src="{{heroImg}}" alt="{{heroAlt}}" style="display:block; width:100%; height:auto">
+</div>
+<sc-if value="{{heroPhone}}" hint-placeholder-val="{{ true }}">
+<img class="hero-side" src="assets/m_home.jpg" alt="{{t.altMobile}}" style="position:absolute; right:clamp(16px,4vw,56px); bottom:-40px; width:clamp(120px,16vw,210px); height:auto; border-radius:22px; border:6px solid #1E1B4B; box-shadow:0 24px 40px -16px rgba(30,27,75,.5); background:#FFFFFF">
+</sc-if>
+</div>
+<p aria-live="polite" style="margin:0; font-size:.9375em; color:var(--muted); line-height:1.5">{{heroCap}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px">
+<sc-for list="{{t.meta}}" as="m" hint-placeholder-count="4">
+<div style="background:var(--soft); border:var(--softBorder); border-radius:20px; padding:18px 20px; display:flex; flex-direction:column; gap:4px">
+<span style="font-size:.75em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{m.k}}</span>
+<span style="font-size:1em; font-weight:700">{{m.v}}</span>
+<span style="font-size:.875em; color:var(--muted); line-height:1.5">{{m.d}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.pEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.pTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.pText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px">
+<sc-for list="{{t.sides}}" as="sd" hint-placeholder-count="2">
+<div style="border:var(--bw) solid var(--border); border-radius:24px; padding:24px; display:flex; flex-direction:column; gap:14px">
+<div style="display:flex; align-items:center; gap:12px">
+<span aria-hidden="true" style="width:40px; height:40px; border-radius:12px; background:var(--soft); color:var(--accent); display:flex; align-items:center; justify-content:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{sd.icon}}"></path></svg>
+</span>
+<h3 style="margin:0; font-size:1.25em; font-weight:800">{{sd.title}}</h3>
+</div>
+<ul role="list" style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px">
+<sc-for list="{{sd.items}}" as="it" hint-placeholder-count="3">
+<li style="display:flex; gap:10px; align-items:flex-start; font-size:.9375em; line-height:1.55"><span aria-hidden="true" style="flex:none; margin-top:7px; width:8px; height:8px; border-radius:2px; background:var(--warn)"></span><span>{{it}}</span></li>
+</sc-for>
+</ul>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.bEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.bTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.bText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px; align-items:start">
+<div style="background:var(--card); border:1.5px solid var(--border); border-radius:24px; padding:clamp(20px,3vw,28px); display:flex; flex-direction:column; gap:16px">
+<p style="margin:0; display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.0625em"><span aria-hidden="true" style="width:10px; height:10px; border-radius:3px; background:var(--warn)"></span>{{t.bBadT}}</p>
+<sc-for list="{{benchBad}}" as="f" hint-placeholder-count="3">
+<div style="display:flex; flex-direction:column; gap:6px; padding-top:16px; border-top:1px solid var(--border)">
+<h3 style="margin:0; font-size:1.0625em; font-weight:800; line-height:1.3">{{f.title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{f.text}}</p>
+<p style="margin:0; font-size:.8125em; font-weight:700; color:var(--text)">{{f.where}}</p>
+</div>
+</sc-for>
+</div>
+<div style="background:var(--soft); border:1.5px solid var(--ok); border-radius:24px; padding:clamp(20px,3vw,28px); display:flex; flex-direction:column; gap:16px">
+<p style="margin:0; display:flex; align-items:center; gap:10px; font-weight:800; font-size:1.0625em"><span aria-hidden="true" style="width:10px; height:10px; border-radius:3px; background:var(--ok)"></span>{{t.bGoodT}}</p>
+<sc-for list="{{benchGood}}" as="f" hint-placeholder-count="3">
+<div style="display:flex; flex-direction:column; gap:6px; padding-top:16px; border-top:1px solid var(--border)">
+<h3 style="margin:0; font-size:1.0625em; font-weight:800; line-height:1.3">{{f.title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{f.text}}</p>
+<p style="margin:0; font-size:.8125em; font-weight:700; color:var(--text)">{{f.where}}</p>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.uEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.uTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.uText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px">
+<sc-for list="{{t.personas}}" as="p" hint-placeholder-count="3">
+<figure style="margin:0; background:var(--soft); border:var(--softBorder); border-radius:24px; padding:24px; display:flex; flex-direction:column; gap:14px">
+<div style="display:flex; align-items:center; gap:12px">
+<span aria-hidden="true" style="width:44px; height:44px; flex:none; border-radius:50%; background:linear-gradient(135deg,#F1A7B9,#9DB8F5); color:#1E1B4B; display:flex; align-items:center; justify-content:center; font-weight:800">{{p.ini}}</span>
+<figcaption style="display:flex; flex-direction:column; gap:2px">
+<span style="font-weight:800">{{p.name}}</span>
+<span style="font-size:.8125em; color:var(--muted)">{{p.role}}</span>
+</figcaption>
+</div>
+<span class="tag" style="align-self:flex-start; background:var(--card)">{{p.type}}</span>
+<blockquote style="margin:0; font-size:1.0625em; line-height:1.5; font-weight:600">“{{p.quote}}”</blockquote>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted); border-top:var(--bw) solid var(--border); padding-top:12px"><strong style="color:var(--text)">{{t.needs}}:</strong> {{p.need}}</p>
+</figure>
+</sc-for>
+</div>
+<p style="margin:0; font-size:.875em; color:var(--muted); font-style:italic">{{t.uNote}}</p>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.aEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.aTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.aText}}</p>
+</div>
+<ul role="list" style="list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px">
+<sc-for list="{{t.modules}}" as="m" hint-placeholder-count="8">
+<li style="border:var(--bw) solid var(--border); border-radius:20px; padding:18px; display:flex; gap:14px; align-items:flex-start">
+<span aria-hidden="true" style="width:40px; height:40px; flex:none; border-radius:12px; background:var(--soft); color:var(--accent); display:flex; align-items:center; justify-content:center">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="{{m.icon}}"></path></svg>
+</span>
+<span style="display:flex; flex-direction:column; gap:3px">
+<span style="font-weight:800">{{m.name}}</span>
+<span style="font-size:.875em; color:var(--muted); line-height:1.45">{{m.desc}}</span>
+</span>
+</li>
+</sc-for>
+</ul>
+
+<div style="border-top:var(--bw) solid var(--border); padding-top:32px; display:flex; flex-wrap:wrap; gap:32px; align-items:center">
+<div style="flex:999 1 360px; min-width:0; display:flex; flex-direction:column; gap:14px">
+<h3 style="margin:0; font-size:1.75em; font-weight:800; letter-spacing:-0.025em">{{t.anTitle}}</h3>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.anText}}</p>
+<div class="seg" role="group" aria-label="{{t.anTitle}}" style="align-self:flex-start">
+<sc-for list="{{anatOpts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+<div aria-live="polite" style="flex:1 1 340px; min-width:0; background:var(--m2); border-radius:28px; padding:clamp(20px,3vw,32px); box-sizing:border-box">
+<sc-if value="{{anatPublic}}" hint-placeholder-val="{{ true }}">
+<div style="background:#FFFFFF; color:#1E1B4B; border-radius:18px; padding:20px; display:flex; flex-direction:column; gap:12px; box-shadow:0 18px 36px -20px rgba(30,27,75,.45); font-family:'Inter', system-ui, sans-serif">
+<div style="display:flex; justify-content:space-between; gap:10px; align-items:center">
+<span style="display:flex; align-items:center; gap:8px"><span style="{{badge}}">5</span><span style="font-size:11px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:#EEF0FB; color:#3B3FA8; border-radius:4px; padding:3px 8px">{{t.anTag}}</span></span>
+<span style="display:flex; align-items:center; gap:8px"><span style="font-size:12px; color:#555A70">{{t.anDate}}</span><span style="{{badge}}">2</span></span>
+</div>
+<div style="display:flex; align-items:center; gap:8px"><span style="{{badge}}">1</span><span style="font-size:17px; font-weight:800">{{t.anDocTitle}}</span></div>
+<div style="display:flex; align-items:center; gap:8px"><span style="{{badge}}">3</span><span style="font-size:13px; color:#555A70">{{t.anArea}}</span></div>
+<div style="display:flex; align-items:flex-start; gap:8px"><span style="{{badge}}">4</span><span style="font-size:14px; line-height:1.5">{{t.anSummary}}</span></div>
+<div style="display:flex; align-items:center; gap:8px"><span style="{{badge}}">6</span><span style="display:inline-flex; align-items:center; gap:8px; border:1.5px solid #D5D8E6; border-radius:10px; padding:8px 12px; font-size:13px; font-weight:700; color:#3B3FA8">PDF · {{t.anFile}}</span></div>
+</div>
+</sc-if>
+<sc-if value="{{anatForm}}" hint-placeholder-val="{{ false }}">
+<div style="background:#FFFFFF; color:#1E1B4B; border-radius:18px; padding:20px; display:flex; flex-direction:column; gap:10px; box-shadow:0 18px 36px -20px rgba(30,27,75,.45); font-family:'Inter', system-ui, sans-serif">
+<sc-for list="{{formFields}}" as="ff" hint-placeholder-count="6">
+<div style="display:flex; align-items:center; gap:8px">
+<span style="{{badge}}">{{ff.n}}</span>
+<div style="flex:1; border:1px solid #D5D8E6; border-radius:8px; padding:6px 10px; display:flex; flex-direction:column; gap:1px">
+<span style="font-size:10px; color:#555A70">{{ff.label}}</span>
+<span style="font-size:13px; font-weight:600">{{ff.value}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:24px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.eEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.eTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.eText}}</p>
+</div>
+<div class="seg" role="group" aria-label="{{t.eTitle}}" style="align-self:flex-start">
+<sc-for list="{{modOpts}}" as="o" hint-placeholder-count="5">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+<div aria-live="polite" style="display:flex; flex-direction:column; gap:16px">
+<div style="background:var(--soft); border:var(--softBorder); border-radius:20px; padding:18px 22px; display:flex; gap:14px; align-items:flex-start">
+<span aria-hidden="true" style="flex:none; width:30px; height:30px; border-radius:8px; background:var(--accent); color:var(--onAccent); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.875em">→</span>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); font-weight:600">{{mod.decision}}</p>
+</div>
+<div style="background:var(--m3); border-radius:28px; padding:clamp(14px,3vw,32px)">
+<div style="border-radius:14px; overflow:hidden; border:var(--bw) solid var(--border); background:#FFFFFF; box-shadow:0 24px 48px -28px rgba(30,27,75,.45)">
+<div aria-hidden="true" style="display:flex; align-items:center; gap:6px; padding:9px 14px; background:#F1F1F6; border-bottom:1px solid #E3E5EF">
+<span style="width:9px; height:9px; border-radius:50%; background:#F1A7B9"></span><span style="width:9px; height:9px; border-radius:50%; background:#F5D58A"></span><span style="width:9px; height:9px; border-radius:50%; background:#9DDFB8"></span>
+</div>
+<img src="{{mod.img}}" alt="{{mod.alt}}" style="display:block; width:100%; height:auto">
+</div>
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.kEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.kTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.kText}}</p>
+</div>
+<div style="display:flex; flex-wrap:wrap; gap:24px; align-items:flex-start">
+<div style="flex:999 1 520px; min-width:0; background:var(--m1); border-radius:28px; padding:clamp(12px,2.5vw,28px); box-sizing:border-box">
+<div style="position:relative; border-radius:12px; overflow:hidden; border:var(--bw) solid var(--border); background:#FFFFFF; box-shadow:0 24px 48px -28px rgba(30,27,75,.45)">
+<img src="assets/b_pres.jpg" alt="{{t.altBack}}" style="display:block; width:100%; height:auto">
+<sc-for list="{{spots}}" as="h" hint-placeholder-count="5">
+<button class="spot" type="button" aria-pressed="{{h.pressed}}" aria-label="{{h.aria}}" onClick="{{h.pick}}" style="{{h.dotSt}}">{{h.n}}</button>
+</sc-for>
+</div>
+</div>
+<ol role="list" style="flex:1 1 300px; min-width:0; list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px">
+<sc-for list="{{spots}}" as="h" hint-placeholder-count="5">
+<li style="display:flex; flex-direction:column">
+<button class="btn" type="button" aria-pressed="{{h.pressed}}" aria-expanded="{{h.pressed}}" onClick="{{h.pick}}" style="{{h.rowSt}}">
+<span style="{{h.numSt}}">{{h.n}}</span>
+<span style="flex:1; text-align:left; font-weight:700">{{h.feature}}</span>
+<span aria-hidden="true" style="{{h.chevSt}}">›</span>
+</button>
+<sc-if value="{{h.on}}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:8px; background:var(--soft); border:var(--softBorder); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px">
+<p style="margin:0; font-size:.9375em; line-height:1.5; font-style:italic; color:var(--muted)">“{{h.pain}}”</p>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); font-weight:600">{{h.answer}}</p>
+</div>
+</sc-if>
+</li>
+</sc-for>
+</ol>
+</div>
+
+<div style="border-top:var(--bw) solid var(--border); padding-top:32px; display:flex; flex-wrap:wrap; gap:32px; align-items:center">
+<div style="flex:1 1 320px; min-width:0; display:flex; flex-direction:column; gap:14px">
+<h3 style="margin:0; font-size:1.75em; font-weight:800; letter-spacing:-0.025em">{{t.mTitle}}</h3>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.mText}}</p>
+<p style="margin:0; font-size:.875em; font-weight:700">{{t.mModules}}</p>
+<div style="display:flex; flex-wrap:wrap; gap:8px">
+<sc-for list="{{toggles}}" as="tg" hint-placeholder-count="8">
+<button class="btn" type="button" aria-pressed="{{tg.pressed}}" onClick="{{tg.pick}}" style="{{tg.st}}"><span aria-hidden="true" style="{{tg.boxSt}}">{{tg.mark}}</span>{{tg.name}}</button>
+</sc-for>
+</div>
+<p style="margin:6px 0 0; font-size:.875em; font-weight:700">{{t.mColor}}</p>
+<div role="group" aria-label="{{t.mColor}}" style="display:flex; flex-wrap:wrap; gap:10px">
+<sc-for list="{{swatches}}" as="sw" hint-placeholder-count="4">
+<button class="btn" type="button" aria-pressed="{{sw.pressed}}" aria-label="{{sw.name}}" title="{{sw.name}}" onClick="{{sw.pick}}" style="{{sw.st}}"></button>
+</sc-for>
+</div>
+</div>
+<div aria-live="polite" style="flex:999 1 420px; min-width:0; background:var(--m2); border-radius:28px; padding:clamp(16px,3vw,32px); box-sizing:border-box">
+<div style="background:#FFFFFF; color:#1E1B4B; border-radius:16px; overflow:hidden; box-shadow:0 22px 44px -24px rgba(30,27,75,.5); font-family:'Inter', system-ui, sans-serif">
+<div style="{{simHeader}}">
+<span style="font-size:11px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; opacity:.85">{{t.simMuni}}</span>
+<span style="font-size:20px; font-weight:800">{{t.simTitle}}</span>
+</div>
+<div style="padding:16px; display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:10px; min-height:120px; align-content:start">
+<sc-for list="{{simTiles}}" as="st" hint-placeholder-count="6">
+<div style="border:1px solid #E3E5EF; border-radius:12px; padding:12px 8px; display:flex; flex-direction:column; align-items:center; gap:6px; text-align:center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="{{simColor}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{st.icon}}"></path></svg>
+<span style="font-size:12px; font-weight:700; line-height:1.3">{{st.name}}</span>
+</div>
+</sc-for>
+<sc-if value="{{simEmpty}}" hint-placeholder-val="{{ false }}">
+<p style="margin:0; grid-column:1 / -1; font-size:13px; color:#555A70; text-align:center; padding:24px 0">{{t.simEmpty}}</p>
+</sc-if>
+</div>
+</div>
+</div>
+</div>
+
+<div style="border-top:var(--bw) solid var(--border); padding-top:32px; display:flex; flex-wrap:wrap; gap:32px; align-items:center">
+<div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; gap:12px">
+<h3 style="margin:0; font-size:1.5em; font-weight:800; letter-spacing:-0.02em">{{t.oTitle2}}</h3>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.oText2}}</p>
+</div>
+<div style="flex:999 1 460px; min-width:0; background:var(--m3); border-radius:28px; padding:clamp(12px,2.5vw,28px); box-sizing:border-box">
+<img src="assets/b_obras.jpg" alt="{{t.altObras}}" style="display:block; width:100%; height:auto; border-radius:12px; border:var(--bw) solid var(--border); box-shadow:0 20px 40px -24px rgba(30,27,75,.45)">
+</div>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.dEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.dTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.dText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:16px">
+<article style="background:var(--card); border:var(--bw) solid var(--border); border-radius:24px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="background:#F7F7FB; color:#262626; padding:24px; min-height:150px; display:flex; flex-direction:column; justify-content:center; gap:12px; border-bottom:var(--bw) solid var(--border); font-family:'Inter', system-ui, sans-serif">
+<div style="display:flex; flex-wrap:wrap; gap:18px; align-items:flex-end">
+<div style="display:flex; flex-direction:column; gap:6px"><span style="font-size:11px; font-weight:700; color:#555555">{{t.vFixed}}</span><div style="display:flex; gap:8px"><span style="display:flex; flex-direction:column; align-items:center; gap:4px"><span style="width:40px; height:40px; border-radius:10px; background:#FFFFFF; border:1px solid #D9D9E3;"></span><span style="font-size:10px; font-family:ui-monospace, monospace; color:#555555">FFFFFF</span></span><span style="display:flex; flex-direction:column; align-items:center; gap:4px"><span style="width:40px; height:40px; border-radius:10px; background:#F7F7FB; border:1px solid #D9D9E3;"></span><span style="font-size:10px; font-family:ui-monospace, monospace; color:#555555">F7F7FB</span></span><span style="display:flex; flex-direction:column; align-items:center; gap:4px"><span style="width:40px; height:40px; border-radius:10px; background:#666666; "></span><span style="font-size:10px; font-family:ui-monospace, monospace; color:#555555">666666</span></span><span style="display:flex; flex-direction:column; align-items:center; gap:4px"><span style="width:40px; height:40px; border-radius:10px; background:#262626; "></span><span style="font-size:10px; font-family:ui-monospace, monospace; color:#555555">262626</span></span></div></div>
+<div style="display:flex; flex-direction:column; gap:6px"><span style="font-size:11px; font-weight:700; color:#555555">{{t.vBrand}}</span><div style="display:flex; gap:8px"><span style="display:flex; flex-direction:column; align-items:center; gap:4px"><span style="width:40px; height:40px; border-radius:10px; background:#6155F5; "></span><span style="font-size:10px; font-family:ui-monospace, monospace; color:#555555">6155F5</span></span><span style="display:flex; flex-direction:column; align-items:center; gap:4px"><span style="width:84px; height:40px; border-radius:10px; background:linear-gradient(90deg,#4A42FF,#4FA3FF)"></span><span style="font-size:10px; font-family:ui-monospace, monospace; color:#555555">4A42FF → 4FA3FF</span></span></div></div>
+</div>
+</div>
+<div style="padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px">
+<h3 style="margin:0; font-size:1.125em; font-weight:800; line-height:1.3">{{t.v1Title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{t.v1Text}}</p>
+</div>
+</article>
+<article style="background:var(--card); border:var(--bw) solid var(--border); border-radius:24px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="background:#F7F7FB; color:#262626; padding:24px; min-height:150px; display:flex; flex-direction:column; justify-content:center; gap:12px; border-bottom:var(--bw) solid var(--border); font-family:'Inter', system-ui, sans-serif">
+<div style="display:flex; flex-wrap:wrap; justify-content:space-around; gap:12px"><span style="display:flex; flex-direction:column; align-items:center; gap:2px; min-width:70px"><span style="font-size:30px; font-weight:800; letter-spacing:-0.02em; background:linear-gradient(90deg,#4A42FF,#4FA3FF); -webkit-background-clip:text; background-clip:text; color:transparent">250</span><span style="font-size:11px; color:#555555; text-align:center; line-height:1.3">{{t.vS1}}</span></span><span style="display:flex; flex-direction:column; align-items:center; gap:2px; min-width:70px"><span style="font-size:30px; font-weight:800; letter-spacing:-0.02em; background:linear-gradient(90deg,#4A42FF,#4FA3FF); -webkit-background-clip:text; background-clip:text; color:transparent">58%</span><span style="font-size:11px; color:#555555; text-align:center; line-height:1.3">{{t.vS2}}</span></span><span style="display:flex; flex-direction:column; align-items:center; gap:2px; min-width:70px"><span style="font-size:30px; font-weight:800; letter-spacing:-0.02em; background:linear-gradient(90deg,#4A42FF,#4FA3FF); -webkit-background-clip:text; background-clip:text; color:transparent">48%</span><span style="font-size:11px; color:#555555; text-align:center; line-height:1.3">{{t.vS3}}</span></span></div>
+</div>
+<div style="padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px">
+<h3 style="margin:0; font-size:1.125em; font-weight:800; line-height:1.3">{{t.v2Title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{t.v2Text}}</p>
+</div>
+</article>
+<article style="background:var(--card); border:var(--bw) solid var(--border); border-radius:24px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="background:#F7F7FB; color:#262626; padding:24px; min-height:150px; display:flex; flex-direction:column; justify-content:center; gap:12px; border-bottom:var(--bw) solid var(--border); font-family:'Inter', system-ui, sans-serif">
+<div style="background:#FFFFFF; border-radius:12px; padding:12px 14px; display:flex; flex-direction:column; gap:6px; box-shadow:0 6px 16px -10px rgba(30,27,75,.35)">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:8px"><span style="font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:#EEEDFD; color:#3B2FD9; border-radius:4px; padding:3px 7px">{{t.vT1}}</span><span style="font-size:11px; color:#555555">24 jul 2025</span></div>
+<span style="font-size:14px; font-weight:700">{{t.vT1Title}}</span></div>
+<div style="display:flex; flex-wrap:wrap; gap:6px"><span style="font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:#EEEDFD; color:#3B2FD9; border-radius:4px; padding:3px 7px">{{t.vT2}}</span><span style="font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:#EEEDFD; color:#3B2FD9; border-radius:4px; padding:3px 7px">{{t.vT3}}</span><span style="font-size:10px; font-weight:800; letter-spacing:.06em; text-transform:uppercase; background:#EEEDFD; color:#3B2FD9; border-radius:4px; padding:3px 7px">{{t.vT4}}</span></div>
+</div>
+<div style="padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px">
+<h3 style="margin:0; font-size:1.125em; font-weight:800; line-height:1.3">{{t.v3Title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{t.v3Text}}</p>
+</div>
+</article>
+<article style="background:var(--card); border:var(--bw) solid var(--border); border-radius:24px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="background:#F7F7FB; color:#262626; padding:24px; min-height:150px; display:flex; flex-direction:column; justify-content:center; gap:12px; border-bottom:var(--bw) solid var(--border); font-family:'Inter', system-ui, sans-serif">
+<div style="display:flex; flex-direction:column; gap:8px">
+<div style="display:flex; justify-content:space-between; font-size:13px"><span style="font-weight:700">{{t.vP1}}</span><span style="font-weight:800; color:#3B2FD9">58%</span></div>
+<div style="height:10px; border-radius:999px; background:#E3E2F5; overflow:hidden"><div style="width:58%; height:100%; border-radius:999px; background:linear-gradient(90deg,#4A42FF,#4FA3FF)"></div></div>
+<div style="display:flex; justify-content:space-between; font-size:13px; margin-top:6px"><span style="font-weight:700">{{t.vP2}}</span><span style="font-weight:800; color:#3B2FD9">85%</span></div>
+<div style="height:10px; border-radius:999px; background:#E3E2F5; overflow:hidden"><div style="width:85%; height:100%; border-radius:999px; background:linear-gradient(90deg,#4A42FF,#4FA3FF)"></div></div>
+</div>
+</div>
+<div style="padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px">
+<h3 style="margin:0; font-size:1.125em; font-weight:800; line-height:1.3">{{t.v4Title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{t.v4Text}}</p>
+</div>
+</article>
+<article style="background:var(--card); border:var(--bw) solid var(--border); border-radius:24px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="background:#F7F7FB; color:#262626; padding:24px; min-height:150px; display:flex; flex-direction:column; justify-content:center; gap:12px; border-bottom:var(--bw) solid var(--border); font-family:'Inter', system-ui, sans-serif">
+<div style="background:#FFFFFF; border-radius:12px; padding:14px; display:flex; flex-wrap:wrap; justify-content:flex-end; align-items:center; gap:8px; box-shadow:0 6px 16px -10px rgba(30,27,75,.35)">
+<span style="font-size:12px; font-weight:700; color:#3B2FD9; padding:6px 8px">{{t.vB1}}</span>
+<span style="font-size:12px; font-weight:700; color:#262626; background:#F3F3F6; border-radius:8px; padding:8px 10px">{{t.vB2}}</span>
+<span style="font-size:12px; font-weight:700; color:#3B2FD9; border:1.5px solid #6155F5; border-radius:8px; padding:7px 12px">{{t.vB3}}</span>
+</div>
+<div style="display:flex; gap:6px; align-items:center; font-size:12px; color:#555555"><span style="width:8px; height:8px; border-radius:50%; background:#6155F5"></span>{{t.vB4}}</div>
+</div>
+<div style="padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px">
+<h3 style="margin:0; font-size:1.125em; font-weight:800; line-height:1.3">{{t.v5Title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{t.v5Text}}</p>
+</div>
+</article>
+<article style="background:var(--card); border:var(--bw) solid var(--border); border-radius:24px; overflow:hidden; display:flex; flex-direction:column">
+<div aria-hidden="true" style="background:#F7F7FB; color:#262626; padding:24px; min-height:150px; display:flex; flex-direction:column; justify-content:center; gap:12px; border-bottom:var(--bw) solid var(--border); font-family:'Inter', system-ui, sans-serif">
+<div style="display:flex; flex-direction:column; gap:6px">
+<span style="font-size:26px; font-weight:700; letter-spacing:-0.02em; line-height:1.1; background:linear-gradient(90deg,#4A42FF,#4FA3FF); -webkit-background-clip:text; background-clip:text; color:transparent">{{t.vH1}}</span>
+<span style="font-size:15px; font-weight:700">{{t.vH2}}</span>
+<span style="font-size:13px; color:#666666; line-height:1.5">{{t.vBody}}</span>
+</div>
+</div>
+<div style="padding:20px 22px 24px; display:flex; flex-direction:column; gap:8px">
+<h3 style="margin:0; font-size:1.125em; font-weight:800; line-height:1.3">{{t.v6Title}}</h3>
+<p style="margin:0; font-size:.9375em; line-height:var(--lh); color:var(--muted)">{{t.v6Text}}</p>
+</div>
+</article>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px) 0; display:flex; flex-direction:column; gap:24px; overflow:hidden">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px; padding:0 clamp(28px,5vw,64px)">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.rEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.rTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.rText}}</p>
+<p class="only-m" style="margin:0; font-size:.9375em; color:var(--muted)">{{t.rHintM}}</p>
+</div>
+<div class="marq" tabindex="0" role="region" aria-label="{{t.rTitle}}" style="--marq-dur:70s">
+<ol class="marq-track" role="list">
+<sc-for list="{{phonesLoop}}" as="f" hint-placeholder-count="8">
+<li class="{{f.cls}}" aria-hidden="{{f.hidden}}">
+<img src="{{f.img}}" alt="{{f.alt}}" style="display:block; width:220px; height:auto; border-radius:26px; border:7px solid var(--frame); background:#FFFFFF; box-sizing:border-box; box-shadow:0 22px 40px -22px rgba(30,27,75,.45)">
+<span style="font-size:.875em; font-weight:700">{{f.label}}</span>
+</li>
+</sc-for>
+</ol>
+</div>
+</section>
+
+<section style="background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-wrap:wrap; gap:36px; align-items:center">
+<div style="flex:999 1 380px; min-width:0; display:flex; flex-direction:column; gap:14px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{t.iEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.iTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{t.iText}}</p>
+<span class="tag" style="align-self:flex-start; background:#FCE7EE; color:#8A1F44">{{t.iBadge}}</span>
+</div>
+<div role="img" aria-label="{{t.iAria}}" style="flex:1 1 340px; min-width:0; background:var(--m2); border-radius:28px; padding:clamp(18px,3vw,30px); display:flex; flex-direction:column; gap:12px; box-sizing:border-box">
+<div style="align-self:flex-end; max-width:85%; background:var(--accent); color:var(--onAccent); border-radius:18px 18px 4px 18px; padding:12px 16px; font-size:.9375em; line-height:1.45; font-weight:600">{{t.iQ}}</div>
+<div style="align-self:flex-start; max-width:92%; background:var(--card); color:var(--text); border:var(--bw) solid var(--border); border-radius:18px 18px 18px 4px; padding:14px 16px; display:flex; flex-direction:column; gap:10px; font-size:.9375em; line-height:1.5">
+<span>{{t.iA}}</span>
+<sc-for list="{{t.iSources}}" as="src" hint-placeholder-count="2">
+<span style="display:flex; justify-content:space-between; gap:10px; align-items:center; background:var(--soft); border-radius:10px; padding:8px 10px; font-size:.875em"><span style="font-weight:700">{{src.title}}</span><span class="tag" style="background:var(--card)">{{src.mod}}</span></span>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="background:var(--footBg); color:var(--footText); border:var(--footBorder); border-radius:32px; padding:clamp(28px,5vw,64px); display:flex; flex-direction:column; gap:28px">
+<div style="display:flex; flex-direction:column; gap:14px; max-width:760px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#F1A7B9">{{t.oEyebrow}}</p>
+<h2 style="margin:0; font-size:clamp(2em, 1.6vw + 1.2em, 2.75em); letter-spacing:-0.03em; font-weight:800; line-height:1.1">{{t.oTitle}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--footMuted)">{{t.oText}}</p>
+</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px">
+<sc-for list="{{t.wins}}" as="w" hint-placeholder-count="3">
+<div style="border:1.5px solid var(--footBtn); border-radius:22px; padding:22px; display:flex; align-items:center; gap:14px">
+<span aria-hidden="true" style="width:36px; height:36px; flex:none; border-radius:50%; background:linear-gradient(135deg,#F1A7B9,#9DB8F5); display:flex; align-items:center; justify-content:center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1B4B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</span>
+<span style="font-weight:700; font-size:1.0625em">{{w}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="display:flex; flex-wrap:wrap; gap:20px">
+<sc-for list="{{learnOne}}" as="l" hint-placeholder-count="3">
+<div style="flex:1 1 300px; background:var(--card); border:var(--bw) solid var(--border); border-radius:32px; padding:clamp(28px,4vw,40px); display:flex; flex-direction:column; gap:12px">
+<p style="margin:0; font-size:.8125em; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--accent)">{{l.eyebrow}}</p>
+<h2 style="margin:0; font-size:1.5em; font-weight:800; letter-spacing:-0.02em">{{l.title}}</h2>
+<p style="margin:0; font-size:1.0625em; line-height:var(--lh); color:var(--muted)">{{l.text}}</p>
+</div>
+</sc-for>
+</section>
+
+<nav aria-label="{{t.caseNav}}" style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; padding:8px">
+<a class="btn" href="index.html" style="text-decoration:none; color:var(--text); font-weight:600; font-size:1em; padding:0 24px; min-height:52px; border-radius:14px; border:1.5px solid var(--chip); background:var(--card); box-shadow:0 3px 0 var(--chip); display:inline-flex; align-items:center">{{t.back}}</a>
+<a class="cta" href="binsort.html" style="text-decoration:none; background-size:200% 100%; background-image:linear-gradient(90deg,#F1A7B9,#C9B2F2,#9DB8F5); color:#1E1B4B; font-weight:700; font-size:1em; padding:0 26px; min-height:52px; border-radius:14px; box-shadow:0 3px 0 rgba(30,27,75,.3); display:inline-flex; align-items:center">{{t.next}}</a>
+</nav>
+
+</div>
+
+<a class="wa" href="{{waHref}}" target="_blank" rel="noopener" aria-label="{{t.waLabel}}" title="{{t.waLabel}}" style="position:fixed; right:20px; bottom:20px; width:58px; height:58px; border-radius:50%; background:#128C7E; color:#FFFFFF; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 28px -10px rgba(0,0,0,.45); z-index:20; text-decoration:none"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9.1 8.2c.3-.6.8-.6 1.1 0l.6 1.3c.1.3 0 .6-.2.8l-.5.5c.6 1.2 1.6 2.2 2.8 2.8l.5-.5c.2-.2.5-.3.8-.2l1.3.6c.6.3.6.8 0 1.1-.9.6-2 .8-3 .3a8.5 8.5 0 0 1-4-4c-.5-1-.3-2.1.6-2.7z" fill="currentColor"></path></svg></a>
+
+<sc-if value="{{panelOpen}}" hint-placeholder-val="{{ false }}">
+<div id="a11y-panel-p" role="dialog" aria-label="{{t.a11yTitle}}" style="position:fixed; right:20px; top:84px; width:340px; max-width:calc(100vw - 40px); max-height:calc(100vh - 110px); overflow-y:auto; background:var(--card); color:var(--text); border:var(--bw) solid var(--border); border-radius:24px; padding:24px; box-sizing:border-box; display:flex; flex-direction:column; gap:18px; box-shadow:0 24px 60px -20px rgba(30,27,75,.45); z-index:20">
+<div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+<h2 style="margin:0; font-size:1.25em; font-weight:800">{{t.a11yTitle}}</h2>
+<button class="btn" type="button" onClick="{{togglePanel}}" aria-label="{{t.close}}" style="width:44px; height:44px; border-radius:50%; border:1.5px solid var(--chip); background:transparent; color:var(--text); cursor:pointer; display:flex; align-items:center; justify-content:center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+</div>
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="7">
+<div role="group" aria-label="{{g.label}}" style="display:flex; flex-direction:column; gap:8px">
+<p style="margin:0; font-weight:700; font-size:.875em">{{g.label}}</p>
+<div class="seg" style="align-self:flex-start">
+<sc-for list="{{g.opts}}" as="o" hint-placeholder-count="2">
+<button class="btn" type="button" aria-pressed="{{o.pressed}}" aria-label="{{o.aria}}" onClick="{{o.pick}}" style="{{o.st}}">{{o.label}}</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+<button class="btn" type="button" onClick="{{reset}}" style="min-height:44px; border-radius:12px; border:1.5px solid var(--chip); background:var(--card); box-shadow:0 3px 0 var(--chip); color:var(--text); font:inherit; font-weight:700; font-size:.875em; cursor:pointer">{{t.reset}}</button>
+</div>
+</sc-if>
+
+</div>
+</template>
+<script src="js/morphdom.min.js"></script>
+<script src="js/runtime.js"></script>
+<script>
+
+var IMG = {
+  home: "assets/p_home_v2.jpg", homeFull: "assets/p_home_v2_full.jpg", bol: "assets/p_bo_adv.jpg",
+  obras: "assets/p_obras1.jpg", org: "assets/p_org1.jpg",
+  search: "assets/p_search.jpg", back: "assets/b_pres.jpg",
+  mHome: "assets/m_home.jpg", mMenu: "assets/m_menu_v2.jpg", mObras: "assets/m_obras.jpg",
+  mPres: "assets/m_pres.jpg", mBol: "assets/m_bol.jpg", mLic: "assets/m_lic.jpg", mOrg: "assets/m_org.jpg", mComp: "assets/m_comp2.jpg"
+};
+var ICONS = [
+  "M9 3h6v4H9zM3 15h6v4H3zM15 15h6v4h-6zM12 7v4M6 11h12M6 11v4M18 11v4",
+  "M6 3h9l3 3v15H6zM9 9h6M9 13h6M9 17h4",
+  "M4 20V10M10 20V4M16 20v-8M21 20H3",
+  "M4 7h16v13H4zM9 7V4h6v3M4 12h16",
+  "M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11zM12 12a2 2 0 1 0 0-4 2 2 0 0 0 0 4z",
+  "M4 12l5 5L20 6",
+  "M4 5h16v11H8l-4 4z",
+  "M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"
+];
+var PORTALS = ["bar", "men", "qui", "caba"];
+var FIND = [
+  { good: false, p: ["bar", "men", "caba"] },
+  { good: false, p: ["bar", "qui", "caba"] },
+  { good: false, p: ["bar", "men"] },
+  { good: true, p: ["qui", "caba"] },
+  { good: true, p: ["qui", "men"] }
+];
+var SPOTS = [
+  { x: 84, y: 13 }, { x: 70, y: 25 }, { x: 33, y: 40 }, { x: 27, y: 69 }, { x: 7, y: 33 }
+];
+var COLORS = ["#5B3FC4", "#0F7A5C", "#1D5FBF", "#9B2C4A"];
+
+var COPY = {
+  en: {
+    navLabel: "Main", menu: "Menu", navWork: "Work", navHow: "How I work", navAbout: "About", navContact: "Contact",
+    langLabel: "Language", back: "← Back to home", caseNav: "Case navigation", next: "Next case: Binsort →",
+    cordOff: "Turn the lights off (dark mode)", cordOn: "Turn the lights on (light mode)",
+    heroTag: "Case study · GovTech product · Web + admin panel",
+    heroTitle: "Municipal Transparency Portal",
+    heroSub: "Public information people can actually find, and a panel the municipality can update on its own.",
+    heroLead: "A modular product for small and mid-sized municipalities: a public portal to look up budgets, tenders, public works and officials, and an admin panel so each area publishes without depending on IT.",
+    viewLabel: "View as:", vCitizen: "Citizens", vStaff: "Municipal staff",
+    capCitizen: "Public portal: key figures, access to every module and the latest publications on the first screen.",
+    capStaff: "Admin panel: each module is a structured form, with draft, preview and publish.",
+    urlCitizen: "transparencia.municipio.gob.ar", urlStaff: "transparencia.municipio.gob.ar/admin",
+    altHome: "Public portal home with key figures and access to modules", altMobile: "Mobile version of the portal home",
+    altBack: "Admin panel form to publish a budget, with draft, preview and publish buttons",
+    altObras: "Admin form to load a public work: type, progress slider and streets drawn on a map",
+    meta: [
+      { k: "Role", v: "UX/UI Designer", d: "Research, information architecture, public portal, admin panel and mobile" },
+      { k: "Type", v: "GovTech product", d: "Modular, for small and mid-sized municipalities" },
+      { k: "Status", v: "Working demo", d: "Presented to local governments" },
+      { k: "Scope", v: "2 experiences · 8 modules", d: "Desktop and mobile" }
+    ],
+    pEyebrow: "01 · The problem", pTitle: "The information exists, but nobody finds it",
+    pText: "Municipalities are required to publish budgets, decrees and tenders. In practice, that information ends up scattered across PDFs and separate websites, and keeping it updated depends on whoever knows how to upload it.",
+    sides: [
+      { title: "For citizens", icon: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0",
+        items: ["Documents with generic titles, like “Quarterly report”, with no year or topic.", "Technical PDFs with no explanation of what they contain.", "Each section leads to a different website, with its own search."] },
+      { title: "For municipal staff", icon: "M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6",
+        items: ["Each area sends files by email, with no common criteria.", "Uploading a document depends on IT or an external provider.", "Nobody knows for sure what was published and what is still pending."] }
+    ],
+    bEyebrow: "02 · Benchmark", bTitle: "Four portals, nine sections each",
+    bText: "I compared the portals of Bariloche, Mendoza, Quilmes and Buenos Aires City across nine sections, from officials and procurement to open data and chatbot.",
+    bFilter: "Filter by portal:", pAll: "All", bBadT: "What got in the way", bGoodT: "What worked",
+    pNames: { bar: "Bariloche", men: "Mendoza", qui: "Quilmes", caba: "Buenos Aires City" },
+    bad: "Problem", good: "Good practice",
+    findings: [
+      { title: "Information spread across other websites", text: "The gazette, regulations or tenders led to separate sites, with a different design and a different search. Every jump meant getting oriented again." },
+      { title: "Broken links and empty sections", text: "Several sections didn't work or had no content. In a transparency portal, a broken link creates exactly the opposite: distrust." },
+      { title: "Org charts as PDFs", text: "To find out who runs an area, you had to download a document." },
+      { title: "Public works on a map", text: "Placing works on a map and filtering them by type made the administration's work visible in your own neighborhood." },
+      { title: "Progress on commitments", text: "Quilmes showed each commitment with its completion percentage, and Mendoza had a dashboard with stages and indicators for its projects." }
+    ],
+    uEyebrow: "03 · Two kinds of users", uTitle: "Those who look things up, and those who publish them",
+    uText: "From the benchmark I defined three proto-personas. Two of them work inside the municipality, because if publishing is hard, the portal goes out of date and citizens stop trusting it.",
+    needs: "Needs",
+    personas: [
+      { ini: "L", name: "Lucía", role: "Modernization and Transparency technician", type: "Internal · publishes content",
+        quote: "The current site is very disorganized and hard to update. We often depend on IT or the provider to upload a document.",
+        need: "Publish on her own, with clear forms and a draft/published status." },
+      { ini: "D", name: "Diego", role: "Head of Budget, Treasury", type: "Internal · provides information",
+        quote: "Today I don't know whether something we sent was published or not.",
+        need: "Know what is online, and make sure every file has its year and period." },
+      { ini: "M", name: "María, 42", role: "Teacher, engaged neighbor", type: "External · looks up information",
+        quote: "I check in now and then to see what they're spending on, whether there are new works, and how I can take part.",
+        need: "Descriptive titles, a short explanation before each PDF, and a good search." }
+    ],
+    uNote: "Proto-personas built from the benchmark and the requirements, not from interviews. Validating them with municipal staff and residents is one of the next steps.",
+    aEyebrow: "04 · Architecture", aTitle: "Eight modules, one shared logic",
+    aText: "Each municipality turns on the modules it needs. All of them follow the same structure, so citizens learn to read the portal once, and staff learn to publish once.",
+    modules: [
+      { name: "Org chart", desc: "Areas, officials and their contacts." },
+      { name: "Official gazette", desc: "Decrees, resolutions and ordinances." },
+      { name: "Budget", desc: "Revenue, spending and execution by year." },
+      { name: "Tenders", desc: "Purchases, contracts and specifications." },
+      { name: "Public works", desc: "Status and location on a map." },
+      { name: "Commitments", desc: "Progress on government goals." },
+      { name: "Participation", desc: "Proposals and resident forms." },
+      { name: "Open data", desc: "Downloadable public datasets." }
+    ],
+    anTitle: "What the citizen reads is what staff fill in",
+    anText: "Every publication has the same anatomy: descriptive title, date, responsible area, summary, type and file. Each part is a field in the admin form, so nothing gets published without context.",
+    anPublic: "Public view", anForm: "Admin form",
+    anTag: "Budget", anDate: "Jul 15, 2025", anDocTitle: "Budget execution, 1st half 2025",
+    anArea: "Treasury Department", anSummary: "How much was spent, by area, between January and June, compared with the approved budget.",
+    anFile: "Download report",
+    fLabels: ["Title", "Publication date", "Responsible area", "Summary", "Type", "File"],
+    fValues: ["Budget execution, 1st half 2025", "07/15/2025", "Treasury Department", "How much was spent, by area…", "Budget", "execution-h1-2025.pdf"],
+    dEyebrow: "07 · Visual design", dTitle: "Institutional, without feeling bureaucratic",
+    dText: "A government portal has to feel trustworthy, but it also has to invite people to explore. I chose a light, neutral base and saved color for what matters.",
+    vFixed: "Fixed base", vBrand: "Municipality's colors",
+    v1Title: "A palette each municipality can adapt", v1Text: "Neutrals and text greys stay fixed, so contrast never breaks. Each municipality sets two colors from the panel: the primary for titles and buttons, the secondary for visual details, and together they form the gradient.",
+    vS1: "Gazettes published", vS2: "Works in progress", vS3: "Budget executed",
+    v2Title: "Numbers first", v2Text: "Key indicators open the home in large type: a quick reading of the administration before anyone opens a document.",
+    vT1: "Official gazette", vT1Title: "Official Gazette No. 205 · July 2025", vT2: "Open data", vT3: "Public works", vT4: "Tenders",
+    v3Title: "Every content type is recognizable", v3Text: "Each result shows a type label, date and title in the same order, so people can scan a mixed list without opening each item.",
+    vP1: "Amoedo Ave. paving", vP2: "Build 5 schools",
+    v4Title: "Progress you see, not read", v4Text: "Public works and commitments show a progress bar with its percentage. It's the fastest way to answer “how is it going?”.",
+    vB1: "Delete", vB2: "Save draft", vB3: "Publish", vB4: "Color only on actions and the active module",
+    v5Title: "A calmer panel than the portal", v5Text: "The admin panel is used for hours, so it stays in white and greys. Color marks only the actions and where you are.",
+    vH1: "Transparency portal", vH2: "Latest publications", vBody: "Body text in grey #666666: 5.4:1 contrast on the background.",
+    v6Title: "Inter, with a clear hierarchy", v6Text: "A single typeface, Inter, chosen for its legibility on screens and its numbers, in three levels: gradient titles, bold subtitles and grey body text.",
+    eEyebrow: "05 · Public portal", eTitle: "Every module answers a concrete question",
+    eText: "Choose a module to see the screen and the decision behind it.",
+    mods: [
+      { label: "Home", decision: "Key figures at the top, access to every module and the latest publications: what people come for, on the first screen.", alt: "Portal home" },
+      { label: "Search", decision: "One search for the whole portal. Each result says what type it is, when it was published and what it contains.", alt: "Search results with type labels and dates" },
+      { label: "Gazette", decision: "Search by keyword, date range and type of regulation, instead of an endless list of PDFs.", alt: "Official gazette with advanced search" },
+      { label: "Public works", decision: "Works and services on a map, filtered by type, with their progress bar.", alt: "Public works map with filters and progress" },
+      { label: "Org chart", decision: "People with photo, role and resume, instead of a PDF to download.", alt: "Org chart with the mayor and officials" }
+    ],
+    kEyebrow: "06 · Admin panel", kTitle: "Designed for people who aren't technical",
+    kText: "Each pain point from the proto-personas became a concrete feature of the panel. Tap the numbers to see which one.",
+    spots: [
+      { feature: "Draft or published", pain: "Today I don't know whether something we sent was published or not.", answer: "Every publication has a status. Nothing reaches the portal by accident, and drafts can be finished later." },
+      { feature: "Preview before publishing", pain: "Being able to see how the content will look before publishing it.", answer: "A preview shows exactly what citizens will see." },
+      { feature: "Required name, description and year", pain: "Sometimes files are uploaded without a description or year, and later no one knows what they refer to.", answer: "Context is part of the form, not something you have to remember to write." },
+      { feature: "Drag-and-drop upload", pain: "We often depend on IT or the provider to upload a document.", answer: "Drag the PDF in, with the format and maximum size explained right there." },
+      { feature: "Same structure as the portal", pain: "A clear panel where all the sections of the portal are visible.", answer: "Every module sits in a fixed side menu: the panel mirrors the portal people see." }
+    ],
+    spotAria: "Show detail",
+    mTitle: "One product, each municipality's portal",
+    mText: "From the panel, each municipality turns modules on or off and applies its own colors. Try it:",
+    mModules: "Active modules", mColor: "Main color",
+    colorNames: ["Violet", "Green", "Blue", "Burgundy"],
+    simMuni: "Municipality of Bella Vista", simTitle: "Transparency Portal", simEmpty: "Turn on at least one module to show it on the portal.",
+    oTitle2: "Loading a public work, without a GIS",
+    oText2: "To place a work on the map, staff draw the affected street segment and set the progress with a slider. That data is what feeds the public map.",
+    rEyebrow: "08 · Responsive", rTitle: "Also on mobile",
+    rText: "Most people check public information from their phone. The menu, the modules and the map adapt to small screens.",
+    phoneLabels: ["Home", "Menu", "Budget", "Official gazette", "Tenders", "Org chart", "Commitments", "Public works"], rHint: "Hover over a screen to pause.", rHintM: "Swipe to see more screens.",
+    iEyebrow: "09 · Next stage", iTitle: "Asking instead of navigating",
+    iText: "For someone who doesn't know how a municipality is organized, asking is easier than browsing. The product proposes an assistant that answers in plain language and always shows the source document.",
+    iBadge: "Proposal · not yet designed in detail",
+    iAria: "Example conversation: a resident asks how much was invested in paving this year, and the assistant answers citing two publications.",
+    iQ: "How much was invested in paving this year?",
+    iA: "I found two publications that answer that:",
+    iSources: [{ title: "Budget execution, 1st half 2025", mod: "Budget" }, { title: "Paving · Amoedo Avenue", mod: "Public works" }],
+    oEyebrow: "10 · Status", oTitle: "A demo ready to present",
+    oText: "The portal is a working demo presented to local governments. It hasn't been implemented in a municipality or tested with users yet, so there are no impact metrics.",
+    wins: ["2 experiences: citizens and staff", "8 modules that can be turned on", "Desktop and mobile"],
+    demo: "See the demo",
+    learn: [
+      { eyebrow: "11 · Learnings", title: "What I learned", text: "A transparency product is really two products. If publishing is hard, information goes out of date, and outdated information creates distrust." },
+      { eyebrow: "12 · Next steps", title: "What I'd do next", text: "Validate the proto-personas with municipal staff and residents, test key tasks such as finding a tender or publishing a budget, and measure how long it takes for a document to go online." },
+      { eyebrow: "13 · Looking back", title: "What I'd change", text: "Replace placeholder texts and generic photos with real content, and darken the light end of the title gradient: the sky blue drops to 2.4:1 against the background, below the 3:1 that large text needs." }
+    ],
+    waLabel: "Message me on WhatsApp", a11yOpen: "Accessibility options", a11yTitle: "Accessibility", close: "Close",
+    gSize: "Text size", gContrast: "Contrast", gTheme: "Theme", gFont: "Font", gLh: "Line spacing", gMotion: "Animations", gUl: "Underline links",
+    normal: "Normal", high: "High", light: "Light", dark: "Dark", std: "Standard", readable: "High legibility",
+    relaxed: "Relaxed", on: "On", reduced: "Reduced", yes: "Yes", no: "No", reset: "Reset settings"
+  },
+  es: {
+    navLabel: "Principal", menu: "Menú", navWork: "Proyectos", navHow: "Cómo trabajo", navAbout: "Sobre mí", navContact: "Contacto",
+    langLabel: "Idioma", back: "← Volver al inicio", caseNav: "Navegación del caso", next: "Siguiente caso: Binsort →",
+    cordOff: "Apagar la luz (modo oscuro)", cordOn: "Prender la luz (modo claro)",
+    heroTag: "Caso de estudio · Producto GovTech · Web + panel de gestión",
+    heroTitle: "Portal de Transparencia Municipal",
+    heroSub: "Información pública que se puede encontrar, y un panel que el municipio puede actualizar por su cuenta.",
+    heroLead: "Un producto modular para municipios chicos y medianos: un portal público para consultar presupuestos, licitaciones, obras y funcionarios, y un panel de gestión para que cada área publique sin depender de sistemas.",
+    viewLabel: "Ver como:", vCitizen: "Ciudadanía", vStaff: "Equipo municipal",
+    capCitizen: "Portal público: indicadores, acceso a cada módulo y las últimas publicaciones en la primera pantalla.",
+    capStaff: "Panel de gestión: cada módulo es un formulario con estructura, con borrador, vista previa y publicación.",
+    urlCitizen: "transparencia.municipio.gob.ar", urlStaff: "transparencia.municipio.gob.ar/admin",
+    altHome: "Inicio del portal público con indicadores y accesos a los módulos", altMobile: "Versión mobile del inicio del portal",
+    altBack: "Formulario del panel de gestión para publicar un presupuesto, con botones de borrador, vista previa y publicar",
+    altObras: "Formulario para cargar una obra: tipo, barra de avance y calles marcadas en un mapa",
+    meta: [
+      { k: "Rol", v: "UX/UI Designer", d: "Investigación, arquitectura de información, portal público, panel de gestión y mobile" },
+      { k: "Tipo", v: "Producto GovTech", d: "Modular, para municipios chicos y medianos" },
+      { k: "Estado", v: "Demo funcional", d: "Presentada a gobiernos locales" },
+      { k: "Alcance", v: "2 experiencias · 8 módulos", d: "Desktop y mobile" }
+    ],
+    pEyebrow: "01 · El problema", pTitle: "La información existe, pero nadie la encuentra",
+    pText: "Los municipios están obligados a publicar presupuestos, decretos y licitaciones. En la práctica, esa información termina repartida en PDFs y webs separadas, y mantenerla al día depende de quién sepa subirla.",
+    sides: [
+      { title: "Para la ciudadanía", icon: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0",
+        items: ["Documentos con títulos genéricos, como «Informe trimestral», sin año ni tema.", "PDFs técnicos sin ninguna explicación de qué contienen.", "Cada sección lleva a una web distinta, con su propio buscador."] },
+      { title: "Para el equipo municipal", icon: "M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6",
+        items: ["Cada área manda archivos por mail, sin un criterio común.", "Subir un documento depende de sistemas o de un proveedor externo.", "Nadie sabe con certeza qué se publicó y qué quedó pendiente."] }
+    ],
+    bEyebrow: "02 · Benchmark", bTitle: "Cuatro portales, nueve secciones cada uno",
+    bText: "Comparé los portales de Bariloche, Mendoza, Quilmes y CABA en nueve secciones, desde autoridades y contrataciones hasta datos abiertos y chatbot.",
+    bFilter: "Filtrar por portal:", pAll: "Todos", bBadT: "Lo que complicaba", bGoodT: "Lo que funcionaba",
+    pNames: { bar: "Bariloche", men: "Mendoza", qui: "Quilmes", caba: "CABA" },
+    bad: "Problema", good: "Buena práctica",
+    findings: [
+      { title: "Información repartida en otras webs", text: "El boletín, la normativa o las licitaciones llevaban a sitios aparte, con otro diseño y otro buscador. Cada salto obligaba a orientarse de nuevo." },
+      { title: "Links rotos y secciones vacías", text: "Varias secciones no funcionaban o no tenían contenido. En un portal de transparencia, un link roto genera justo lo contrario: desconfianza." },
+      { title: "Organigramas en PDF", text: "Para saber quién está a cargo de un área había que descargar un documento." },
+      { title: "Obras en un mapa", text: "Ubicar las obras en un mapa y filtrarlas por tipo hacía visible la gestión en el propio barrio." },
+      { title: "Avance de los compromisos", text: "Quilmes mostraba cada compromiso con su porcentaje de cumplimiento, y Mendoza un tablero con etapas e indicadores de sus proyectos." }
+    ],
+    uEyebrow: "03 · Dos tipos de usuarios", uTitle: "Quienes consultan y quienes publican",
+    uText: "A partir del benchmark definí tres proto-personas. Dos trabajan dentro del municipio, porque si publicar es difícil, el portal se desactualiza y la ciudadanía deja de confiar.",
+    needs: "Necesita",
+    personas: [
+      { ini: "L", name: "Lucía", role: "Técnica de Modernización y Transparencia", type: "Interna · publica contenidos",
+        quote: "El sitio actual está muy desorganizado y es difícil de actualizar. Muchas veces dependemos del área de sistemas o del proveedor para subir un documento.",
+        need: "Publicar por su cuenta, con formularios claros y estado de borrador o publicado." },
+      { ini: "D", name: "Diego", role: "Jefe de Presupuesto, Hacienda", type: "Interno · aporta información",
+        quote: "Hoy no sé si se publicó o no algo que enviamos.",
+        need: "Saber qué está online y que cada archivo tenga su año y período." },
+      { ini: "M", name: "María, 42", role: "Docente, vecina interesada", type: "Externa · consulta información",
+        quote: "Entro cada tanto para ver en qué están gastando, si hay obras nuevas y cómo puedo participar.",
+        need: "Títulos descriptivos, una explicación breve antes de cada PDF y un buen buscador." }
+    ],
+    uNote: "Proto-personas armadas a partir del benchmark y los requerimientos, no de entrevistas. Validarlas con personal municipal y vecinos es uno de los próximos pasos.",
+    aEyebrow: "04 · Arquitectura", aTitle: "Ocho módulos, una misma lógica",
+    aText: "Cada municipio activa los módulos que necesita. Todos siguen la misma estructura: la ciudadanía aprende a leer el portal una sola vez, y el equipo aprende a publicar una sola vez.",
+    modules: [
+      { name: "Organigrama", desc: "Áreas, funcionarios y sus contactos." },
+      { name: "Boletín oficial", desc: "Decretos, resoluciones y ordenanzas." },
+      { name: "Presupuesto", desc: "Ingresos, gastos y ejecución por año." },
+      { name: "Licitaciones", desc: "Compras, contrataciones y pliegos." },
+      { name: "Obras y servicios", desc: "Estado y ubicación en un mapa." },
+      { name: "Compromisos", desc: "Avance de los objetivos de gestión." },
+      { name: "Participación", desc: "Propuestas y formularios vecinales." },
+      { name: "Datos abiertos", desc: "Conjuntos de datos descargables." }
+    ],
+    anTitle: "Lo que lee la ciudadanía es lo que completa el equipo",
+    anText: "Cada publicación tiene la misma anatomía: título descriptivo, fecha, área responsable, resumen, tipo y archivo. Cada parte es un campo del formulario de carga, así nada se publica sin contexto.",
+    anPublic: "Vista pública", anForm: "Formulario de carga",
+    anTag: "Presupuesto", anDate: "15 jul 2025", anDocTitle: "Ejecución presupuestaria, 1.er semestre 2025",
+    anArea: "Secretaría de Hacienda", anSummary: "Cuánto se gastó por área entre enero y junio, comparado con el presupuesto aprobado.",
+    anFile: "Descargar informe",
+    fLabels: ["Título", "Fecha de publicación", "Área responsable", "Resumen", "Tipo", "Archivo"],
+    fValues: ["Ejecución presupuestaria, 1.er semestre 2025", "15/07/2025", "Secretaría de Hacienda", "Cuánto se gastó por área…", "Presupuesto", "ejecucion-s1-2025.pdf"],
+    dEyebrow: "07 · Diseño visual", dTitle: "Institucional, sin ser burocrático",
+    dText: "Un portal de gobierno tiene que transmitir confianza, pero también invitar a explorar. Elegí una base neutra y luminosa, y reservé el color para lo que importa.",
+    vFixed: "Base fija", vBrand: "Colores del municipio",
+    v1Title: "Una paleta que cada municipio puede adaptar", v1Text: "Los neutros y los grises de texto quedan fijos, así el contraste nunca se rompe. Cada municipio define dos colores desde el panel: el primario para títulos y botones, el secundario para detalles visuales, y juntos forman el degradado.",
+    vS1: "Boletines publicados", vS2: "Obras avanzadas", vS3: "Presupuesto ejecutado",
+    v2Title: "Los números primero", v2Text: "Los indicadores abren la home en tamaño grande: una lectura rápida de la gestión antes de abrir cualquier documento.",
+    vT1: "Boletín oficial", vT1Title: "Boletín Oficial N.º 205 · Julio 2025", vT2: "Datos abiertos", vT3: "Obras", vT4: "Licitaciones",
+    v3Title: "Cada tipo de contenido se reconoce", v3Text: "Cada resultado muestra etiqueta de tipo, fecha y título en el mismo orden, para recorrer una lista mezclada sin abrir cada ítem.",
+    vP1: "Pavimentación Av. Amoedo", vP2: "Construir 5 escuelas",
+    v4Title: "El avance se ve, no se lee", v4Text: "Las obras y los compromisos muestran una barra de avance con su porcentaje. Es la forma más rápida de responder «¿cómo va?».",
+    vB1: "Eliminar", vB2: "Guardar borrador", vB3: "Publicar", vB4: "Color solo en las acciones y en el módulo activo",
+    v5Title: "Un panel más sobrio que el portal", v5Text: "El panel se usa durante horas, así que queda en blanco y grises. El color marca solo las acciones y dónde estás.",
+    vH1: "Portal de transparencia", vH2: "Últimas publicaciones", vBody: "Texto en gris #666666: contraste de 5,4:1 sobre el fondo.",
+    v6Title: "Inter, con una jerarquía clara", v6Text: "Una sola tipografía, Inter, elegida por su legibilidad en pantalla y por sus números, en tres niveles: títulos con gradiente, subtítulos en negrita y texto en gris.",
+    eEyebrow: "05 · Portal público", eTitle: "Cada módulo responde una pregunta concreta",
+    eText: "Elegí un módulo para ver la pantalla y la decisión detrás.",
+    mods: [
+      { label: "Inicio", decision: "Indicadores arriba, acceso a cada módulo y las últimas publicaciones: lo que la gente viene a buscar, en la primera pantalla.", alt: "Inicio del portal" },
+      { label: "Buscador", decision: "Un solo buscador para todo el portal. Cada resultado dice de qué tipo es, cuándo se publicó y qué contiene.", alt: "Resultados de búsqueda con etiquetas de tipo y fechas" },
+      { label: "Boletín", decision: "Búsqueda por palabra clave, rango de fechas y tipo de norma, en lugar de un listado infinito de PDFs.", alt: "Boletín oficial con búsqueda avanzada" },
+      { label: "Obras", decision: "Obras y servicios en un mapa, filtrados por tipo y con su barra de avance.", alt: "Mapa de obras con filtros y avance" },
+      { label: "Organigrama", decision: "Personas con foto, cargo y currículum, en lugar de un PDF para descargar.", alt: "Organigrama con el intendente y los funcionarios" }
+    ],
+    kEyebrow: "06 · Panel de gestión", kTitle: "Pensado para quien no es técnico",
+    kText: "Cada dolor de las proto-personas se convirtió en una función concreta del panel. Tocá los números para ver cuál.",
+    spots: [
+      { feature: "Borrador o publicado", pain: "Hoy no sé si se publicó o no algo que enviamos.", answer: "Cada publicación tiene un estado. Nada llega al portal por accidente, y los borradores se pueden terminar después." },
+      { feature: "Vista previa antes de publicar", pain: "Poder visualizar cómo se va a mostrar el contenido antes de publicarlo.", answer: "La vista previa muestra exactamente lo que va a ver la ciudadanía." },
+      { feature: "Nombre, descripción y año obligatorios", pain: "A veces suben archivos sin descripción o sin el año, y después nadie sabe a qué corresponden.", answer: "El contexto es parte del formulario, no algo que hay que acordarse de escribir." },
+      { feature: "Carga arrastrando el archivo", pain: "Muchas veces dependemos del área de sistemas o del proveedor para subir un documento.", answer: "Se arrastra el PDF, con el formato y el peso máximo explicados ahí mismo." },
+      { feature: "La misma estructura que el portal", pain: "Un panel claro, donde se vean todas las secciones del portal.", answer: "Todos los módulos están en un menú lateral fijo: el panel replica el portal que ve la gente." }
+    ],
+    spotAria: "Ver detalle",
+    mTitle: "Un producto, el portal de cada municipio",
+    mText: "Desde el panel, cada municipio activa o desactiva módulos y aplica sus propios colores. Probalo:",
+    mModules: "Módulos activos", mColor: "Color principal",
+    colorNames: ["Violeta", "Verde", "Azul", "Bordó"],
+    simMuni: "Municipio de Bella Vista", simTitle: "Portal de transparencia", simEmpty: "Activá al menos un módulo para mostrarlo en el portal.",
+    oTitle2: "Cargar una obra, sin saber de mapas",
+    oText2: "Para ubicar una obra, el equipo marca el tramo de calle afectado y define el avance con una barra. Esos datos alimentan el mapa público.",
+    rEyebrow: "08 · Responsive", rTitle: "También en el celular",
+    rText: "Mucha gente consulta información pública desde el teléfono. El menú, los módulos y el mapa se adaptan a pantallas chicas.",
+    phoneLabels: ["Inicio", "Menú", "Presupuesto", "Boletín oficial", "Licitaciones", "Organigrama", "Compromisos", "Obras"], rHint: "Pasá el cursor sobre una pantalla para frenarla.", rHintM: "Deslizá con el dedo para ver más pantallas.",
+    iEyebrow: "09 · Próxima etapa", iTitle: "Preguntar en lugar de navegar",
+    iText: "Para quien no conoce cómo está organizado un municipio, preguntar es más fácil que navegar. El producto propone un asistente que responda en lenguaje natural y muestre siempre el documento de origen.",
+    iBadge: "Propuesta · todavía sin diseño en detalle",
+    iAria: "Ejemplo de conversación: una vecina pregunta cuánto se invirtió en pavimentación este año y el asistente responde citando dos publicaciones.",
+    iQ: "¿Cuánto se invirtió en pavimentación este año?",
+    iA: "Encontré dos publicaciones que responden eso:",
+    iSources: [{ title: "Ejecución presupuestaria, 1.er semestre 2025", mod: "Presupuesto" }, { title: "Pavimentación · Avenida Amoedo", mod: "Obras" }],
+    oEyebrow: "10 · Estado", oTitle: "Una demo lista para presentar",
+    oText: "El portal es una demo funcional que se presenta a gobiernos locales. Todavía no fue implementado en un municipio ni testeado con usuarios, así que no hay métricas de impacto.",
+    wins: ["2 experiencias: ciudadanía y equipo municipal", "8 módulos activables", "Desktop y mobile"],
+    demo: "Ver la demo",
+    learn: [
+      { eyebrow: "11 · Aprendizajes", title: "Qué aprendí", text: "Un producto de transparencia son en realidad dos productos. Si publicar es difícil, la información se desactualiza, y la información vieja genera desconfianza." },
+      { eyebrow: "12 · Próximos pasos", title: "Qué haría después", text: "Validar las proto-personas con personal municipal y vecinos, testear tareas clave como encontrar una licitación o publicar un presupuesto, y medir cuánto tarda un documento en estar online." },
+      { eyebrow: "13 · Mirándolo hoy", title: "Qué cambiaría", text: "Reemplazaría los textos de relleno y las fotos genéricas por contenido real, y oscurecería el final del gradiente de los títulos: el celeste baja a 2,4:1 sobre el fondo, por debajo del 3:1 que pide el texto grande." }
+    ],
+    waLabel: "Escribime por WhatsApp", a11yOpen: "Opciones de accesibilidad", a11yTitle: "Accesibilidad", close: "Cerrar",
+    gSize: "Tamaño de texto", gContrast: "Contraste", gTheme: "Tema", gFont: "Tipografía", gLh: "Interlineado", gMotion: "Animaciones", gUl: "Subrayar enlaces",
+    normal: "Normal", high: "Alto", light: "Claro", dark: "Oscuro", std: "Estándar", readable: "Alta legibilidad",
+    relaxed: "Amplio", on: "Activadas", reduced: "Reducidas", yes: "Sí", no: "No", reset: "Restablecer"
+  }
+};
+
+var THEMES = {
+  light:   { tray:"#E6E7F1", tagBg:"#EEEFF5", bg:"#EEF0F6", card:"#FFFFFF", border:"#E3E5EF", text:"#1E1B4B", muted:"#4B4F63", accent:"#5B3FC4", onAccent:"#FFFFFF", soft:"#F5F3FD", softBorder:"none", chip:"#D5D8E6", bw:"1px", warn:"#B42318", ok:"#00704A", onWarn:"#FFFFFF", onOk:"#FFFFFF", frame:"#1E1B4B",
+             m1:"linear-gradient(150deg,#EDE6FC,#E2EAFB)", m2:"linear-gradient(150deg,#FBE7EE,#EDE6FC)", m3:"linear-gradient(150deg,#DDF6EC,#FFF1D6)" },
+  dark:    { tray:"#0E0D19", tagBg:"#2A2840", bg:"#12111F", card:"#1C1B2E", border:"#2E2C47", text:"#F1F0FA", muted:"#B8B7CC", accent:"#B9A6FF", onAccent:"#12111F", soft:"#24223A", softBorder:"none", chip:"#3A3858", bw:"1px", warn:"#FF9B8A", ok:"#5FE0B0", onWarn:"#12111F", onOk:"#12111F", frame:"#48456E",
+             m1:"linear-gradient(150deg,#2A2448,#1E2742)", m2:"linear-gradient(150deg,#33223A,#2A2448)", m3:"linear-gradient(150deg,#163A30,#3A3020)" },
+  lightHC: { tray:"#FFFFFF", tagBg:"#E6E6E6", bg:"#FFFFFF", card:"#FFFFFF", border:"#000000", text:"#000000", muted:"#111111", accent:"#3B1FA8", onAccent:"#FFFFFF", soft:"#FFFFFF", softBorder:"2px solid #000000", chip:"#000000", bw:"2px", warn:"#A30000", ok:"#005A3A", onWarn:"#FFFFFF", onOk:"#FFFFFF", frame:"#000000",
+             m1:"#FFFFFF", m2:"#FFFFFF", m3:"#FFFFFF" },
+  darkHC:  { tray:"#000000", tagBg:"#262626", bg:"#000000", card:"#000000", border:"#FFFFFF", text:"#FFFFFF", muted:"#F2F2F2", accent:"#D7CCFF", onAccent:"#000000", soft:"#000000", softBorder:"2px solid #FFFFFF", chip:"#FFFFFF", bw:"2px", warn:"#FF9B8A", ok:"#7CF0C2", onWarn:"#000000", onOk:"#000000", frame:"#FFFFFF",
+             m1:"#000000", m2:"#000000", m3:"#000000" }
+};
+
+var DEFAULTS = { lang: "en", dark: false, contrast: "normal", size: 1, font: "std", lh: "normal", motion: "on", ul: false, panel: false, pulled: false, menu: false,
+  view: "citizen", portal: "all", anat: "public", mod: 0, spot: 0, mods: [true, true, true, true, true, true, false, false], color: 0 };
+
+function rvKids(el) {
+  var out = [];
+  Array.prototype.forEach.call(el.children, function (c) {
+    if (c.tagName === "SCRIPT" || c.tagName === "STYLE") return;
+    if (getComputedStyle(c).display === "contents") out = out.concat(rvKids(c)); else out.push(c);
+  });
+  return out;
+}
+function rvInit(mode, tries) {
+  var doc = document;
+  var secs = doc.querySelectorAll("section, footer");
+  if (!secs.length) { if ((tries || 0) < 40) setTimeout(function () { rvInit(mode, (tries || 0) + 1); }, 100); return; }
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || doc.querySelector(".rm") || !("IntersectionObserver" in window)) return;
+  var targets = [];
+  var add = function (el) { if (el && !el.classList.contains("marq-track") && !el.hasAttribute("data-rv")) targets.push(el); };
+  if (mode === "main") {
+    ["work", "about", "contact"].forEach(function (id) { var s = doc.getElementById(id); if (s) rvKids(s).forEach(add); });
+    var how = doc.getElementById("how");
+    if (how) rvKids(how).forEach(function (c) { var k = rvKids(c); if (k.length > 1) k.forEach(add); else add(c); });
+  } else {
+    Array.prototype.slice.call(doc.querySelectorAll("section")).slice(1).forEach(function (s) {
+      rvKids(s).forEach(function (c) {
+        if (c.classList.contains("marq")) { add(c); return; }
+        var k = rvKids(c); if (k.length > 1 && k.length < 16) k.forEach(add); else add(c);
+      });
+    });
+  }
+  var io = new IntersectionObserver(function (entries) {
+    var i = 0;
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      e.target.style.setProperty("--rvd", (Math.min(i, 6) * 0.09) + "s");
+      e.target.setAttribute("data-rv", "in");
+      io.unobserve(e.target); i++;
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  targets.forEach(function (el) { el.setAttribute("data-rv", "wait"); io.observe(el); });
+}
+
+var PREF_KEYS = ["lang", "dark", "contrast", "size", "font", "lh", "motion", "ul"];
+function loadPrefs() {
+  try { var p = JSON.parse(window.localStorage.getItem("domi-prefs") || "{}"); var o = {}; PREF_KEYS.forEach(function (k) { if (p && k in p) o[k] = p[k]; }); return o; } catch (e) { return {}; }
+}
+function savePrefs(s) {
+  try { var o = {}; PREF_KEYS.forEach(function (k) { o[k] = s[k]; }); window.localStorage.setItem("domi-prefs", JSON.stringify(o)); } catch (e) {}
+}
+
+class Component extends DCLogic {
+  renderVals() {
+    if (!this.__rv) { this.__rv = 1; var rvMode = "case"; setTimeout(function () { rvInit(rvMode, 0); }, 150); }
+    var self = this;
+    var self0 = this;
+    if (!this.__ps) { this.__ps = 1; try { window.addEventListener("storage", function (e) { if (e.key === "domi-prefs") self0.setState(loadPrefs()); }); } catch (e) {} }
+    var s = Object.assign({}, DEFAULTS, loadPrefs(), this.state || {});
+    if (this.state && PREF_KEYS.some(function (k) { return k in self0.state; })) savePrefs(s);
+    var base = COPY[s.lang];
+    var t = Object.assign({}, base, { cord: s.dark ? base.cordOn : base.cordOff });
+    var c = THEMES[(s.dark ? "dark" : "light") + (s.contrast === "high" ? "HC" : "")];
+
+    var fontStack = s.font === "readable" ? "'Atkinson Hyperlegible', system-ui, sans-serif" : "'Plus Jakarta Sans', system-ui, sans-serif";
+    var vars = "";
+    Object.keys(c).forEach(function (k) { vars += "--" + k + ":" + c[k] + ";"; });
+    var rootStyle = vars + "--lh:" + (s.lh === "relaxed" ? "1.95" : "1.6") + ";" +
+      "position:relative; font-family:" + fontStack + "; font-size:" + (16 * s.size) + "px; color:var(--text); background:var(--bg);" +
+      "min-height:100vh; padding:24px 16px 120px; box-sizing:border-box;" + (s.font === "readable" ? "letter-spacing:.01em;" : "");
+    var rootClass = "root" + (s.motion === "reduced" ? " rm" : "") + (s.ul ? " ul" : "");
+
+    var segBase = "min-height:40px; min-width:44px; padding:0 14px; border-radius:10px; border:none; font:inherit; font-weight:700; font-size:.875em; cursor:pointer;";
+    var SEL = segBase + "background:var(--accent); color:var(--onAccent);";
+    var UNSEL = segBase + "background:transparent; color:var(--text);";
+    var LANGBASE = "min-height:36px; min-width:44px; padding:0 12px; border-radius:10px; font:inherit; font-weight:700; font-size:.8125em; cursor:pointer; border:none;";
+
+    function seg(key, opts) {
+      return opts.map(function (o) {
+        var on = s[key] === o.v;
+        return { label: o.l, aria: o.a || o.l, pressed: String(on), st: on ? SEL : UNSEL,
+          pick: function () { var p = {}; p[key] = o.v; self.setState(p); } };
+      });
+    }
+
+    var langOpts = [{ v: "es", l: "ES", a: "Español" }, { v: "en", l: "EN", a: "English" }].map(function (o) {
+      var on = s.lang === o.v;
+      return { code: o.v, label: o.l, aria: o.a, pressed: String(on),
+        st: LANGBASE + (on ? "background:var(--accent); color:var(--onAccent);" : "background:transparent; color:var(--text);"),
+        pick: function () { self.setState({ lang: o.v }); } };
+    });
+
+    t = Object.assign({}, t, { modules: t.modules.map(function (m, i) { return Object.assign({}, m, { icon: ICONS[i] }); }) });
+    var view = s.view;
+    var heroImg = view === "staff" ? IMG.back : IMG.home;
+
+    var portalOpts = [{ v: "all", l: t.pAll }].concat(PORTALS.map(function (p) { return { v: p, l: t.pNames[p] }; }));
+    var findings = t.findings.map(function (f, i) {
+      var meta = FIND[i];
+      var match = s.portal === "all" || meta.p.indexOf(s.portal) >= 0;
+      return {
+        title: f.title, text: f.text, kind: meta.good ? t.good : t.bad,
+        st: "border-radius:22px; padding:22px; display:flex; flex-direction:column; gap:10px; transition:opacity .25s ease;" +
+          (meta.good ? "background:var(--soft); border:1.5px solid var(--ok);" : "background:var(--card); border:1.5px solid var(--border);") +
+          (match ? "opacity:1;" : "opacity:.3;"),
+        kindSt: "align-self:flex-start; font-size:.6875em; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:6px; padding:3px 8px;" +
+          (meta.good ? "background:var(--ok); color:var(--onOk);" : "background:var(--warn); color:var(--onWarn);"),
+        tags: meta.p.map(function (p) {
+          var hit = s.portal === p;
+          return { label: t.pNames[p], st: hit ? "background:var(--accent); color:var(--onAccent);" : "" };
+        })
+      };
+    });
+
+    var benchAll = t.findings.map(function (f, i) { return { title: f.title, text: f.text, good: FIND[i].good, where: FIND[i].p.map(function (p) { return t.pNames[p]; }).join(" · ") }; });
+    var benchBad = benchAll.filter(function (f) { return !f.good; });
+    var benchGood = benchAll.filter(function (f) { return f.good; });
+    var badge = "flex:none; width:20px; height:20px; border-radius:50%; background:#E86A92; color:#1E1B4B; display:inline-flex; align-items:center; justify-content:center; font-size:11px; font-weight:800;";
+    var formFields = t.fLabels.map(function (l, i) { return { n: String(i + 1), label: l, value: t.fValues[i] }; });
+
+    var mi = s.mod;
+    var modImgs = [IMG.homeFull, IMG.search, IMG.bol, IMG.obras, IMG.org];
+    var mod = { img: modImgs[mi], alt: t.mods[mi].alt, decision: t.mods[mi].decision };
+    var modOpts = t.mods.map(function (m, i) {
+      var on = s.mod === i;
+      return { label: m.label, pressed: String(on), st: on ? SEL : UNSEL, pick: function () { self.setState({ mod: i }); } };
+    });
+
+    var spots = t.spots.map(function (h, i) {
+      var on = s.spot === i;
+      var pos = SPOTS[i];
+      return {
+        n: String(i + 1), feature: h.feature, pain: h.pain, answer: h.answer, on: on, pressed: String(on),
+        aria: t.spotAria + " " + (i + 1) + ": " + h.feature,
+        pick: function () { self.setState({ spot: s.spot === i ? -1 : i }); },
+        dotSt: "position:absolute; left:" + pos.x + "%; top:" + pos.y + "%; transform:translate(-50%,-50%); width:34px; height:34px; border-radius:50%; font:inherit; font-weight:800; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0;" +
+          (on ? "background:#E86A92; color:#1E1B4B; border:3px solid #FFFFFF; box-shadow:0 0 0 6px rgba(232,106,146,.35);" : "background:#1E1B4B; color:#FFFFFF; border:3px solid #FFFFFF; box-shadow:0 4px 10px rgba(30,27,75,.35);"),
+        rowSt: "width:100%; min-height:52px; display:flex; align-items:center; gap:12px; padding:10px 14px; border-radius:16px; font:inherit; font-size:.9375em; cursor:pointer; text-align:left;" +
+          (on ? "background:var(--soft); color:var(--text); border:2px solid var(--accent); box-shadow:0 3px 0 var(--accent);" : "background:var(--card); color:var(--text); border:1.5px solid var(--chip); box-shadow:0 3px 0 var(--chip);"),
+        numSt: "flex:none; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:.8125em;" +
+          (on ? "background:#E86A92; color:#1E1B4B;" : "background:#1E1B4B; color:#FFFFFF;"),
+        chevSt: "font-size:1.4em; line-height:1; font-weight:700; opacity:.7; transition:transform .2s ease; transform:rotate(" + (on ? 90 : 0) + "deg);"
+      };
+    });
+
+    var mods = s.mods;
+    var toggles = t.modules.map(function (m, i) {
+      var on = !!mods[i];
+      return {
+        name: m.name, pressed: String(on), mark: on ? "✓" : "",
+        st: "display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:0 12px 0 8px; border-radius:10px; font:inherit; font-weight:700; font-size:.8125em; cursor:pointer;" +
+          (on ? "background:var(--card); color:var(--text); border:1.5px solid var(--accent); box-shadow:0 3px 0 var(--accent);" : "background:var(--card); color:var(--muted); border:1.5px solid var(--chip); box-shadow:0 3px 0 var(--chip);"),
+        boxSt: "width:20px; height:20px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-size:12px; font-weight:800;" +
+          (on ? "background:var(--accent); color:var(--onAccent);" : "border:1.5px solid var(--chip);"),
+        pick: function () { var n = mods.slice(); n[i] = !n[i]; self.setState({ mods: n }); }
+      };
+    });
+    var simColor = COLORS[s.color];
+    var simTiles = [];
+    t.modules.forEach(function (m, i) { if (mods[i]) simTiles.push({ name: m.name, icon: ICONS[i] }); });
+    var swatches = COLORS.map(function (c, i) {
+      var on = s.color === i;
+      return { name: t.colorNames[i], pressed: String(on),
+        st: "width:44px; height:44px; border-radius:12px; cursor:pointer; padding:0; background:" + c + ";" +
+          (on ? "border:3px solid var(--card); box-shadow:0 0 0 3px " + c + ";" : "border:3px solid var(--card); box-shadow:0 0 0 1px var(--chip);"),
+        pick: function () { self.setState({ color: i }); } };
+    });
+
+    var phones = [IMG.mHome, IMG.mMenu, IMG.mPres, IMG.mBol, IMG.mLic, IMG.mOrg, IMG.mComp, IMG.mObras].map(function (img, i) { return { img: img, label: t.phoneLabels[i] }; });
+
+    var groups = [
+      { label: t.gSize, opts: seg("size", [{ v: 0.9, l: "A−", a: t.gSize + " 90%" }, { v: 1, l: "A", a: t.gSize + " 100%" }, { v: 1.15, l: "A+", a: t.gSize + " 115%" }, { v: 1.3, l: "A++", a: t.gSize + " 130%" }]) },
+      { label: t.gContrast, opts: seg("contrast", [{ v: "normal", l: t.normal }, { v: "high", l: t.high }]) },
+      { label: t.gTheme, opts: seg("dark", [{ v: false, l: t.light }, { v: true, l: t.dark }]) },
+      { label: t.gFont, opts: seg("font", [{ v: "std", l: t.std }, { v: "readable", l: t.readable }]) },
+      { label: t.gLh, opts: seg("lh", [{ v: "normal", l: t.normal }, { v: "relaxed", l: t.relaxed }]) },
+      { label: t.gMotion, opts: seg("motion", [{ v: "on", l: t.on }, { v: "reduced", l: t.reduced }]) },
+      { label: t.gUl, opts: seg("ul", [{ v: false, l: t.no }, { v: true, l: t.yes }]) }
+    ];
+
+    var cordLine = "display:block; width:2px; background:var(--text); opacity:.55; height:" + (s.pulled ? 92 : 68) + "px;";
+    var beadStyle = "display:block; width:26px; height:26px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#FFFFFF,#F1A7B9 45%,#9DB8F5);" +
+      "border:2px solid var(--text);" + (s.dark ? "box-shadow:0 0 18px 6px rgba(241,167,185,.55);" : "box-shadow:0 4px 10px -4px rgba(30,27,75,.4);");
+
+    return {
+      t: t,
+      lang: s.lang, rootStyle: rootStyle, rootClass: rootClass, langOpts: langOpts,
+      viewOpts: seg("view", [{ v: "citizen", l: t.vCitizen }, { v: "staff", l: t.vStaff }]),
+      heroImg: heroImg, heroAlt: view === "staff" ? t.altBack : t.altHome, heroCap: view === "staff" ? t.capStaff : t.capCitizen,
+      heroUrl: view === "staff" ? t.urlStaff : t.urlCitizen, heroPhone: view !== "staff",
+      portalOpts: seg("portal", portalOpts), findings: findings, benchBad: benchBad, benchGood: benchGood,
+      anatOpts: seg("anat", [{ v: "public", l: t.anPublic }, { v: "form", l: t.anForm }]),
+      anatPublic: s.anat === "public", anatForm: s.anat === "form", badge: badge, formFields: formFields,
+      modOpts: modOpts, mod: mod, spots: spots,
+      toggles: toggles, swatches: swatches, simTiles: simTiles, simColor: simColor, simEmpty: simTiles.length === 0,
+      simHeader: "background:" + simColor + "; color:#FFFFFF; padding:18px 20px; display:flex; flex-direction:column; gap:4px; transition:background-color .3s ease;",
+      learnOne: t.learn.slice(0, 1),
+      phones: phones,
+      phonesLoop: phones.map(function (f) { return Object.assign({}, f, { alt: f.label, cls: "", hidden: "false" }); }).concat(phones.map(function (f) { return Object.assign({}, f, { alt: "", cls: "dup", hidden: "true" }); })),
+      groups: groups, cordLine: cordLine, beadStyle: beadStyle, darkPressed: String(s.dark),
+      panelOpen: s.panel, panelExpanded: String(s.panel),
+      pull: function () {
+        self.setState({ dark: !s.dark, pulled: true });
+        clearTimeout(self._cordTimer);
+        self._cordTimer = setTimeout(function () { self.setState({ pulled: false }); }, 200);
+      },
+      menuOpen: s.menu, menuClosed: !s.menu, menuExpanded: String(s.menu),
+      toggleMenu: function () { self.setState({ menu: !s.menu }); },
+      closeMenu: function () { self.setState({ menu: false }); },
+      waHref: "https://wa.me/5491166853502?text=" + encodeURIComponent(s.lang === "es" ? "Hola Domi, vi tu portfolio y me gustaría hablar con vos." : "Hi Domi, I saw your portfolio and I'd like to talk."),
+      togglePanel: function () { self.setState({ panel: !s.panel }); },
+      reset: function () { self.setState({ dark: false, contrast: "normal", size: 1, font: "std", lh: "normal", motion: "on", ul: false }); }
+    };
+  }
+  componentWillUnmount() { clearTimeout(this._cordTimer); }
+}
+
+DC.mount(Component);
+</script>
+<noscript>Este sitio necesita JavaScript.</noscript>
+</body>
+</html>
